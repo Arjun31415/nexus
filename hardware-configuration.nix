@@ -71,17 +71,17 @@ in {
       nvidia = {
         package = mkDefault nvidiaPackage;
         modesetting.enable = mkDefault true;
-        prime = {
-	  offload = {
-	    enable = true;
- 	    enableOffloadCmd = true;
-          };
-	  nvidiaBusId = "PCI:1:0:0";
-          amdgpuBusId = "PCI:6:0:0";
-        };
+#        prime = {
+#	  offload = {
+#	    enable = true;
+ #	    enableOffloadCmd = true;
+  #        };
+#	  nvidiaBusId = "PCI:1:0:0";
+ #         amdgpuBusId = "PCI:6:0:0";
+#        };
         powerManagement = {
           enable = mkDefault true;
-          finegrained = mkDefault true;
+#          finegrained = mkDefault true;
         };
 
         # use open source drivers by default, hosts may override this option if their gpu is
@@ -93,8 +93,11 @@ in {
       };
 
       opengl = {
+        enable = true;
+	driSupport = true;
+	driSupport32Bit = true;
         extraPackages = with pkgs; [nvidia-vaapi-driver];
-#        extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
+        extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
       };
     };
 
