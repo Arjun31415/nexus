@@ -6,17 +6,13 @@
   pkgs,
   inputs,
   ...
-}: let 
-python-pkgs = ps : with ps; [
-  pynvim
-]; in
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
- # Bootloader.
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -25,7 +21,7 @@ python-pkgs = ps : with ps; [
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
-  networking.hostName = "Sleipnir"; # Define your hostname.
+  networking.hostName = "Omen"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -67,6 +63,7 @@ python-pkgs = ps : with ps; [
     packages = with pkgs; [
       stow
     ];
+    shell = pkgs.fish;
   };
 
   # Allow unfree packages
@@ -87,7 +84,14 @@ python-pkgs = ps : with ps; [
     pciutils
     pavucontrol
     google-fonts
-   (python3.withPackages python-pkgs)
+    python311
+    nodejs
+    gcc
+    rustup
+    xdg-desktop-portal-hyprland
+  ];
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
   ];
   programs.fish.enable = true;
   security.rtkit.enable = true;

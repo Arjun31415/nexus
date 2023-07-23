@@ -10,6 +10,7 @@ in {
   # paths it should manage.
   home.username = "azazel";
   home.homeDirectory = "/home/azazel";
+  nixpkgs.config.allowUnfree = true;
   # nixpkgs.overlays = overlays;
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -19,13 +20,23 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.05";
-  
+  home.stateVersion = "23.11";
+
   home.packages = with pkgs; [
     gh
-    alejandra 
+    alejandra
+    p7zip
+    unzip
+    starship
+    librewolf
+    wget
+    ripgrep
+    mcfly
+    exa
+    bat
+    pastebinit
   ];
-  
+
   programs.neovim = {
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
     vimAlias = true;
@@ -35,6 +46,9 @@ in {
     withRuby = false;
     withNodeJs = false;
     withPython3 = false;
+  };
+  programs.vscode = {
+   enable = true;
   };
 
   # Let Home Manager install and manage itself.
