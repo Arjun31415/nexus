@@ -39,6 +39,7 @@ in {
   fileSystems."/mnt/shared" = {
    device = "/dev/disk/by-label/Shared";
    fsType = "ntfs";
+   options = ["defaults" "nauto" "uid=1000" "rw"];
   };
 
   swapDevices = [];
