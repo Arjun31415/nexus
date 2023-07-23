@@ -89,6 +89,7 @@
     gcc
     rustup
     xdg-desktop-portal-hyprland
+    gcc-unwrapped.lib
   ];
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})

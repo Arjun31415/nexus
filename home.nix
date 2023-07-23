@@ -44,12 +44,16 @@ in {
     viAlias = true;
     vimdiffAlias = true;
     withRuby = false;
-    withNodeJs = false;
-    withPython3 = false;
+    withNodeJs = true;
+    withPython3 = true;
   };
   programs.vscode = {
    enable = true;
   };
+#  programs.anyrun = {
+#  package = inputs.anyrun.
+
+#  }
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
