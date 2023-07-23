@@ -36,6 +36,10 @@ in {
     device = "/dev/disk/by-uuid/C6BE-1DCB";
     fsType = "vfat";
   };
+  fileSystems."/mnt/shared" = {
+   device = "/dev/disk/by-label/Shared";
+   fsType = "ntfs";
+  };
 
   swapDevices = [];
 

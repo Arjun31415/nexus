@@ -15,6 +15,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -87,6 +88,9 @@
     python311
     nodejs
     gcc
+    gnumake
+    cmake
+    ninja
     rustup
     xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
@@ -105,6 +109,10 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
+  services.mpd = {
+    enable = true;
+  };
+  services.gvfs.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

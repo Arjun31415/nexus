@@ -35,6 +35,17 @@ in {
     exa
     bat
     pastebinit
+    inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
+    cliphist
+    whatsapp-for-linux
+    teams-for-linux
+    element-desktop
+    ncmpcpp
+    mpc-cli
+    gtk-engine-murrine
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-media-tags-plugin
   ];
 
   programs.neovim = {
@@ -46,15 +57,12 @@ in {
     withRuby = false;
     withNodeJs = true;
     withPython3 = true;
+
   };
+  programs.go.enable = true;
   programs.vscode = {
-   enable = true;
+    enable = true;
   };
-#  programs.anyrun = {
-#  package = inputs.anyrun.
-
-#  }
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
