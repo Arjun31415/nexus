@@ -15,7 +15,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -61,9 +61,6 @@
     isNormalUser = true;
     description = "Azazel";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      stow
-    ];
     shell = pkgs.fish;
   };
 
@@ -95,6 +92,7 @@
     xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
     xdg-utils
+    wl-clipboard
   ];
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
@@ -110,9 +108,12 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
-  services.mpd = {
+  /*
+     services.mpd = {
     enable = true;
+    musicDirectory = "/mnt/shared/PERSONAL/Music";
   };
+  */
   services.gvfs.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
