@@ -95,8 +95,10 @@
     rustup
     xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
+    llvmPackages_rocm.clang-unwrapped
     xdg-utils
     wl-clipboard
+    inxi
   ];
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})

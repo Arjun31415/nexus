@@ -50,6 +50,9 @@ in {
     kooha
     cava
     cpupower-gui
+    neofetch
+    btop
+    niv
   ];
   services.mpd = {
     enable = true;
