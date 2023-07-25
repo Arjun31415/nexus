@@ -17,6 +17,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -71,7 +72,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     ripgrep
     exa
@@ -88,6 +88,8 @@
     nodejs
     gcc
     gnumake
+    cudaPackages.cudatoolkit
+    cudaPackages.cudnn
     cmake
     ninja
     rustup
@@ -192,5 +194,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 }

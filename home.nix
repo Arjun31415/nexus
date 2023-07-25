@@ -49,6 +49,7 @@ in {
     stow
     kooha
     cava
+    cpupower-gui
   ];
   services.mpd = {
     enable = true;
