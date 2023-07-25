@@ -5,6 +5,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -71,11 +72,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    (inputs.hyprland.packages."x86_64-linux".hyprland.override {
-      nvidiaPatches = true;
-    })
+    wget
+    ripgrep
+    exa
+    bat
     kitty
+    dunst
     nvtop
     git
     firefox
@@ -99,6 +101,39 @@
   ];
   programs.fish.enable = true;
   security.rtkit.enable = true;
+  security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        subject.isInGroup("users")
+          && (
+            action.id == "org.freedesktop.login1.reboot" ||
+            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.power-off" ||
+            action.id == "org.freedesktop.login1.power-off-multiple-sessions" ||
+          )
+        )
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -108,13 +143,30 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
-  /*
-     services.mpd = {
+  programs.hyprland = {
     enable = true;
-    musicDirectory = "/mnt/shared/PERSONAL/Music";
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    nvidiaPatches = true;
+    xwayland = {
+      enable = true;
+      hidpi = true;
+    };
+  };
+  # to boot onto external monitor
+  /*
+     specialisation = {
+    external-display.configuration = {
+      system.nixos.tags = ["external-display"];
+      hardware.nvidia = {
+        prime.offload.enable = lib.mkForce false;
+        powerManagement.enable = lib.mkForce false;
+      };
+    };
   };
   */
   services.gvfs.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

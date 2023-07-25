@@ -32,12 +32,8 @@ in {
     p7zip
     unzip
     starship
-    librewolf
-    wget
-    ripgrep
     mcfly
-    exa
-    bat
+    librewolf
     pastebinit
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
     cliphist
@@ -52,6 +48,7 @@ in {
     xfce.thunar-media-tags-plugin
     stow
     kooha
+    cava
   ];
   services.mpd = {
     enable = true;
@@ -62,18 +59,18 @@ in {
       port = 6600;
     };
     extraConfig = ''
-     user "azazel"
-      audio_output {
-       type "pulse"
-       name "pulse_audio"
-      }
+      user "azazel"
+       audio_output {
+        type "pulse"
+        name "pulse_audio"
+       }
 
-      audio_output {
-      type "fifo"
-      name "mpd_fifo"
-      path "/tmp/mpd.fifo"
-      format "44100:16:2"
-      }
+       audio_output {
+       type "fifo"
+       name "mpd_fifo"
+       path "/tmp/mpd.fifo"
+       format "44100:16:2"
+       }
     '';
   };
   programs.neovim = {

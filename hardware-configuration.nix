@@ -15,7 +15,7 @@ with lib; let
   #   if (versionOlder nvBeta nvStable)
   #    then config.boot.kernelPackages.nvidiaPackages.stable
   #    else config.boot.kernelPackages.nvidiaPackages.beta;
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.beta;
+  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -37,9 +37,9 @@ in {
     fsType = "vfat";
   };
   fileSystems."/mnt/shared" = {
-   device = "/dev/disk/by-label/Shared";
-   fsType = "ntfs";
-   options = ["defaults" "nauto" "uid=1000" "rw"];
+    device = "/dev/disk/by-label/Shared";
+    fsType = "ntfs";
+    options = ["defaults" "noauto" "uid=1000" "rw"];
   };
 
   swapDevices = [];
@@ -69,9 +69,11 @@ in {
       }
     ];
     systemPackages = with pkgs; [
-      vulkan-tools
+      /*
+         vulkan-tools
       vulkan-loader
       vulkan-validation-layers
+      */
       libva
       libva-utils
     ];
@@ -81,23 +83,24 @@ in {
   hardware = {
     nvidia = {
       package = mkDefault nvidiaPackage;
-      modesetting.enable = mkDefault true;
-      #        prime = {
-      #	  offload = {
-      #	    enable = true;
-      #	    enableOffloadCmd = true;
-      #        };
-      #	  nvidiaBusId = "PCI:1:0:0";
-      #         amdgpuBusId = "PCI:6:0:0";
-      #        };
+      modesetting.enable = true;
+      prime = {
+        /* offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        }; */
+        sync.enable=true;
+        nvidiaBusId = "PCI:1:0:0";
+        amdgpuBusId = "PCI:6:0:0";
+      };
       powerManagement = {
-        enable = mkDefault true;
-        #          finegrained = mkDefault true;
+        enable = true;
+#        finegrained = mkDefault true;
       };
 
       # use open source drivers by default, hosts may override this option if their gpu is
       # not supported by the open source drivers
-      open = mkDefault false;
+      open = false;
       nvidiaSettings = false; # add nvidia-settings to pkgs, useless on nixos
       nvidiaPersistenced = true;
       forceFullCompositionPipeline = true;
