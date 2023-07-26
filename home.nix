@@ -53,6 +53,8 @@ in {
     neofetch
     btop
     niv
+    spotify
+    wev
   ];
   services.mpd = {
     enable = true;
@@ -89,6 +91,12 @@ in {
   };
   programs.go.enable = true;
   programs.vscode = {
+    enable = true;
+  };
+  services.dunst = {
+    enable = true;
+  };
+  services.playerctld = {
     enable = true;
   };
   # Let Home Manager install and manage itself.

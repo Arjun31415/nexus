@@ -62,7 +62,7 @@
   users.users.azazel = {
     isNormalUser = true;
     description = "Azazel";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.fish;
   };
 
@@ -80,6 +80,7 @@
     dunst
     nvtop
     git
+    git-lfs
     firefox
     pciutils
     pavucontrol
@@ -88,7 +89,7 @@
     nodejs
     gcc
     gnumake
-    cudaPackages.cudatoolkit
+    cudaPackages_12_2.cudatoolkit
     cudaPackages.cudnn
     cmake
     ninja
@@ -99,7 +100,44 @@
     xdg-utils
     wl-clipboard
     inxi
+    playerctl
+    libnotify
+    dex
   ];
+  virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "btrfs";
+  virtualisation.oci-containers.containers = {
+    hakatime = {
+      image = "mujx/hakatime:latest";
+      autoStart = true;
+      environment = {
+        HAKA_DB_HOST = "haka_db";
+        HAKA_DB_PORT = "5432";
+        HAKA_DB_NAME = "hakatime";
+        HAKA_DB_PASS = "Admin@db";
+        HAKA_DB_USER = "admin";
+        HAKA_BADGE_URL = "http://localhost:8080";
+        HAKA_PORT = "8080";
+        HAKA_SHIELDS_IO_URL = "https://img.shields.io";
+        HAKA_SESSION_EXPIRY = "24";
+        HAKA_LOG_LEVEL = "info"; # Control the verbosity of the logger.
+        HAKA_ENV = "dev"; # Use a json logger for production, otherwise key=value pairs.
+        HAKA_HTTP_LOG = "true"; # If you want to log http requests.
+      };
+      ports = ["5432:8080"];
+    };
+    haka_db = {
+      image = "postgres:12-alpine";
+      environment = {
+        POSTGRES_DB = "haka_db";
+        POSTGRES_PASSWORD = "Admin@db";
+        POSTGRES_USER = "admin";
+      };
+      volumes = [
+        "deploy_db_data:/var/lib/postgresql/data"
+      ];
+    };
+  };
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
   ];
