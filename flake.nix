@@ -30,6 +30,9 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    /* spotify-adblock = {
+    url = "github:Arjun31415/spotify-adblock";
+    }; */
   };
 
   outputs = inputs @ {

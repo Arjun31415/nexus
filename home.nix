@@ -3,6 +3,8 @@
   pkgs,
   inputs,
   system,
+  runCommand,
+  makeWrapper,
   ...
 }: let
   my-ncmpcpp = pkgs.ncmpcpp.override {
@@ -15,7 +17,6 @@ in {
   home.username = "azazel";
   home.homeDirectory = "/home/azazel";
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.overlays = overlays;
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -36,6 +37,8 @@ in {
     librewolf
     pastebinit
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
+    # Not using it because spotify in nixpkgs is a snap, and adblock does not work on it
+    # inputs.spotify-adblock.packages.${pkg.system}.spotify-adblock
     cliphist
     whatsapp-for-linux
     teams-for-linux
@@ -55,6 +58,8 @@ in {
     niv
     spotify
     wev
+    ngrok
+    imv
   ];
   services.mpd = {
     enable = true;
