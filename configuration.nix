@@ -7,7 +7,12 @@
   inputs,
   lib,
   ...
-}: {
+}: let
+  greetdHyprlandConfig = pkgs.writeText "greetd-hyprland-config" ''
+    exec-once = ${lib.getExe config.programs.regreet.package} -l debug; hyprctl dispatch exit
+    exec = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+  '';
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -17,6 +22,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
@@ -108,10 +114,13 @@
     libnotify
     dex
     tree
+    tinywl
   ];
+  programs.regreet.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
-  virtualisation.oci-containers.containers = {
+  /*
+     virtualisation.oci-containers.containers = {
     hakatime = {
       image = "mujx/hakatime:latest";
       autoStart = true;
@@ -133,7 +142,7 @@
     };
     haka_db = {
       image = "postgres:12-alpine";
-      environment = {
+      enviroment = {
         POSTGRES_DB = "haka_db";
         POSTGRES_PASSWORD = "Admin@db";
         POSTGRES_USER = "admin";
@@ -143,6 +152,7 @@
       ];
     };
   };
+  */
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
   ];
@@ -181,6 +191,12 @@
     };
   };
 
+  services.greetd = {
+    enable = true;
+  };
+  services.greetd.settings.default_session.command = "Hyprland --config ${greetdHyprlandConfig}";
+  #  services.greetd.settings.default_session.command = "dbus-run-session tinywl -s ${lib.getExe config.programs.regreet.package}";
+  security.pam.services.greetd.enableGnomeKeyring = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -216,8 +232,8 @@
   };
   */
   services.gvfs.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.enable = true;
+  #  services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

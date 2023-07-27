@@ -85,19 +85,17 @@ in {
       package = mkDefault nvidiaPackage;
       modesetting.enable = true;
       prime = {
-        /*
-           offload = {
+        offload = {
           enable = true;
           enableOffloadCmd = true;
         };
-        */
-        sync.enable = true;
+        #  sync.enable = true;
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:6:0:0";
       };
       powerManagement = {
         enable = true;
-        #        finegrained = mkDefault true;
+        finegrained = true;
       };
 
       # use open source drivers by default, hosts may override this option if their gpu is
