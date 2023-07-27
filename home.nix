@@ -60,6 +60,7 @@ in {
     wev
     ngrok
     imv
+    webcord-vencord
   ];
   services.mpd = {
     enable = true;

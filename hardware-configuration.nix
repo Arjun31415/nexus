@@ -9,8 +9,8 @@
   ...
 }:
 with lib; let
-  nvStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
-  nvBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
+  #  nvStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
+  #  nvBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
   #  nvidiaPackage =
   #   if (versionOlder nvBeta nvStable)
   #    then config.boot.kernelPackages.nvidiaPackages.stable
