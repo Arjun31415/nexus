@@ -11,6 +11,20 @@
   greetdHyprlandConfig = pkgs.writeText "greetd-hyprland-config" ''
     exec-once = ${lib.getExe config.programs.regreet.package} -l debug; hyprctl dispatch exit
     exec = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
+    animations {
+      enabled = no
+    }
+    decoration {
+      drop_shadow = no;
+      blur = no;
+      rounding = 0;
+    }
+    general {
+      gaps_in = 0;
+      gaps_out = 0;
+      border_size = 1;
+    }
   '';
 in {
   imports = [
@@ -19,11 +33,21 @@ in {
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
+  boot.loader.grub = {
+    useOSProber = true;
+    configurationLimit = 10;
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
+  /* boot.plymouth.enable = true;
+  boot.plymouth.theme = "breeze"; */
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
     builders-use-substitutes = true;
@@ -114,7 +138,6 @@ in {
     libnotify
     dex
     tree
-    tinywl
   ];
   programs.regreet.enable = true;
   virtualisation.docker.enable = true;
@@ -195,7 +218,7 @@ in {
     enable = true;
   };
   services.greetd.settings.default_session.command = "Hyprland --config ${greetdHyprlandConfig}";
-  #  services.greetd.settings.default_session.command = "dbus-run-session tinywl -s ${lib.getExe config.programs.regreet.package}";
+  #  services.greetd.settings.default_session.command = "dbus-run-session cage -s  -- ${lib.getExe config.programs.regreet.package}";
   security.pam.services.greetd.enableGnomeKeyring = true;
   services.pipewire = {
     enable = true;

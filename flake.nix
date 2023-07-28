@@ -13,6 +13,7 @@
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    inputs.spicetify-nix.url = github:the-argus/spicetify-nix;
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -30,9 +31,11 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    /* spotify-adblock = {
+    /*
+       spotify-adblock = {
     url = "github:Arjun31415/spotify-adblock";
-    }; */
+    };
+    */
   };
 
   outputs = inputs @ {

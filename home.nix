@@ -11,6 +11,7 @@
     visualizerSupport = true;
     clockSupport = true;
   };
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -105,6 +106,22 @@ in {
   services.playerctld = {
     enable = true;
   };
+
+  imports = [spicetify-nix.homeManagerModule];
+  programs.spicetify = {
+    enable = true;
+    theme = spicePkgs.themes.catppuccin-mocha;
+    colorScheme = "flamingo";
+
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      shuffle # shuffle+ (special characters are sanitized out of ext names)
+      hidePodcasts
+      adblock
+      volumePercentage
+    ];
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
