@@ -15,8 +15,8 @@
 in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "azazel";
-  home.homeDirectory = "/home/azazel";
+  home.username = "prometheus";
+  home.homeDirectory = "/home/prometheus";
   nixpkgs.config.allowUnfree = true;
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -57,7 +57,7 @@ in {
     neofetch
     btop
     niv
-    spotify
+#    spotify
     wev
     ngrok
     imv
@@ -72,7 +72,7 @@ in {
       port = 6600;
     };
     extraConfig = ''
-      user "azazel"
+      user "prometheus"
        audio_output {
         type "pulse"
         name "pulse_audio"
@@ -107,7 +107,7 @@ in {
     enable = true;
   };
 
-  imports = [spicetify-nix.homeManagerModule];
+  imports = [inputs.spicetify-nix.homeManagerModule];
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.catppuccin-mocha;

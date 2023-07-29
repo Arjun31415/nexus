@@ -13,7 +13,7 @@
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    inputs.spicetify-nix.url = github:the-argus/spicetify-nix;
+    spicetify-nix.url = github:the-argus/spicetify-nix;
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -56,7 +56,7 @@
             home-manager.extraSpecialArgs = {inherit inputs;};
             #            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.azazel = import ./home.nix;
+            home-manager.users.prometheus = import ./home.nix;
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }

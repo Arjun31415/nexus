@@ -93,9 +93,9 @@ in {
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.azazel = {
+  users.users.prometheus = {
     isNormalUser = true;
-    description = "Azazel";
+    description = "Prometheus";
     extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.fish;
   };
@@ -123,8 +123,8 @@ in {
     nodejs
     gcc
     gnumake
-    cudaPackages_12_2.cudatoolkit
-    cudaPackages.cudnn
+#    cudaPackages_12_2.cudatoolkit
+#    cudaPackages.cudnn
     cmake
     ninja
     rustup
@@ -259,7 +259,7 @@ in {
   # services.xserver.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
+  # programs.mtr.enable = truqe;
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
