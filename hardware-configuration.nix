@@ -27,13 +27,13 @@ in {
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/85e87b52-ae20-4d6a-b61d-971c9642fd93";
+    device = "/dev/disk/by-uuid/ecbac740-efa1-43ce-9380-4d8c1ab7d519";
     fsType = "btrfs";
     options = ["subvol=@"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C6BE-1DCB";
+    device = "/dev/disk/by-uuid/7A76-218F";
     fsType = "vfat";
   };
   fileSystems."/mnt/shared" = {

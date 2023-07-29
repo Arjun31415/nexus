@@ -26,11 +26,34 @@
       border_size = 1;
     }
   '';
+  /*
+     nixos-boot-src = pkgs.fetchFromGitHub {
+    owner = "Melkor333";
+    repo = "nixos-boot";
+    rev = "main";
+    sha256 = "sha256-kcYd39n58MVI2mFn/PSh5O/Wzr15kEYWgszMRtSQ+1w=";
+  };
+  */
+  # define the theme you want to use
+  #  nixos-boot = pkgs.callPackage nixos-boot-src {};
+  # You might want to override the theme
+  #nixos-boot = pkgs.callPackage nixos-boot-src {
+  #  bgColor = "0.1, 1, 0.8"; # Weird 0-1 range RGB. In this example roughly mint
+  #  theme = "load_unload";
+  #};
 in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+  /*
+     boot.plymouth = {
+    enable = true;
+    themePackages = [nixos-boot];
+    theme = "load_unload";
+  };
+  */
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
@@ -43,8 +66,10 @@ in {
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
-  /* boot.plymouth.enable = true;
-  boot.plymouth.theme = "breeze"; */
+  /*
+     boot.plymouth.enable = true;
+  boot.plymouth.theme = "breeze";
+  */
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   nix.settings.auto-optimise-store = true;
@@ -96,7 +121,7 @@ in {
   users.users.prometheus = {
     isNormalUser = true;
     description = "Prometheus";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "prometheus"];
     shell = pkgs.fish;
   };
 
@@ -118,13 +143,12 @@ in {
     firefox
     pciutils
     pavucontrol
-    google-fonts
     python311
     nodejs
     gcc
     gnumake
-#    cudaPackages_12_2.cudatoolkit
-#    cudaPackages.cudnn
+    cudaPackages_12_2.cudatoolkit
+    cudaPackages.cudnn
     cmake
     ninja
     rustup
@@ -178,6 +202,7 @@ in {
   */
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+    google-fonts
   ];
   programs.fish.enable = true;
   security.rtkit.enable = true;

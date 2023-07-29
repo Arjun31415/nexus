@@ -57,11 +57,12 @@ in {
     neofetch
     btop
     niv
-#    spotify
+    #    spotify
     wev
     ngrok
     imv
     webcord-vencord
+    catppuccin-cursors
   ];
   services.mpd = {
     enable = true;
