@@ -62,8 +62,10 @@ in {
     ngrok
     imv
     webcord-vencord
-    catppuccin-cursors
+    #catppuccin-cursors
+    gnome.gnome-tweaks
   ];
+  #  programs.dconf.enable = true;
   services.mpd = {
     enable = true;
     musicDirectory = "/mnt/shared/PERSONAL/Music";
@@ -123,6 +125,24 @@ in {
     ];
   };
 
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "Catpuccin-Mocha-Maroon";
+      package = pkgs.catppuccin-cursors.mochaMaroon;
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
