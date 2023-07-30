@@ -11,7 +11,6 @@
     visualizerSupport = true;
     clockSupport = true;
   };
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -28,6 +27,10 @@ in {
   # changes in each release.
   home.stateVersion = "23.11";
 
+  imports = [
+    ./audio
+    ./gtk
+  ];
   home.packages = with pkgs; [
     gh
     alejandra
@@ -38,57 +41,26 @@ in {
     librewolf
     pastebinit
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
-    # Not using it because spotify in nixpkgs is a snap, and adblock does not work on it
-    # inputs.spotify-adblock.packages.${pkg.system}.spotify-adblock
+    inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     cliphist
     whatsapp-for-linux
     teams-for-linux
     element-desktop
-    my-ncmpcpp
-    mpc-cli
-    gtk-engine-murrine
     xfce.thunar
     xfce.thunar-archive-plugin
     xfce.thunar-media-tags-plugin
     stow
     kooha
-    cava
     cpupower-gui
     neofetch
     btop
     niv
-    #    spotify
     wev
     ngrok
     imv
     webcord-vencord
-    #catppuccin-cursors
-    gnome.gnome-tweaks
   ];
   #  programs.dconf.enable = true;
-  services.mpd = {
-    enable = true;
-    musicDirectory = "/mnt/shared/PERSONAL/Music";
-    dataDir = "${config.xdg.dataHome}/mpd";
-    network = {
-      listenAddress = "localhost";
-      port = 6600;
-    };
-    extraConfig = ''
-      user "prometheus"
-       audio_output {
-        type "pulse"
-        name "pulse_audio"
-       }
-
-       audio_output {
-       type "fifo"
-       name "mpd_fifo"
-       path "/tmp/mpd.fifo"
-       format "44100:16:2"
-       }
-    '';
-  };
   programs.neovim = {
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
     vimAlias = true;
@@ -110,39 +82,6 @@ in {
     enable = true;
   };
 
-  imports = [inputs.spicetify-nix.homeManagerModule];
-  programs.spicetify = {
-    enable = true;
-    theme = spicePkgs.themes.catppuccin-mocha;
-    colorScheme = "flamingo";
-
-    enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay
-      shuffle # shuffle+ (special characters are sanitized out of ext names)
-      hidePodcasts
-      adblock
-      volumePercentage
-    ];
-  };
-
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      name = "Catpuccin-Mocha-Maroon";
-      package = pkgs.catppuccin-cursors.mochaMaroon;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

@@ -162,6 +162,7 @@ in {
     libnotify
     dex
     tree
+    killall
   ];
   programs.regreet.enable = true;
   virtualisation.docker.enable = true;
