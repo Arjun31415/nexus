@@ -30,6 +30,7 @@ in {
   imports = [
     ./audio
     ./gtk
+    #./torrent
   ];
   home.packages = with pkgs; [
     gh
@@ -42,6 +43,7 @@ in {
     pastebinit
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper
+    inputs.hypr-contrib.packages.${pkg.system}.grimblast
     cliphist
     whatsapp-for-linux
     teams-for-linux
@@ -60,6 +62,13 @@ in {
     hunspell
     hunspellDicts.en_US
   ];
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+  home.sessionVariables = rec {
+    XDG_SCREENSHOTS_DIR = "$HOME/Pictures/Screenshots";
+  };
   #  programs.dconf.enable = true;
   programs.neovim = {
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
