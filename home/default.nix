@@ -38,7 +38,7 @@ in {
     unzip
     starship
     mcfly
-    librewolf
+    brave
     pastebinit
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper
@@ -46,9 +46,6 @@ in {
     whatsapp-for-linux
     teams-for-linux
     element-desktop
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-media-tags-plugin
     stow
     kooha
     cpupower-gui
@@ -59,6 +56,9 @@ in {
     ngrok
     imv
     webcord-vencord
+    libreoffice-qt
+    hunspell
+    hunspellDicts.en_US
   ];
   #  programs.dconf.enable = true;
   programs.neovim = {
