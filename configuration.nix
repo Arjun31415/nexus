@@ -290,6 +290,11 @@ in {
   services.tumbler.enable = true;
 
   services.gvfs.enable = true;
+  services.lidarr.enable = true;
+  services.radarr.enable = true;
+  services.bazarr.enable = true;
+  services.prowlarr.enable = true;
+  services.readarr.enable = true;
   #  services.xserver.displayManager.sddm.enable = true;
   # services.xserver.enable = true;
   # Some programs need SUID wrappers, can be configured further or are

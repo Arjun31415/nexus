@@ -30,7 +30,7 @@ in {
   imports = [
     ./audio
     ./gtk
-    #./torrent
+    ./torrent
   ];
   home.packages = with pkgs; [
     gh
