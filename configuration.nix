@@ -167,6 +167,18 @@ in {
   programs.regreet.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
+  virtualisation.oci-containers.containers = {
+    flaresolverr = {
+      autoStart = true;
+      image = "ghcr.io/flaresolverr/flaresolverr:latest";
+      environment = {
+        LOG_LEVEL = "info";
+        LOG_HTML = "false";
+        CAPTCHA_SOLVER = "none";
+      };
+      ports = ["8191:8191"];
+    };
+  };
   /*
      virtualisation.oci-containers.containers = {
     hakatime = {
@@ -290,11 +302,17 @@ in {
   services.tumbler.enable = true;
 
   services.gvfs.enable = true;
-  services.lidarr.enable = true;
+  services.lidarr = {
+    enable = true;
+    group = "media";
+  };
+
   services.radarr.enable = true;
+  services.radarr.group = "media";
   services.bazarr.enable = true;
   services.prowlarr.enable = true;
   services.readarr.enable = true;
+  users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
   #  services.xserver.displayManager.sddm.enable = true;
   # services.xserver.enable = true;
   # Some programs need SUID wrappers, can be configured further or are

@@ -16,6 +16,7 @@ in {
     my-ncmpcpp
     mpc-cli
     cava
+    mpv
   ];
   services.mpd = {
     enable = true;
