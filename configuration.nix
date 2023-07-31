@@ -276,6 +276,11 @@ in {
       hidpi = true;
     };
   };
+  programs.waybar = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+  };
+
   /*
      networking.extraHosts = ''
   ''
@@ -311,6 +316,9 @@ in {
   services.radarr.group = "media";
   services.bazarr.enable = true;
   services.prowlarr.enable = true;
+  systemd.tmpfiles.rules = [
+    "d /shared-torents/Downloads 0770 lidarr media - -"
+  ];
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
   #  services.xserver.displayManager.sddm.enable = true;

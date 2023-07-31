@@ -61,15 +61,15 @@ in {
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
+    wakapi
   ];
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    extraConfig = {
+      XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Screenshots";
+    };
   };
-  home.sessionVariables = rec {
-    XDG_SCREENSHOTS_DIR = "$HOME/Pictures/Screenshots";
-  };
-  #  programs.dconf.enable = true;
   programs.neovim = {
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
     vimAlias = true;
