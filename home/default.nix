@@ -80,6 +80,12 @@ in {
     withNodeJs = true;
     withPython3 = true;
   };
+  programs.waybar = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+    systemd.enable = true;
+  };
+
   programs.go.enable = true;
   programs.vscode = {
     enable = true;
