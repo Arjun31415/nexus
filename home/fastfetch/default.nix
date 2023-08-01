@@ -36,10 +36,10 @@ stdenv.mkDerivation rec {
   version = "1.12.2";
 
   src = fetchFromGitHub {
-    owner = "LinusDierheimer";
+    owner = "fastfetch-cli";
     repo = pname;
     rev = version;
-    hash = "sha256-6q7hr9W3GG9dcgfRT32+6CUYDFcgtGlgn0AuezgbQis=";
+    sha256 = "l9fIm7+dBsOqGoFUYtpYESAjDy3496rDTUDQjbNU4U0=";
   };
 
   nativeBuildInputs = [cmake makeWrapper pkg-config];

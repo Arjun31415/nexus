@@ -60,14 +60,16 @@ in {
     blacklistedKernelModules = ["nouveau"];
   };
   environment = {
-    /* sessionVariables = mkMerge [
+    /*
+       sessionVariables = mkMerge [
       {
         LIBVA_DRIVER_NAME = "nvidia";
       }
       {
         WLR_NO_HARDWARE_CURSORS = "1";
       }
-    ]; */
+    ];
+    */
     systemPackages = with pkgs; [
       /*
          vulkan-tools

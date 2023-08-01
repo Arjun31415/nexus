@@ -31,6 +31,7 @@ in {
     ./audio
     ./gtk
     ./torrent
+    ./shells
   ];
   home.packages = with pkgs; [
     gh
