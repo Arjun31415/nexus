@@ -24,6 +24,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Nil - Nix LSP
+    nix-nil-lsp = {
+      url = "github:oxalica/nil";
+    };
     anyrun = {
       url = "github:Kirottu/anyrun";
     };
@@ -54,7 +58,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = {inherit inputs;};
-#            home-manager.useGlobalPkgs = true;
+            #            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.prometheus = import ./home;
           }

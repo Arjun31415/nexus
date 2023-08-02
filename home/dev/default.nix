@@ -9,6 +9,7 @@
     niv
     wakapi
     rust-bin.nightly.latest.default
+    inputs.nix-nil-lsp.packages.${pkgs.system}.default
   ];
   programs.neovim = {
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
