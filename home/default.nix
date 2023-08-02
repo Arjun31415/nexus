@@ -6,12 +6,7 @@
   runCommand,
   makeWrapper,
   ...
-}: let
-  my-ncmpcpp = pkgs.ncmpcpp.override {
-    visualizerSupport = true;
-    clockSupport = true;
-  };
-in {
+}: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "prometheus";
@@ -32,9 +27,9 @@ in {
     ./gtk
     ./torrent
     ./shells
+    ./dev
   ];
   home.packages = with pkgs; [
-    gh
     alejandra
     p7zip
     unzip
@@ -56,7 +51,6 @@ in {
     cpupower-gui
     neofetch
     btop
-    niv
     wev
     ngrok
     imv
@@ -64,7 +58,6 @@ in {
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
-    wakapi
   ];
   xdg.userDirs = {
     enable = true;
@@ -73,33 +66,15 @@ in {
       XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Screenshots";
     };
   };
-  programs.neovim = {
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-    vimAlias = true;
-    enable = true;
-    viAlias = true;
-    vimdiffAlias = true;
-    withRuby = false;
-    withNodeJs = true;
-    withPython3 = true;
-  };
   programs.waybar = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
     systemd.enable = true;
   };
 
-  programs.go.enable = true;
-  programs.vscode = {
-    enable = true;
-  };
   services.dunst = {
     enable = true;
   };
-  services.playerctld = {
-    enable = true;
-  };
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

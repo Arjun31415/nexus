@@ -41,6 +41,9 @@ in {
        }
     '';
   };
+  services.playerctld = {
+    enable = true;
+  };
 
   imports = [inputs.spicetify-nix.homeManagerModule];
   programs.spicetify = {

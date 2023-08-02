@@ -151,7 +151,6 @@ in {
     cudaPackages.cudnn
     cmake
     ninja
-    rustup
     xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
     llvmPackages_rocm.clang-unwrapped
@@ -179,40 +178,6 @@ in {
       ports = ["8191:8191"];
     };
   };
-  /*
-     virtualisation.oci-containers.containers = {
-    hakatime = {
-      image = "mujx/hakatime:latest";
-      autoStart = true;
-      environment = {
-        HAKA_DB_HOST = "haka_db";
-        HAKA_DB_PORT = "5432";
-        HAKA_DB_NAME = "hakatime";
-        HAKA_DB_PASS = "Admin@db";
-        HAKA_DB_USER = "admin";
-        HAKA_BADGE_URL = "http://localhost:8080";
-        HAKA_PORT = "8080";
-        HAKA_SHIELDS_IO_URL = "https://img.shields.io";
-        HAKA_SESSION_EXPIRY = "24";
-        HAKA_LOG_LEVEL = "info"; # Control the verbosity of the logger.
-        HAKA_ENV = "dev"; # Use a json logger for production, otherwise key=value pairs.
-        HAKA_HTTP_LOG = "true"; # If you want to log http requests.
-      };
-      ports = ["5432:8080"];
-    };
-    haka_db = {
-      image = "postgres:12-alpine";
-      enviroment = {
-        POSTGRES_DB = "haka_db";
-        POSTGRES_PASSWORD = "Admin@db";
-        POSTGRES_USER = "admin";
-      };
-      volumes = [
-        "deploy_db_data:/var/lib/postgresql/data"
-      ];
-    };
-  };
-  */
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
     google-fonts
