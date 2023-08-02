@@ -46,10 +46,6 @@ in {
       history = {
         body = "builtin history --show-time='%F %T '";
       };
-      __fish_command_not_found_handler = {
-        body = "__fish_default_command_not_found_handler $argv[1]";
-        onEvent = "fish_command_not_found";
-      };
 
       backup = {
         argumentNames = "filename";

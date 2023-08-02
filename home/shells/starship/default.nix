@@ -15,8 +15,7 @@
         "[](bold fg:#9db4fb)"
         "$directory"
         "[─](bold fg:#9db4fb)"
-        "$git_branch"
-        "$git_status"
+        "([](bold fg:#93bcfc)$git_branch$git_status[─](bold fg:#8cc2fd))"
         "[](bold fg:cyan)"
         "$cmd_duration"
         "[](bold fg:cyan) "
@@ -48,13 +47,13 @@
       };
       git_branch = {
         symbol = "";
-        #        format = "[ [](bold bg:#93bcfc) [$symbol $branch ]]($style)";
-        #        format = "[a [b](red) c](green)]";
+        format = "[$symbol $branch ]($style)";
         style = "bold fg:black bg:#93bcfc";
       };
 
       git_status = {
         #format = "([\\[$all_status$ahead_behind\\]]($style)(bold fg:#8cc2fd)─(bold fg:#8cc2fd))";
+        format = "([\\[$all_status$ahead_behind\\]]($style))";
         ahead = "⇡\${count}";
         behind = "⇣\${count}";
         deleted = "x";
@@ -97,7 +96,8 @@
       };
       character = {
         error_symbol = " [×](bold red)";
-        success_symbol = "[╰─λ](bold red)";
+        #        success_symbol = "[╰─λ](bold red)";
+        success_symbol = "[╰](bold red)";
       };
       status = {
         disabled = false;
