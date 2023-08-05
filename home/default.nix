@@ -25,6 +25,7 @@
     ./torrent
     ./shells
     ./dev
+    ./waybar
   ];
   home.packages = with pkgs; [
     alejandra
@@ -68,12 +69,6 @@
     extensions = [
       {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";}
     ];
-  };
-
-  programs.waybar = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
-    systemd.enable = true;
   };
 
   services.dunst = {
