@@ -53,5 +53,6 @@ else if type -q neofetch
     neofetch
 end
 
+# direnv hook fish | source
 # Nixos home manager does this anyways
 #source ("starship" init fish --print-full-init | psub)

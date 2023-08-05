@@ -46,7 +46,9 @@ in {
       history = {
         body = "builtin history --show-time='%F %T '";
       };
-
+      fish_prompt = {
+      body = "starship";
+      };
       backup = {
         argumentNames = "filename";
         body = "cp $filename $filename.bak";

@@ -2,9 +2,6 @@
   config,
   pkgs,
   inputs,
-  system,
-  runCommand,
-  makeWrapper,
   ...
 }: {
   # Home Manager needs a bit of information about you and the
@@ -50,7 +47,6 @@
     kooha
     cpupower-gui
     neofetch
-    btop
     wev
     ngrok
     imv
@@ -66,6 +62,14 @@
       XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Screenshots";
     };
   };
+  programs.btop.enable = true;
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";}
+    ];
+  };
+
   programs.waybar = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
