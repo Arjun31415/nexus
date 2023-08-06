@@ -17,8 +17,10 @@
     }
     decoration {
       drop_shadow = no;
-      blur = no;
       rounding = 0;
+      blur {
+        enabled = no;
+      }
     }
     general {
       gaps_in = 0;

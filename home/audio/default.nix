@@ -2,8 +2,6 @@
   config,
   pkgs,
   inputs,
-  system,
-  home,
   ...
 }: let
   my-ncmpcpp = pkgs.ncmpcpp.override {
@@ -43,6 +41,10 @@ in {
   };
   services.playerctld = {
     enable = true;
+  };
+  services.mpd-mpris = {
+    enable = true;
+    package = inputs.mpd-mpris.packages.${pkgs.system}.default;
   };
 
   imports = [inputs.spicetify-nix.homeManagerModule];

@@ -18,7 +18,11 @@
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    spicetify-nix.url = github:the-argus/spicetify-nix;
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    mpd-mpris = {
+      url = "github:natsukagami/mpd-mpris";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
