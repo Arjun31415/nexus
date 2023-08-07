@@ -28,6 +28,7 @@
     ./waybar
   ];
   home.packages = with pkgs; [
+    brightnessctl
     alejandra
     p7zip
     unzip

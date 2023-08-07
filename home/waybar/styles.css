@@ -1,0 +1,310 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/*
+Tokyo Night
+*color0 #15161E
+color1 #f7768e
+color2 #9ece6a
+color3 #e0af68
+color4 #7aa2f7
+color5 #bb9af7
+color6 #7dcfff
+color7 #a9b1d6
+
+# bright
+color8 #414868
+color9 #f7768e
+color10 #9ece6a
+color11 #e0af68
+color12 #7aa2f7
+color13 #bb9af7
+color14 #7dcfff
+color15 #c0caf5
+
+# extended colors
+color16 #ff9e64
+color17 #db4b4b
+*/
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@keyframes blink {
+  to {
+    color: #4c566a;
+    background-color: #eceff4;
+  }
+}
+@keyframes discharge-grad {
+  0% {
+    background-image: linear-gradient(45deg, #f7768e, #bb9af7);
+  }
+  100% {
+    background-image: linear-gradient(45deg, #bb9af7, #7aa2f7);
+  }
+}
+@keyframes charging-grad {
+  0% {
+    background-image: linear-gradient(45deg, #7dcfff, #9ece6a);
+  }
+  100% {
+    background-image: linear-gradient(45deg, #9ece6a, #7dcfff);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+
+* {
+  color: #eceff4;
+  border: 0;
+  border-radius: 0;
+  padding: 0 0;
+  font-family: FisaCode;
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-bottom: 3px;
+  margin-top: 1px;
+  margin-bottom: 0;
+}
+
+window#waybar {
+  background: transparent;
+}
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces button:hover {
+  background: transparent;
+  background-image: -gtk-gradient(
+    radial,
+    center center,
+    0,
+    center center,
+    1,
+    from(#f7768e),
+    to(#db4b4b)
+  );
+}
+
+#workspaces button {
+  padding: 1px 0px;
+  border-bottom: 2px;
+  color: #eceff4;
+  border-style: solid;
+  border-color: #7aa2f7;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 999px;
+  background-image: -gtk-gradient(
+    radial,
+    center center,
+    0,
+    center center,
+    1,
+    from(#545c7e),
+    to(#1a1b26)
+  );
+}
+#workspaces {
+  background: #2e3440;
+  border-radius: 1000px;
+  padding: 1px 5px;
+}
+#workspaces button.active * {
+  border-color: #81a1c1;
+  color: #15161e;
+  border-radius: 999px;
+}
+#workspaces button.active {
+  background-image: none;
+  /* background-color: #bb9af7; */
+  background-image: -gtk-gradient(
+    radial,
+    center center,
+    1,
+    center center,
+    0,
+    from(#7aa2f7),
+    to(#bb9af7)
+  );
+}
+#clock,
+#battery,
+#cpu,
+#memory,
+#idle_inhibitor,
+#temperature,
+#custom-keyboard-layout,
+#backlight,
+#network,
+#pulseaudio,
+#mode,
+#tray,
+#window,
+#custom-launcher,
+#custom-spotify,
+#custom-power,
+#custom-pacman {
+  padding: 0 3px;
+  border-bottom: 2px;
+  border-style: solid;
+  border-radius: 999px;
+  margin-left: 10px;
+  color: #15161e;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#custom-spotify {
+  background-image:linear-gradient(
+  90deg,
+  #78a0f7 0%,
+  #9c9df7 48%,
+  #bc9cf7 100%
+  );
+  padding: 0 10px;
+}
+#custom-pacman {
+  background-image: linear-gradient(45deg, #9ece6a, #7dcfff);
+  padding: 0 10px;
+}
+
+#clock {
+  background-image: -gtk-gradient
+    (linear, 0 1, 1 0, color-stop(0, #e0af68), color-stop(1, #9ece6a));
+
+  border-radius: 999px;
+  padding: 0 15px;
+  color: black;
+  font-weight: 900;
+}
+#backlight * {
+  font-family: Material Design Icons;
+}
+#backlight {
+  background-color: #ebcb8b;
+  color: #15161e;
+  padding: 0 10px;
+}
+
+#battery {
+  color: #d8dee9;
+  padding: 0 10px;
+}
+
+#battery.discharging,
+#battery.disconnected,
+#battery.not-charging {
+  font-weight: 500;
+  background-color: #bb9af7;
+  color: #15161e;
+  animation-name: discharge-grad;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.charging,
+#battery.connected,
+#battery.plugged {
+  color: #15161e;
+  animation-name: charging-grad;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+#battery.full {
+  background-image: linear-gradient(45deg, #9ece6a, #7dcfff);
+  color: #15161e;
+}
+#battery.critical:not(.charging) {
+  background: #f7768e;
+  color: #eceff4;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#network {
+  color: #15161e;
+  background-image: linear-gradient(45deg, #7dcfff, #7dcaaa);
+  padding: 0 10px;
+}
+#network.disabled {
+  background-image: none;
+  background-color: #bf616a;
+}
+
+#network.disconnected {
+  background-image: linear-gradient(45deg, #db4b4b, #ff9e64);
+}
+
+#pulseaudio {
+  background-image: linear-gradient(45deg, #c0caf5, #bb9af7);
+  color: #15161e;
+  padding: 0 10px;
+}
+
+#pulseaudio.muted {
+  color: #3b4252;
+}
+
+#temperature {
+  color: #8fbcbb;
+}
+
+#temperature.critical {
+  color: #bf616a;
+}
+
+#idle_inhibitor {
+  color: #15161e;
+  padding: 0 5px;
+  background-color: #ebcb8b;
+}
+#tray {
+  background: #545c7e;
+  border-radius: 999px;
+}
+#custom-launcher,
+#custom-power {
+  border-style: hidden;
+  margin-top: 2px;
+  background-color: #f7768e;
+  padding: 0 15px;
+}
+#custom-launcher {
+  margin-left: 0px;
+}
+
+#window {
+  border-style: hidden;
+  margin-top: 1px;
+}
+#mode {
+  margin-bottom: 3px;
+}
+
+#custom-keyboard-layout {
+  color: #d08770;
+}
+

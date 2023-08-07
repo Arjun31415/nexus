@@ -182,9 +182,10 @@ in {
       ports = ["8191:8191"];
     };
   };
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
     google-fonts
+    material-design-icons
   ];
   programs.fish.enable = true;
   security.rtkit.enable = true;
