@@ -27,6 +27,7 @@
     ./dev
     ./waybar
     ./browsers
+    ./communication
   ];
   home.packages = with pkgs; [
     brightnessctl

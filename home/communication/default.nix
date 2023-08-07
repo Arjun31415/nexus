@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  home.package = with pkgs; [
+  home.packages = with pkgs; [
     whatsapp-for-linux
     teams-for-linux
     element-desktop-wayland
