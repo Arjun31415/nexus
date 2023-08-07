@@ -166,6 +166,7 @@ in {
     dex
     tree
     killall
+    xorg.xeyes
   ];
   programs.regreet.enable = true;
   virtualisation.docker.enable = true;
