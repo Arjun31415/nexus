@@ -41,9 +41,6 @@
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
     cliphist
-    whatsapp-for-linux
-    teams-for-linux
-    element-desktop-wayland
     stow
     kooha
     cpupower-gui
@@ -51,7 +48,6 @@
     wev
     ngrok
     imv
-    webcord-vencord
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
