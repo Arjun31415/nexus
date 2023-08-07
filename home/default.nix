@@ -66,7 +66,6 @@
     };
   };
   programs.btop.enable = true;
-  programs.dconf.enable = true;
   programs.chromium = {
     enable = true;
     extensions = [

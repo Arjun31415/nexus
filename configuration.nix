@@ -187,6 +187,8 @@ in {
     google-fonts
     material-design-icons
   ];
+  programs.dconf.enable = true;
+
   programs.fish.enable = true;
   security.rtkit.enable = true;
   security.polkit.enable = true;

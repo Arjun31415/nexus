@@ -8,8 +8,11 @@
     visualizerSupport = true;
     clockSupport = true;
   };
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  spicetify= inputs.spicetify-nix;
+  spicePkgs = spicetify.packages.${pkgs.system}.default;
 in {
+  imports = [./easyeffects spicetify.homeManagerModule];
+
   home.packages = with pkgs; [
     my-ncmpcpp
     mpc-cli
@@ -39,7 +42,6 @@ in {
        }
     '';
   };
-  services.easyeffects.enable = true;
   services.playerctld = {
     enable = true;
   };
@@ -48,7 +50,6 @@ in {
     package = inputs.mpd-mpris.packages.${pkgs.system}.default;
   };
 
-  imports = [inputs.spicetify-nix.homeManagerModule];
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.catppuccin-mocha;
