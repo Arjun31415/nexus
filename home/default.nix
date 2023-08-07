@@ -37,14 +37,13 @@
     brave
     pastebinit
     (callPackage ./fastfetch {})
-    element-desktop
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
     cliphist
     whatsapp-for-linux
     teams-for-linux
-    element-desktop
+    element-desktop-wayland
     stow
     kooha
     cpupower-gui
@@ -56,7 +55,9 @@
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
+    font-awesome
   ];
+  fonts.fontconfig.enable = true;
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
@@ -65,6 +66,7 @@
     };
   };
   programs.btop.enable = true;
+  programs.dconf.enable = true;
   programs.chromium = {
     enable = true;
     extensions = [
