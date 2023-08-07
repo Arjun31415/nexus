@@ -15,7 +15,7 @@ with lib; let
   #   if (versionOlder nvBeta nvStable)
   #    then config.boot.kernelPackages.nvidiaPackages.stable
   #    else config.boot.kernelPackages.nvidiaPackages.beta;
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
+  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.beta;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
