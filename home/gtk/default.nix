@@ -2,9 +2,10 @@
   home.packages = with pkgs; [
     home.pointerCursor.package
     gnome.gnome-tweaks
-    #    gtk-engine-murrine
     gtk.theme.package
     gtk.iconTheme.package
+    nwg-drawer
+    nwg-bar
   ];
   gtk = {
     enable = true;
