@@ -4,10 +4,8 @@
   fetchFromGitHub,
   dbus,
   dconf,
-  glib,
-  pciutils,
-  zlib,
   easyeffects,
+  bash,
   ...
 }:
 stdenv.mkDerivation rec {
@@ -17,23 +15,17 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "JackHack96";
     repo = pname;
-    rev = version;
-    sha256 = "l9fIm7+dBsOqGoFUYtpYESAjDy3496rDTUDQjbNU4U0=";
+    rev = "834bc5007b976250190cd71937c8c22f182d2415";
+    sha256 = "jMTQp2wdPOno/3FckKeOAV+ZMoalaWXIQkg+Aai3jaU=";
   };
 
   nativeBuildInputs = [easyeffects];
 
-  runtimeDependencies = [dbus dconf glib pciutils zlib easyeffects];
+  runtimeDependencies = [bash dbus dconf easyeffects];
+
   buildInputs =
     runtimeDependencies;
-  installPhase = "./install.sh";
-
-  /*
-     postInstall = ''
-    wrapProgram $out/bin/fastfetch --prefix LD_LIBRARY_PATH : "${ldLibraryPath}"
-    wrapProgram $out/bin/flashfetch --prefix LD_LIBRARY_PATH : "${ldLibraryPath}"
-  '';
-  */
+  installPhase = "pwd";
 
   meta = with lib; {
     description = "Collection of presets for EasyEffects";
