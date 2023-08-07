@@ -26,6 +26,7 @@
     ./shells
     ./dev
     ./waybar
+    ./browsers
   ];
   home.packages = with pkgs; [
     brightnessctl
@@ -34,7 +35,6 @@
     unzip
     starship
     mcfly
-    brave
     pastebinit
     (callPackage ./fastfetch {})
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
@@ -66,12 +66,6 @@
     };
   };
   programs.btop.enable = true;
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";}
-    ];
-  };
 
   services.dunst = {
     enable = true;

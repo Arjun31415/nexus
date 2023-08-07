@@ -778,6 +778,7 @@
         "nixpkgs-wayland": "nixpkgs-wayland",
         "rust-overlay": "rust-overlay_2",
         "spicetify-nix": "spicetify-nix",
+        "wrapper-manager": "wrapper-manager",
         "xdg-portal-hyprland": "xdg-portal-hyprland"
       }
     },
@@ -960,6 +961,26 @@
         "repo": "wlroots",
         "rev": "c74f89d4f84bfed0284d3908aee5d207698c70c5",
         "type": "gitlab"
+      }
+    },
+    "wrapper-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1690217209,
+        "narHash": "sha256-qqONS2cH66fEku3OXMPIANlGnaJNhVlKTNEiwvN0yIc=",
+        "owner": "viperML",
+        "repo": "wrapper-manager",
+        "rev": "e8a9a3c9ca07b3d7638357b9a9078dd1ab76afb0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "viperML",
+        "repo": "wrapper-manager",
+        "type": "github"
       }
     },
     "xdg-portal-hyprland": {

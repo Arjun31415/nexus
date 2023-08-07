@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    wrapper-manager = {
+      url = "github:viperML/wrapper-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hypr-contrib = {
       url = "github:hyprwm/contrib";
     };
