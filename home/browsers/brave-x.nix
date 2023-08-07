@@ -4,7 +4,6 @@
     basePackage = pkgs.brave;
     flags = [
       "--enable-features=WebUIDarkMode"
-      "--force-dark-mode"
     ];
     extraWrapperFlags = "--unset WAYLAND_DISPLAY";
   };
