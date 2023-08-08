@@ -167,8 +167,11 @@ in {
     tree
     killall
     xorg.xeyes
+    swaylock-effects
     #    libsecret
   ];
+  security.pam.services.swaylock = {};
+
   #  services.gnome.gnome-keyring.enable = true;
   programs.regreet.enable = true;
   virtualisation.docker.enable = true;
