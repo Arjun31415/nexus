@@ -55,7 +55,7 @@ in {
     theme = "load_unload";
   };
   */
-
+  services.gnome3.gnome-keyring.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
