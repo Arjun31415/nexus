@@ -8,5 +8,9 @@
     teams-for-linux
     element-desktop-wayland
     webcord-vencord
+    (mailspring.overrideAttrs
+      (old: {
+        libPath = lib.makeLibraryPath [pkgs.libglvnd];
+      }))
   ];
 }

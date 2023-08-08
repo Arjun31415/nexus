@@ -167,7 +167,9 @@ in {
     tree
     killall
     xorg.xeyes
+    #    libsecret
   ];
+  #  services.gnome.gnome-keyring.enable = true;
   programs.regreet.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
