@@ -20,7 +20,7 @@
 in {
   nixpkgs.overlays = [inputs.rust-overlay.overlays.default];
   home.packages = with pkgs; [
-    gh
+#    gh
     niv
     wakapi
     rust-bin.nightly.latest.default
