@@ -20,7 +20,6 @@
 in {
   nixpkgs.overlays = [inputs.rust-overlay.overlays.default];
   home.packages = with pkgs; [
-#    gh
     niv
     wakapi
     rust-bin.nightly.latest.default
@@ -28,10 +27,24 @@ in {
     # tex
     pandoc
   ];
-  programs = {
-    direnv.enable = true;
-    direnv.nix-direnv.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
+  programs.git = {
+    enable = true;
+    delta.enable = true;
+    userName = "Arjun31415";
+    userEmail = "arjunp0710@gmail.com";
+  };
+  programs.gh = {
+    enable = true;
+    extensions = [pkgs.gh-eco];
+    gitCredentialHelper.enable = true;
+    settings.editor = "nvim";
+  };
+  programs.gh-dash.enable = true;
 
   programs.neovim = {
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
