@@ -9,6 +9,13 @@
   ...
 }: let
   greetdHyprlandConfig = pkgs.writeText "greetd-hyprland-config" ''
+    env = GBM_BACKEND,nvidia
+    env = MOZ_ENABLE_WAYLAND,1
+    env = LIBVA_DRIVER_NAME,nvidia
+    env = XDG_SESSION_TYPE,wayland
+    env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+    env = WLR_NO_HARDWARE_CURSORS,1
+
     exec-once = ${lib.getExe config.programs.regreet.package} -l debug; hyprctl dispatch exit
     exec = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
@@ -55,7 +62,7 @@ in {
     theme = "load_unload";
   };
   */
-  services.gnome3.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
