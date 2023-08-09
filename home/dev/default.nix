@@ -2,7 +2,22 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  tex = pkgs.texlive.combine {
+    inherit
+      (pkgs.texlive)
+      scheme-medium
+      dvisvgm
+      dvipng # for preview and export as html
+      wrapfig
+      amsmath
+      ulem
+      hyperref
+      ;
+    #(setq org-latex-compiler "lualatex")
+    #(setq org-preview-latex-default-process 'dvisvgm)
+  };
+in {
   nixpkgs.overlays = [inputs.rust-overlay.overlays.default];
   home.packages = with pkgs; [
     gh
@@ -10,6 +25,8 @@
     wakapi
     rust-bin.nightly.latest.default
     inputs.nix-nil-lsp.packages.${pkgs.system}.default
+    # tex
+    pandoc
   ];
   programs = {
     direnv.enable = true;

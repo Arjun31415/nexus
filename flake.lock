@@ -19,6 +19,26 @@
         "type": "github"
       }
     },
+    "arrpc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1690915766,
+        "narHash": "sha256-YynUr5VU7AKjFl74tGKo9RHkyYw4TSFLLtRsNg9SDbQ=",
+        "owner": "notashelf",
+        "repo": "arrpc-flake",
+        "rev": "4d72fe05df250a93e32c70ba6893ddadde438e28",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notashelf",
+        "repo": "arrpc-flake",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -767,6 +787,7 @@
     "root": {
       "inputs": {
         "anyrun": "anyrun",
+        "arrpc": "arrpc",
         "home-manager": "home-manager",
         "hypr-contrib": "hypr-contrib",
         "hyprland": "hyprland",

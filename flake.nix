@@ -7,6 +7,10 @@
       url = "github:viperML/wrapper-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    arrpc = {
+      url = "github:notashelf/arrpc-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hypr-contrib = {
       url = "github:hyprwm/contrib";

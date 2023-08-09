@@ -70,15 +70,14 @@ in {
       }
     ];
     */
-    systemPackages = with pkgs; [
-      /*
-         vulkan-tools
+    /*
+       systemPackages = with pkgs; [
+      vulkan-tools
       vulkan-loader
       vulkan-validation-layers
-      */
-      libva
-      libva-utils
+
     ];
+    */
   };
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
@@ -112,7 +111,13 @@ in {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [nvidia-vaapi-driver];
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+
+        libva
+        libva-utils
+        vaapiVdpau
+      ];
       extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
     };
   };
