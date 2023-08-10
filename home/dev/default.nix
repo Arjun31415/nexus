@@ -19,11 +19,11 @@
   };
 in {
   nixpkgs.overlays = [inputs.rust-overlay.overlays.default];
+  imports = [./lsp];
   home.packages = with pkgs; [
     niv
     wakapi
     rust-bin.nightly.latest.default
-    inputs.nix-nil-lsp.packages.${pkgs.system}.default
     # tex
     pandoc
   ];
