@@ -2,6 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
+    tokyonightNur.url = "github:AtaraxiaSjel/nur";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
@@ -40,6 +41,8 @@
     # Nil - Nix LSP
     nix-nil-lsp = {
       url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     anyrun = {
       url = "github:Kirottu/anyrun";

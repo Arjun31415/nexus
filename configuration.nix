@@ -154,7 +154,6 @@ in {
     firefox
     pciutils
     pavucontrol
-    python311
     nodejs
     gcc
     gnumake
@@ -180,7 +179,7 @@ in {
   security.pam.services.swaylock = {};
 
   #  services.gnome.gnome-keyring.enable = true;
-  programs.regreet.enable = true;
+  #  programs.regreet.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
   virtualisation.oci-containers.containers = {
@@ -237,10 +236,12 @@ in {
     };
   };
 
-  services.greetd = {
+  /*
+     services.greetd = {
     enable = true;
   };
-  services.greetd.settings.default_session.command = "Hyprland --config ${greetdHyprlandConfig}";
+  */
+  #  services.greetd.settings.default_session.command = "Hyprland --config ${greetdHyprlandConfig}";
   #  services.greetd.settings.default_session.command = "dbus-run-session cage -s  -- ${lib.getExe config.programs.regreet.package}";
   security.pam.services.greetd.enableGnomeKeyring = true;
   services.pipewire = {
@@ -301,6 +302,12 @@ in {
   ];
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+  };
+  services.xserver.displayManager.defaultSession = "hyprland";
+
+  services.xserver.enable = true;
   #  services.xserver.displayManager.sddm.enable = true;
   # services.xserver.enable = true;
   # Some programs need SUID wrappers, can be configured further or are

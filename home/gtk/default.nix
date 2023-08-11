@@ -1,4 +1,12 @@
-{pkgs, ...}: rec {
+{
+  inputs,
+  pkgs,
+  nixpkgs,
+  ...
+}: let
+  tokyonightGtkTheme = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-theme;
+  tokyonightGtkIcons = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-icons;
+in rec {
   home.packages = with pkgs; [
     home.pointerCursor.package
     gnome.gnome-tweaks
@@ -10,20 +18,18 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
+      name = "Tokyonight-Dark";
+      /*
+         package = pkgs.catppuccin-papirus-folders.override {
         flavor = "mocha";
         accent = "maroon";
       };
+      */
+      package = tokyonightGtkIcons;
     };
     theme = {
-      name = "Catppuccin-Mocha-Standard-Maroon-dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["maroon"];
-        size = "standard";
-        #        tweaks = ["rimless" "black"];
-        variant = "mocha";
-      };
+      name = "Tokyonight-Storm-BL";
+      package = tokyonightGtkTheme;
     };
     cursorTheme = {
       name = "Catpuccin-Mocha-Maroon-Cursors";
@@ -41,6 +47,15 @@
       '';
     };
   };
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      cursor-theme = "Catpuccin-Mocha-Maroon-Cursors";
+      gtk-theme = "Tokyonight-Storm-BL";
+      icon-theme = "Tokyonight-Dark";
+      enable-hot-corners = false;
+    };
+  };
   home.pointerCursor = {
     package = pkgs.catppuccin-cursors.mochaDark;
     name = "Catppuccin-Mocha-Maroon-Cursors";
@@ -48,5 +63,4 @@
     gtk.enable = true;
     x11.enable = true;
   };
-  home.sessionVariables.GTK_THEME = "Catppuccin-Mocha-Standard-Maroon-dark";
 }

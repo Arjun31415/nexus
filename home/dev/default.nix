@@ -17,6 +17,10 @@
     #(setq org-latex-compiler "lualatex")
     #(setq org-preview-latex-default-process 'dvisvgm)
   };
+  python-pkgs = ps:
+    with ps; [
+      pynvim
+    ];
 in {
   nixpkgs.overlays = [inputs.rust-overlay.overlays.default];
   imports = [./lsp];
@@ -26,6 +30,7 @@ in {
     rust-bin.nightly.latest.default
     # tex
     pandoc
+    (python311.withPackages python-pkgs)
   ];
 
   programs.direnv = {
