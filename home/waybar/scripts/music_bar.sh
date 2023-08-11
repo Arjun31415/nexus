@@ -1,3 +1,5 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash
 
 # Author: Arjun31415
 # Date: 2022-02-19
@@ -8,6 +10,8 @@
 #                         it is used to appropriately set the mode
 # the file is polled every 1 sec
 
+# Required for nix-shell
+cd ~/.config/waybar/scripts
 mode0_cmd="python $HOME/.config/waybar/scripts/mediaplayer.py"
 mode1_cmd="$HOME/.config/waybar/scripts/waybar-cava.sh"
 CURRENT_MODE=2
