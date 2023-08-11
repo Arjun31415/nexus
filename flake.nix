@@ -2,6 +2,8 @@
   description = "NixOS configuration";
 
   inputs = {
+    ags.url = "github:Aylur/ags";
+
     tokyonightNur.url = "github:AtaraxiaSjel/nur";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     wrapper-manager = {

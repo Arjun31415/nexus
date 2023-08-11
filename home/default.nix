@@ -53,6 +53,7 @@
     hunspell
     hunspellDicts.en_US
     font-awesome
+    inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
   xdg.userDirs = {
