@@ -1,4 +1,8 @@
-{...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   waybar_styles = builtins.readFile ./styles.css;
 in {
   programs.waybar.settings = {
@@ -145,7 +149,7 @@ in {
       };
       "custom/launcher" = {
         format = "<span font_family=\"FontAwesome\"></span>";
-        "on-click" = "exec nwg-drawer -c 7 -is 70 -spacing 23";
+        "on-click" = "exec ${lib.getExe pkgs.nwg-drawer} -c 7 -is 70 -spacing 23";
         tooltip = false;
       };
     };
