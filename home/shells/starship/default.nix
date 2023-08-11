@@ -93,7 +93,7 @@
         time_format = "%T";
       };
       character = {
-        error_symbol = " [×](bold red)";
+        error_symbol = "[╰×](bold red)";
         #        success_symbol = "[╰─λ](bold red)";
         success_symbol = "[╰](bold red)";
       };
