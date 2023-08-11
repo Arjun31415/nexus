@@ -5,6 +5,7 @@
 }: let
   waybar_styles = builtins.readFile ./styles.css;
 in {
+  imports = [./scripts];
   programs.waybar.settings = {
     mainBar = {
       output = "eDP-1";

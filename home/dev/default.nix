@@ -20,6 +20,7 @@
   python-pkgs = ps:
     with ps; [
       pynvim
+      pygobject3
     ];
 in {
   nixpkgs.overlays = [inputs.rust-overlay.overlays.default];
