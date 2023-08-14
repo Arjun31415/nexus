@@ -126,13 +126,16 @@ in {
   services.xserver = {
     layout = "us";
     xkbVariant = "";
+    libinput = {
+      enable = true;
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.prometheus = {
     isNormalUser = true;
     description = "Prometheus";
-    extraGroups = ["networkmanager" "wheel" "docker" "prometheus"];
+    extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input"];
     shell = pkgs.fish;
   };
 
@@ -256,7 +259,7 @@ in {
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    nvidiaPatches = true;
+    enableNvidiaPatches = true;
     xwayland = {
       enable = true;
     };

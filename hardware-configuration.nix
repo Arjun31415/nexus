@@ -103,7 +103,7 @@ in {
       # not supported by the open source drivers
       open = false;
       nvidiaSettings = false; # add nvidia-settings to pkgs, useless on nixos
-      nvidiaPersistenced = true;
+#      nvidiaPersistenced = true;
       forceFullCompositionPipeline = true;
     };
 
