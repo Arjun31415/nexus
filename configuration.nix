@@ -305,7 +305,7 @@ in {
   ];
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
-  services.xserver.displayManager.lightdm = {
+  services.xserver.displayManager.sddm = {
     enable = true;
   };
   services.xserver.displayManager.defaultSession = "hyprland";

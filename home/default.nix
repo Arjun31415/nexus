@@ -49,7 +49,7 @@
     wev
     ngrok
     imv
-    libreoffice-qt
+    onlyoffice-bin
     hunspell
     hunspellDicts.en_US
     font-awesome

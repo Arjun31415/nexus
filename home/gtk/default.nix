@@ -14,6 +14,7 @@ in rec {
     gtk.iconTheme.package
     nwg-drawer
     nwg-bar
+    gnome.file-roller
   ];
   gtk = {
     enable = true;

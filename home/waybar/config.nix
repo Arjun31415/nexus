@@ -102,7 +102,7 @@ in {
           critical = 15;
         };
         interval = 10;
-        format = "<span font_family=\"Font Awesome\">{icon} </span>{capacity: >3}%";
+        format = "<span font_family=\"Font Awesome 6 Free Solid\">{icon} </span>{capacity: >3}%";
         "format-charging" = "<span size=\"larger\" font_family=\"Material Design Icons\">󰢞</span> {capacity}%";
         "format-icons" = ["" "" "" "" ""];
         tooltip = true;
