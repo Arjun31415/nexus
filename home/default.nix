@@ -37,6 +37,7 @@
     starship
     mcfly
     pastebinit
+    libreoffice-fresh
     (callPackage ./fastfetch {})
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper

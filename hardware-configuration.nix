@@ -23,8 +23,8 @@ in {
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "ahci" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot.kernelModules = ["kvm-amd" "acpi_call"];
+  boot.extraModulePackages = with config.boot.kernelPackages; [acpi_call];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ecbac740-efa1-43ce-9380-4d8c1ab7d519";
@@ -82,6 +82,8 @@ in {
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
   hardware = {
+    enableAllFirmware = true;
+
     nvidia = {
       package = mkDefault nvidiaPackage;
       modesetting.enable = true;
@@ -103,7 +105,7 @@ in {
       # not supported by the open source drivers
       open = false;
       nvidiaSettings = false; # add nvidia-settings to pkgs, useless on nixos
-#      nvidiaPersistenced = true;
+      #      nvidiaPersistenced = true;
       forceFullCompositionPipeline = true;
     };
 

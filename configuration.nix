@@ -16,7 +16,7 @@
     env = __GLX_VENDOR_LIBRARY_NAME,nvidia
     env = WLR_NO_HARDWARE_CURSORS,1
 
-    exec-once = ${lib.getExe config.programs.regreet.package} -l debug; hyprctl dispatch exit
+    exec-once = ${lib.getExe config.programs.tuigreet.package}; hyprctl dispatch exit
     exec = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
     animations {
@@ -34,6 +34,20 @@
       gaps_out = 0;
       border_size = 1;
     }
+  '';
+  greetdSwayConfig = pkgs.writeText "greetd-sway-config" ''
+    exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
+    input "type:touchpad" {
+      tap enabled
+    }
+
+    bindsym Mod4+shift+e exec swaynag \
+      -t warning \
+      -m 'What do you want to do?' \
+      -b 'Poweroff' 'systemctl poweroff' \
+      -b 'Reboot' 'systemctl reboot'
+
+    exec "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland; swaymsg exit"
   '';
   /*
      nixos-boot-src = pkgs.fetchFromGitHub {
@@ -55,6 +69,14 @@ in {
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+  environment.etc."greetd/environments".text = ''
+    sway
+    fish
+    bash
+    gnome
+    gtk
+  '';
+
   /*
      boot.plymouth = {
     enable = true;
@@ -124,6 +146,7 @@ in {
 
   # Configure keymap in X11
   services.xserver = {
+    enable = true;
     layout = "us";
     xkbVariant = "";
     libinput = {
@@ -182,21 +205,20 @@ in {
   security.pam.services.swaylock = {};
 
   #  services.gnome.gnome-keyring.enable = true;
-  #  programs.regreet.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
-  virtualisation.oci-containers.containers = {
-    flaresolverr = {
-      autoStart = true;
-      image = "ghcr.io/flaresolverr/flaresolverr:latest";
-      environment = {
-        LOG_LEVEL = "info";
-        LOG_HTML = "false";
-        CAPTCHA_SOLVER = "none";
-      };
-      ports = ["8191:8191"];
-    };
-  };
+  # virtualisation.oci-containers.containers = {
+  #   flaresolverr = {
+  #     autoStart = true;
+  #     image = "ghcr.io/flaresolverr/flaresolverr:latest";
+  #     environment = {
+  #       LOG_LEVEL = "info";
+  #       LOG_HTML = "false";
+  #       CAPTCHA_SOLVER = "none";
+  #     };
+  #     ports = ["8191:8191"];
+  #   };
+  # };
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
     google-fonts
@@ -239,11 +261,15 @@ in {
     };
   };
 
-  /*
-     services.greetd = {
+  services.greetd = {
     enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        user = "greeter";
+      };
+    };
   };
-  */
   #  services.greetd.settings.default_session.command = "Hyprland --config ${greetdHyprlandConfig}";
   #  services.greetd.settings.default_session.command = "dbus-run-session cage -s  -- ${lib.getExe config.programs.regreet.package}";
   security.pam.services.greetd.enableGnomeKeyring = true;
@@ -305,15 +331,18 @@ in {
   ];
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
-  services.xserver.displayManager.sddm = {
-    enable = true;
-  };
-  services.xserver.displayManager.defaultSession = "hyprland";
+  # services.xserver.displayManager.sddm = {
+  #   enable = true;
+  # };
+  # services.xserver.displayManager.defaultSession = "hyprland";
+  # services.xserver.displayManager.lightdm.enable = false;
 
-  services.xserver.enable = true;
-  #  services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.enable = true;
-  # Some programs need SUID wrappers, can be configured further or are
+  programs.sway.enable = true;
+
+  # services.greetd.settings.default_session.command =
+  #   "${config.programs.sway.package}/bin/sway --config ${greetdSwayConfig}"
+  #   + " --unsupported-gpu";
+
   # started in user sessions.
   # programs.mtr.enable = truqe;
   # programs.gnupg.agent = {
