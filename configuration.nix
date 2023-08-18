@@ -104,6 +104,7 @@ in {
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   nix.settings.auto-optimise-store = true;
+  nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
     builders-use-substitutes = true;
