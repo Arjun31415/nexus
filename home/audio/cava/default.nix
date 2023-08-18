@@ -9,14 +9,15 @@
   ncurses,
   pkgconfig,
   iniparser,
-  pipewire,
-  enablePipewire ? false,
+  SDL2,
+  SDL2_gfx,
   enablePulseaudio ? true,
   enableALSA ? true,
+  enableSDL ? false,
 }:
 stdenv.mkDerivation rec {
   pname = "cava";
-  version = "0.9.0";
+  version = "0.8.3";
 
   buildInputs =
     [
@@ -26,27 +27,18 @@ stdenv.mkDerivation rec {
     ]
     ++ lib.optionals enableALSA [alsa-lib]
     ++ lib.optionals enablePulseaudio [libpulseaudio]
-    ++ lib.optionals enablePipewire [pipewire pipewire.dev]
-    # ++ lib.optionals enablePortaudio [portaudio];
+    ++ lib.optionals enableSDL [SDL2 SDL2_gfx]
     ;
 
   src = fetchFromGitHub {
     owner = "karlstav";
     repo = "cava";
     rev = version;
-    # sha256 = "sha256-W/2B9iTcO2F2vHQzcbg/6pYBwe+rRNfADdOiw4NY9Jk=";
-    hash = "sha256-mIgkvgVcbRdE29lSLojIzIsnwZgnQ+B2sgScDWrLyd8=";
+    # hash = "sha256-mIgkvgVcbRdE29lSLojIzIsnwZgnQ+B2sgScDWrLyd8=";
+    sha256 = "sha256-6xiWhWynIbUWFIieiYIg24PgwnKuNSIEpkY+P6gyFGw=";
   };
-  # preinstall = ''
-  #   ./autogen.sh
-  #   ./configure;
-  # '';
-  # installPhase = ''
-  #   runHook preInstall
-  #   make
-  # '';
 
-  nativeBuildInputs = [pipewire.dev pkgconfig autoreconfHook];
+  nativeBuildInputs = [pkgconfig autoreconfHook];
 
   meta = with lib; {
     description = "Cross-platform Audio Visualizer";

@@ -18,7 +18,7 @@ in {
     my-ncmpcpp
     mpc-cli
     mpv
-    (callPackage ./cava {enablePipewire=true;})
+    (callPackage ./cava {enableSDL=true;})
   ];
   services.mpd = {
     enable = true;
