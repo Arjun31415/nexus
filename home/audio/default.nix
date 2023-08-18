@@ -8,7 +8,8 @@
     visualizerSupport = true;
     clockSupport = true;
   };
-  spicetify= inputs.spicetify-nix;
+
+  spicetify = inputs.spicetify-nix;
   spicePkgs = spicetify.packages.${pkgs.system}.default;
 in {
   imports = [./easyeffects spicetify.homeManagerModule];
@@ -16,8 +17,8 @@ in {
   home.packages = with pkgs; [
     my-ncmpcpp
     mpc-cli
-    cava
     mpv
+    (callPackage ./cava {enablePipewire=true;})
   ];
   services.mpd = {
     enable = true;

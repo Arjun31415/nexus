@@ -7,38 +7,46 @@
   fftw,
   libpulseaudio,
   ncurses,
+  pkgconfig,
   iniparser,
-  portaudio,
   pipewire,
   enablePipewire ? false,
   enablePulseaudio ? true,
-  enablePortaudio ? false,
-  enableSndio ? false,
   enableALSA ? true,
 }:
 stdenv.mkDerivation rec {
   pname = "cava";
-  version = "0.9.1";
+  version = "0.9.0";
 
   buildInputs =
     [
-      alsa-lib
       fftw
-      libpulseaudio
       ncurses
       iniparser
     ]
-    ++ lib.optionals enablePipewire [pipewire]
-    ++ lib.optionals enablePortaudio [portaudio];
+    ++ lib.optionals enableALSA [alsa-lib]
+    ++ lib.optionals enablePulseaudio [libpulseaudio]
+    ++ lib.optionals enablePipewire [pipewire pipewire.dev]
+    # ++ lib.optionals enablePortaudio [portaudio];
+    ;
 
   src = fetchFromGitHub {
     owner = "karlstav";
     repo = "cava";
     rev = version;
-    sha256 = "sha256-mIgkvgVcbRdE29lSLojIzIsnwZgnQ+B2sgScDWrLyd8=";
+    # sha256 = "sha256-W/2B9iTcO2F2vHQzcbg/6pYBwe+rRNfADdOiw4NY9Jk=";
+    hash = "sha256-mIgkvgVcbRdE29lSLojIzIsnwZgnQ+B2sgScDWrLyd8=";
   };
+  # preinstall = ''
+  #   ./autogen.sh
+  #   ./configure;
+  # '';
+  # installPhase = ''
+  #   runHook preInstall
+  #   make
+  # '';
 
-  nativeBuildInputs = [autoreconfHook];
+  nativeBuildInputs = [pipewire.dev pkgconfig autoreconfHook];
 
   meta = with lib; {
     description = "Cross-platform Audio Visualizer";
