@@ -9,13 +9,12 @@
   ...
 }:
 with lib; let
-  #  nvStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
-  #  nvBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
-  #  nvidiaPackage =
-  #   if (versionOlder nvBeta nvStable)
-  #    then config.boot.kernelPackages.nvidiaPackages.stable
-  #    else config.boot.kernelPackages.nvidiaPackages.beta;
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.beta;
+  nvStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
+  nvBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
+  nvidiaPackage =
+    if (versionOlder nvBeta nvStable)
+    then config.boot.kernelPackages.nvidiaPackages.stable
+    else config.boot.kernelPackages.nvidiaPackages.beta;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -49,8 +48,6 @@ in {
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -59,31 +56,10 @@ in {
     # also the nouveau performance is godawful, I'd rather run linux on a piece of paper than use nouveau
     blacklistedKernelModules = ["nouveau"];
   };
-  environment = {
-    /*
-       sessionVariables = mkMerge [
-      {
-        LIBVA_DRIVER_NAME = "nvidia";
-      }
-      {
-        WLR_NO_HARDWARE_CURSORS = "1";
-      }
-    ];
-    */
-    /*
-       systemPackages = with pkgs; [
-      vulkan-tools
-      vulkan-loader
-      vulkan-validation-layers
-
-    ];
-    */
-  };
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
   hardware = {
     enableAllFirmware = true;
-
     nvidia = {
       package = mkDefault nvidiaPackage;
       modesetting.enable = true;
@@ -101,8 +77,6 @@ in {
         finegrained = true;
       };
 
-      # use open source drivers by default, hosts may override this option if their gpu is
-      # not supported by the open source drivers
       open = false;
       nvidiaSettings = false; # add nvidia-settings to pkgs, useless on nixos
       #      nvidiaPersistenced = true;
@@ -123,13 +97,4 @@ in {
       extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
     };
   };
-
-  #  hardware.opengl = {
-  #   enable = true;
-  #   driSupport = true;
-  #   driSupport32Bit = true;
-  # };
-
-  #  services.xserver.displayManager.gdm.wayland = true;
-  #  services.xserver.displayManager.gdm.nvidiaWayland = true;
 }
