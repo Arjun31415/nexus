@@ -5,6 +5,6 @@
     flags = [
       "--enable-features=WebUIDarkMode"
     ];
-    # extraWrapperFlags = "--unset WAYLAND_DISPLAY";
+    extraWrapperFlags = "--unset WAYLAND_DISPLAY --unset NIXOS_OZONE_WL";
   };
 }
