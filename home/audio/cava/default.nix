@@ -13,7 +13,7 @@
   SDL2_gfx,
   enablePulseaudio ? true,
   enableALSA ? true,
-  enableSDL ? false,
+  enableSDL2 ? false,
 }:
 stdenv.mkDerivation rec {
   pname = "cava";
@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
     ]
     ++ lib.optionals enableALSA [alsa-lib]
     ++ lib.optionals enablePulseaudio [libpulseaudio]
-    ++ lib.optionals enableSDL [SDL2 SDL2_gfx]
+    ++ lib.optionals enableSDL2 [SDL2]
     ;
 
   src = fetchFromGitHub {

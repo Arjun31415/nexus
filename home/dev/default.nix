@@ -65,5 +65,22 @@ in {
   programs.go.enable = true;
   programs.vscode = {
     enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      enkia.tokyo-night
+      wakatime.vscode-wakatime
+      rust-lang.rust-analyzer
+      svelte.svelte-vscode
+      jock.svg
+      tabnine.tabnine-vscode
+      tamasfe.even-better-toml
+      xadillax.viml
+      ms-vscode.cpptools
+      njpwerner.autodocstring
+      twxs.cmake
+      ms-vscode.cmake-tools
+      vadimcn.vscode-lldb
+      divyanshuagrawal.competitive-programming-helper
+      yzhang.markdown-all-in-one
+    ];
   };
 }
