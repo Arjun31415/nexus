@@ -92,6 +92,8 @@ in {
         ];
         "on-scroll-down" = "brightnessctl -c backlight set 5%-";
         "on-scroll-up" = "brightnessctl -c backlight set +5%";
+        tooltip = true;
+        "tooltip-format" = "{percent}";
       };
       battery = {
         states = {

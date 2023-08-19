@@ -50,7 +50,6 @@
     wev
     ngrok
     imv
-    onlyoffice-bin
     hunspell
     hunspellDicts.en_US
     font-awesome

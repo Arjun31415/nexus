@@ -169,7 +169,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  config.boot.kernelPackages.cpupower
+    config.boot.kernelPackages.cpupower
     wget
     ripgrep
     exa
@@ -225,6 +225,14 @@ in {
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
     google-fonts
     material-design-icons
+    liberation_ttf
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    corefonts
   ];
   programs.dconf.enable = true;
 
