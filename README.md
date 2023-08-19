@@ -1,0 +1,2 @@
+# Nexus
+My Nixos config
