@@ -13,7 +13,7 @@ jobs:
         id: scc
         uses: iryanbell/scc-docker-action@v1.0.2
         with:
-          args: ${{ env.workspace }} -i nix,css,json,bash,sh,fish --format json
+          args: ${{ env.workspace }} -i nix,css,json,bash,sh,fish,py --format json
 
       - name: Make lines of code badge
         uses: emibcn/badge-action@v2.0.2
