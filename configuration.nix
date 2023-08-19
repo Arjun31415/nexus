@@ -7,64 +7,7 @@
   inputs,
   lib,
   ...
-}: let
-  greetdHyprlandConfig = pkgs.writeText "greetd-hyprland-config" ''
-    env = GBM_BACKEND,nvidia
-    env = MOZ_ENABLE_WAYLAND,1
-    env = LIBVA_DRIVER_NAME,nvidia
-    env = XDG_SESSION_TYPE,wayland
-    env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-    env = WLR_NO_HARDWARE_CURSORS,1
-
-    exec-once = ${lib.getExe config.programs.tuigreet.package}; hyprctl dispatch exit
-    exec = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-
-    animations {
-      enabled = no
-    }
-    decoration {
-      drop_shadow = no;
-      rounding = 0;
-      blur {
-        enabled = no;
-      }
-    }
-    general {
-      gaps_in = 0;
-      gaps_out = 0;
-      border_size = 1;
-    }
-  '';
-  greetdSwayConfig = pkgs.writeText "greetd-sway-config" ''
-    exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
-    input "type:touchpad" {
-      tap enabled
-    }
-
-    bindsym Mod4+shift+e exec swaynag \
-      -t warning \
-      -m 'What do you want to do?' \
-      -b 'Poweroff' 'systemctl poweroff' \
-      -b 'Reboot' 'systemctl reboot'
-
-    exec "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland; swaymsg exit"
-  '';
-  /*
-     nixos-boot-src = pkgs.fetchFromGitHub {
-    owner = "Melkor333";
-    repo = "nixos-boot";
-    rev = "main";
-    sha256 = "sha256-kcYd39n58MVI2mFn/PSh5O/Wzr15kEYWgszMRtSQ+1w=";
-  };
-  */
-  # define the theme you want to use
-  #  nixos-boot = pkgs.callPackage nixos-boot-src {};
-  # You might want to override the theme
-  #nixos-boot = pkgs.callPackage nixos-boot-src {
-  #  bgColor = "0.1, 1, 0.8"; # Weird 0-1 range RGB. In this example roughly mint
-  #  theme = "load_unload";
-  #};
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -77,13 +20,6 @@ in {
     gtk
   '';
 
-  /*
-     boot.plymouth = {
-    enable = true;
-    themePackages = [nixos-boot];
-    theme = "load_unload";
-  };
-  */
   services.gnome.gnome-keyring.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Bootloader.
@@ -97,10 +33,6 @@ in {
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
-  /*
-     boot.plymouth.enable = true;
-  boot.plymouth.theme = "breeze";
-  */
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   nix.settings.auto-optimise-store = true;
@@ -118,12 +50,6 @@ in {
   };
 
   networking.hostName = "Omen"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -202,11 +128,9 @@ in {
     killall
     xorg.xeyes
     swaylock-effects
-    #    libsecret
   ];
   security.pam.services.swaylock = {};
 
-  #  services.gnome.gnome-keyring.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
   # virtualisation.oci-containers.containers = {
@@ -280,8 +204,6 @@ in {
       };
     };
   };
-  #  services.greetd.settings.default_session.command = "Hyprland --config ${greetdHyprlandConfig}";
-  #  services.greetd.settings.default_session.command = "dbus-run-session cage -s  -- ${lib.getExe config.programs.regreet.package}";
   security.pam.services.greetd.enableGnomeKeyring = true;
   services.pipewire = {
     enable = true;
@@ -301,10 +223,6 @@ in {
     };
   };
 
-  /*
-     networking.extraHosts = ''
-  ''
-  */
   # to boot onto external monitor
   /*
      specialisation = {
@@ -341,17 +259,7 @@ in {
   ];
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
-  # services.xserver.displayManager.sddm = {
-  #   enable = true;
-  # };
-  # services.xserver.displayManager.defaultSession = "hyprland";
-  # services.xserver.displayManager.lightdm.enable = false;
-
   programs.sway.enable = true;
-
-  # services.greetd.settings.default_session.command =
-  #   "${config.programs.sway.package}/bin/sway --config ${greetdSwayConfig}"
-  #   + " --unsupported-gpu";
 
   # started in user sessions.
   # programs.mtr.enable = truqe;
@@ -363,7 +271,7 @@ in {
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
