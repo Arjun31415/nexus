@@ -27,8 +27,7 @@ stdenv.mkDerivation rec {
     ]
     ++ lib.optionals enableALSA [alsa-lib]
     ++ lib.optionals enablePulseaudio [libpulseaudio]
-    ++ lib.optionals enableSDL2 [SDL2]
-    ;
+    ++ lib.optionals enableSDL2 [SDL2];
 
   src = fetchFromGitHub {
     owner = "karlstav";

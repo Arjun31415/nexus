@@ -15,5 +15,4 @@ in
       gobject-introspection
       playerctl
     ];
-
   }
