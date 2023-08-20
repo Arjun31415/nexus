@@ -18,6 +18,7 @@
   '';
 
   services.gnome.gnome-keyring.enable = true;
+  services.dbus.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
@@ -49,6 +50,7 @@
   networking.hostName = "Omen"; # Define your hostname.
   # Enable networking
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
