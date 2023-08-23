@@ -105,6 +105,9 @@
     git
     git-lfs
     firefox
+    glib
+    glib-networking
+
     pciutils
     pavucontrol
     nodejs

@@ -30,6 +30,7 @@
     ./communication
   ];
   home.packages = with pkgs; [
+    swww
     brightnessctl
     alejandra
     p7zip
