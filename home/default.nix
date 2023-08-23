@@ -43,6 +43,7 @@
     inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
+    powertop
     cliphist
     stow
     kooha

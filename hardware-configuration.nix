@@ -56,6 +56,7 @@ in {
     # also the nouveau performance is godawful, I'd rather run linux on a piece of paper than use nouveau
     blacklistedKernelModules = ["nouveau"];
   };
+  time.hardwareClockInLocalTime = true;
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
   hardware = {
