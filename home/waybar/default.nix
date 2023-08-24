@@ -6,7 +6,7 @@
   imports = [./config.nix];
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar.override {hyprlandSupport = true;};
+    package = pkgs.waybar-experimental.override {hyprlandSupport = true;};
     systemd.enable = false;
   };
 }

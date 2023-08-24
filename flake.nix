@@ -5,7 +5,7 @@
     ags.url = "github:Aylur/ags";
 
     tokyonightNur.url = "github:AtaraxiaSjel/nur";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:notashelf/nixpkgs";
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
       inputs.nixpkgs.follows = "nixpkgs";

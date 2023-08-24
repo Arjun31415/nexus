@@ -697,11 +697,11 @@
         "nixpkgs_sirula": "nixpkgs_sirula"
       },
       "locked": {
-        "lastModified": 1692841957,
-        "narHash": "sha256-lHMs6zQcn1wrV+397vPxYIwClqkNWMaiSmKhW/gz9eI=",
+        "lastModified": 1692865121,
+        "narHash": "sha256-jHmrkd4eY/NBzU++zN9HQg007eo2/7GkIDk/Z2efypI=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "4a1beee8261eacfebcd8e891c52e0cf593718316",
+        "rev": "25adbc09f7d0a5422ef006330230992180f55b47",
         "type": "github"
       },
       "original": {
@@ -808,16 +808,15 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1692734709,
-        "narHash": "sha256-SCFnyHCyYjwEmgUsHDDuU0TsbVMKeU1vwkR+r7uS2Rg=",
-        "owner": "nixos",
+        "lastModified": 1692866480,
+        "narHash": "sha256-MYPvpJHskkxSx712Pu2pAcpys5rW0aBwOw3S4eCrSQY=",
+        "owner": "notashelf",
         "repo": "nixpkgs",
-        "rev": "b85ed9dcbf187b909ef7964774f8847d554fab3b",
+        "rev": "aa71ff1af5ea59e7a0b7ed768e0ad1612336615b",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
+        "owner": "notashelf",
         "repo": "nixpkgs",
         "type": "github"
       }
