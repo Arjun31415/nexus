@@ -115,7 +115,6 @@
     firefox
     glib
     glib-networking
-
     pciutils
     pavucontrol
     nodejs
@@ -143,18 +142,6 @@
 
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
-  # virtualisation.oci-containers.containers = {
-  #   flaresolverr = {
-  #     autoStart = true;
-  #     image = "ghcr.io/flaresolverr/flaresolverr:latest";
-  #     environment = {
-  #       LOG_LEVEL = "info";
-  #       LOG_HTML = "false";
-  #       CAPTCHA_SOLVER = "none";
-  #     };
-  #     ports = ["8191:8191"];
-  #   };
-  # };
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
     google-fonts

@@ -72,10 +72,10 @@
   programs.btop.enable = true;
 
   programs.zathura.enable = true;
-  programs.zellij = {
-    enable = true;
-    enableFishIntegration = true;
-  };
+  # programs.zellij = {
+  #   enable = true;
+  #   enableFishIntegration = true;
+  # };
   services.dunst = {
     enable = true;
   };
