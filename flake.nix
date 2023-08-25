@@ -3,9 +3,12 @@
 
   inputs = {
     ags.url = "github:Aylur/ags";
-
     tokyonightNur.url = "github:AtaraxiaSjel/nur";
     nixpkgs.url = "github:notashelf/nixpkgs";
+    hy3 = {
+      url = "github:outfoxxed/hy3";
+      inputs.hyprland.follows = "hyprland";
+    };
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +29,9 @@
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
     };
+
+    impurity.url = "github:outfoxxed/impurity.nix";
+
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,27 +67,39 @@
   };
 
   outputs = inputs @ {
+    self,
     nixpkgs,
     home-manager,
+    impurity,
     ...
   }: {
     formatter = "alejandra";
     nixosConfigurations = {
-      omen = nixpkgs.lib.nixosSystem {
+      omen = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-
+        specialArgs = {inherit self system inputs;};
         modules = [
           ./configuration.nix
-          home-manager.nixosModules.home-manager
           {
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            imports = [impurity.nixosModules.impurity];
+            impurity.configRoot = self;
+          }
+          home-manager.nixosModules.home-manager
+          ({impurity, ...}: {
+            home-manager.extraSpecialArgs = {inherit inputs impurity;};
             #            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.prometheus = import ./home;
-          }
+          })
         ];
       };
+      omen-impure =
+        self.nixosConfigurations.omen.extendModules
+        {
+          modules = [
+            {impurity.enable = true;}
+          ];
+        };
     };
   };
 }

@@ -151,7 +151,7 @@ in {
         "exec-if" = "pgrep spotify || pgrep mpd";
       };
       "custom/launcher" = {
-        format = "<span font_family=\"FontAwesome\"></span>";
+        format = "<span font_family=\"Material Symbols Rounded\"></span>";
         "on-click" = "exec ${lib.getExe pkgs.nwg-drawer} -c 7 -is 70 -spacing 23";
         tooltip = false;
       };

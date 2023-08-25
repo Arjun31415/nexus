@@ -28,6 +28,7 @@
     ./waybar
     ./browsers
     ./communication
+    ./hyprland
   ];
   home.packages = with pkgs; [
     swww
@@ -55,6 +56,9 @@
     hunspell
     hunspellDicts.en_US
     font-awesome
+    material-symbols
+    siji
+    font-manager
     inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
@@ -67,9 +71,16 @@
   };
   programs.btop.enable = true;
 
+  programs.zathura.enable = true;
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   services.dunst = {
     enable = true;
   };
+
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
