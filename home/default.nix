@@ -55,6 +55,8 @@
     imv
     hunspell
     hunspellDicts.en_US
+    todoist-electron
+    notion-app-enhanced
     font-awesome
     material-symbols
     siji
