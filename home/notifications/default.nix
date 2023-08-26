@@ -1,0 +1,3 @@
+{...}: {
+  services.dunst.configFile = ./dunstrc;
+}

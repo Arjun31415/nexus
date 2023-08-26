@@ -29,6 +29,7 @@
     ./browsers
     ./communication
     ./hyprland
+    ./notifications
   ];
   home.packages = with pkgs; [
     swww
