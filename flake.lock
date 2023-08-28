@@ -1078,11 +1078,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1693127928,
-        "narHash": "sha256-LGW4WZMI679KOSIfM3EcWV9ajdacZCITXSnBCR4079A=",
+        "lastModified": 1693216689,
+        "narHash": "sha256-yXJHGWOeShE85y6J/TmT+wjQW3Zf7FWLaJV5Zex0PqM=",
         "owner": "AtaraxiaSjel",
         "repo": "nur",
-        "rev": "50fd8fb8127b18067883a3fa2fa9951e32a078a5",
+        "rev": "d4827758c65891820e09cc6671aab9874fe805a4",
         "type": "github"
       },
       "original": {
