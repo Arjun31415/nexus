@@ -246,9 +246,15 @@
     enable = true;
     group = "media";
   };
+  services.sonarr = {
+    enable = true;
+    group = "media";
+  };
 
-  services.radarr.enable = true;
-  services.radarr.group = "media";
+  services.radarr = {
+    enable = true;
+    group = "media";
+  };
   services.bazarr.enable = true;
   services.prowlarr.enable = true;
   systemd.tmpfiles.rules = [
