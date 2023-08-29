@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  nixpkgs,
   ...
 }: let
   tokyonightGtkTheme = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-theme;
