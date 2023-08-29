@@ -78,7 +78,7 @@ in {
         finegrained = true;
       };
 
-      open = true;
+      open = false;
       nvidiaSettings = false; # add nvidia-settings to pkgs, useless on nixos
       #      nvidiaPersistenced = true;
       forceFullCompositionPipeline = true;

@@ -732,11 +732,11 @@
         "nixpkgs_sirula": "nixpkgs_sirula"
       },
       "locked": {
-        "lastModified": 1693271018,
-        "narHash": "sha256-CkgLOFZWXMnJ5rXi4XPy7elztllO+Zx+VIq3nL/eVaM=",
+        "lastModified": 1693318478,
+        "narHash": "sha256-ti90uFqfo2pl9fU7rldFDvYie2GUY5A/vmWyt92uUaU=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "754ee673f05340bff0aeec7619083d289cc7dccc",
+        "rev": "3ec0a1b53184ecf4721e2d3980f9ec75a1021723",
         "type": "github"
       },
       "original": {
@@ -1078,11 +1078,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1693216689,
-        "narHash": "sha256-yXJHGWOeShE85y6J/TmT+wjQW3Zf7FWLaJV5Zex0PqM=",
+        "lastModified": 1693301396,
+        "narHash": "sha256-5JnjA3QN3wG4gxVvXlH01y9D21/13LhtVi26A6o2T14=",
         "owner": "AtaraxiaSjel",
         "repo": "nur",
-        "rev": "d4827758c65891820e09cc6671aab9874fe805a4",
+        "rev": "8baed61793d3fa4048b2e8e8ae38c6e57fdfb9f7",
         "type": "github"
       },
       "original": {
