@@ -50,7 +50,6 @@
     stow
     kooha
     cpupower-gui
-    neofetch
     wev
     ngrok
     imv
@@ -75,15 +74,9 @@
   programs.btop.enable = true;
 
   programs.zathura.enable = true;
-  # programs.zellij = {
-  #   enable = true;
-  #   enableFishIntegration = true;
-  # };
   services.dunst = {
     enable = true;
   };
-
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

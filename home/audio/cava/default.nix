@@ -6,13 +6,11 @@
   alsa-lib,
   fftw,
   libpulseaudio,
+  pipewire,
   ncurses,
   pkgconfig,
   iniparser,
   SDL2,
-  SDL2_gfx,
-  enablePulseaudio ? true,
-  enableALSA ? true,
   enableSDL2 ? false,
 }:
 stdenv.mkDerivation rec {
@@ -24,10 +22,11 @@ stdenv.mkDerivation rec {
       fftw
       ncurses
       iniparser
+      alsa-lib
+      libpulseaudio
+      pipewire
     ]
-    ++ lib.optionals enableALSA [alsa-lib]
-    ++ lib.optionals enablePulseaudio [libpulseaudio]
-    ++ lib.optionals enableSDL2 [SDL2];
+    ++ lib.optional enableSDL2 SDL2;
 
   src = fetchFromGitHub {
     owner = "karlstav";

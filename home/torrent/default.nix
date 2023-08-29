@@ -3,5 +3,5 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [qbittorrent unpackerr];
+  home.packages = with pkgs; [qbittorrent];
 }
