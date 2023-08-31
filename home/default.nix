@@ -61,6 +61,7 @@
     material-symbols
     siji
     font-manager
+    morgen
     inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
@@ -68,7 +69,7 @@
     enable = true;
     createDirectories = true;
     extraConfig = {
-      XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Screenshots";
+      XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
     };
   };
   programs.btop.enable = true;
