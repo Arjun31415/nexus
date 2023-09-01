@@ -108,6 +108,7 @@
     exa
     bat
     kitty
+    wezterm
     dunst
     nvtop
     git
