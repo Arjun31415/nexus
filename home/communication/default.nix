@@ -9,6 +9,7 @@
     teams-for-linux
     element-desktop-wayland
     webcord-vencord
+    clematis
     inputs.arrpc.packages.${pkgs.system}.arrpc
     (mailspring.overrideAttrs
       (old: {
