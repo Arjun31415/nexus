@@ -14,7 +14,7 @@ in {
       height = 30;
       "modules-left" = [
         "custom/launcher"
-        "wlr/workspaces"
+        "hyprland/workspaces"
         "custom/spotify"
       ];
       "modules-right" = [
@@ -22,16 +22,18 @@ in {
         #"custom/pacman"
         "battery"
         "network"
-        "pulseaudio"
+        # "pulseaudio"
+        "wireplumber"
         "idle_inhibitor"
         "clock"
         "tray"
         "custom/power"
       ];
-      "wlr/workspaces" = {
+      "hyprland/workspaces" = {
         "disable-scroll" = true;
         "on-click" = "activate";
         "all-outputs" = true;
+        "active-only" = "false";
         format = "{icon}";
         "format-icons" = {
           "1" = "1";
@@ -118,6 +120,22 @@ in {
         "on-click" = "kitty -e nmtui";
       };
       pulseaudio = {
+        "scroll-step" = 5;
+        format = "<span size=\"larger\" font_family=\"Material Design Icons\">{icon}</span>{volume: >3}%";
+        "format-bluetooth" = "{icon}{volume: >3}%";
+        "format-muted" = "<span size=\"larger\" font_family=\"Material Design Icons\">󰸈</span> muted";
+        "format-icons" = {
+          headphones = "";
+          handsfree = "";
+          headset = "";
+          phone = "";
+          portable = "";
+          car = "";
+          default = ["󰕿" "󰖀" "󰕾"];
+        };
+        "on-click" = "pavucontrol";
+      };
+      wireplumber = {
         "scroll-step" = 5;
         format = "<span size=\"larger\" font_family=\"Material Design Icons\">{icon}</span>{volume: >3}%";
         "format-bluetooth" = "{icon}{volume: >3}%";

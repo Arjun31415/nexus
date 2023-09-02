@@ -151,6 +151,7 @@ window#waybar.hidden {
 #backlight,
 #network,
 #pulseaudio,
+#wireplumber,
 #mode,
 #tray,
 #window,
@@ -171,11 +172,11 @@ window#waybar.hidden {
  * -------------------------------------------------------------------------- */
 
 #custom-spotify {
-  background-image:linear-gradient(
-  90deg,
-  #78a0f7 0%,
-  #9c9df7 48%,
-  #bc9cf7 100%
+  background-image: linear-gradient(
+    90deg,
+    #78a0f7 0%,
+    #9c9df7 48%,
+    #bc9cf7 100%
   );
   padding: 0 10px;
 }
@@ -258,7 +259,8 @@ window#waybar.hidden {
   background-image: linear-gradient(45deg, #db4b4b, #ff9e64);
 }
 
-#pulseaudio {
+#pulseaudio,
+#wireplumber {
   background-image: linear-gradient(45deg, #c0caf5, #bb9af7);
   color: #15161e;
   padding: 0 10px;
@@ -307,4 +309,3 @@ window#waybar.hidden {
 #custom-keyboard-layout {
   color: #d08770;
 }
-
