@@ -19,7 +19,7 @@
 
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_4;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
   boot.loader.grub = {
@@ -32,7 +32,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   nix.settings.auto-optimise-store = true;
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
   nix.settings.experimental-features = ["nix-command" "flakes"];
