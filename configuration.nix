@@ -42,8 +42,6 @@
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
-    keep-outputs = true;
-    keep-derivations = true;
   };
 
   networking.hostName = "Omen"; # Define your hostname.
