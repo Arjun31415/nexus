@@ -3,6 +3,7 @@
   stdenv,
   fetchFromGitHub,
   autoreconfHook,
+  autoconf-archive,
   alsa-lib,
   fftw,
   libpulseaudio,
@@ -12,12 +13,13 @@
   iniparser,
   SDL2,
   SDL2_gfx,
+  libGL,
   withSDL2 ? false,
 }:
 stdenv.mkDerivation rec {
   pname = "cava";
   version = "0.9.1";
-
+  LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
   buildInputs =
     [
       fftw
@@ -27,7 +29,13 @@ stdenv.mkDerivation rec {
       libpulseaudio
       pipewire
     ]
-    ++ lib.optionals withSDL2 [SDL2 SDL2_gfx SDL2.dev ];
+    ++ lib.optionals withSDL2 [
+      SDL2
+      SDL2_gfx
+      SDL2.dev
+      # needed for glsl
+      libGL
+    ];
 
   src = fetchFromGitHub {
     owner = "karlstav";
@@ -36,7 +44,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-W/2B9iTcO2F2vHQzcbg/6pYBwe+rRNfADdOiw4NY9Jk=";
   };
 
-  nativeBuildInputs = [pkgconfig autoreconfHook];
+  nativeBuildInputs = [pkgconfig autoreconfHook autoconf-archive];
 
   meta = with lib; {
     description = "Cross-platform Audio Visualizer";
