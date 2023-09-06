@@ -62,7 +62,7 @@
     siji
     font-manager
     morgen
-    inputs.ags.packages.${pkgs.system}.default
+    # inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
   xdg.userDirs = {
