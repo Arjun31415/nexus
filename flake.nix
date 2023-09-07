@@ -4,7 +4,7 @@
   inputs = {
     ags.url = "github:Aylur/ags";
     tokyonightNur.url = "github:AtaraxiaSjel/nur";
-    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
     hy3 = {
       url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";
