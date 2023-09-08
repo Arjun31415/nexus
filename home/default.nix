@@ -62,6 +62,7 @@
     siji
     font-manager
     morgen
+    evince
     # inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;

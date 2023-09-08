@@ -109,7 +109,7 @@
     config.boot.kernelPackages.cpupower
     wget
     ripgrep
-    exa
+    eza
     bat
     kitty
     wezterm
