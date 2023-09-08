@@ -10,15 +10,15 @@ in {
       rusty-man = "rusty-man --viewer tui";
       unset = "set --erase";
       neovim = "nvim";
-      ls = "exa -al --color=always --group-directories-first --icons";
+      ls = "eza -al --color=always --group-directories-first --icons";
       # all files and dirs
-      la = "exa -a --color=always --group-directories-first --icons";
+      la = "eza -a --color=always --group-directories-first --icons";
       # long format
-      ll = "exa -l --color=always --group-directories-first --icons";
+      ll = "eza -l --color=always --group-directories-first --icons";
       # tree listing
-      lt = "exa -aT --color=always --group-directories-first --icons";
+      lt = "eza -aT --color=always --group-directories-first --icons";
       # show only dotfiles
-      "l." = "exa -a | egrep '^\\.'";
+      "l." = "eza -a | egrep '^\\.'";
       ip = "ip -color";
       qqq = "exit";
       # Replace some more things with better alternatives
