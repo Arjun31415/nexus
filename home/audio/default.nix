@@ -18,6 +18,7 @@ in {
     my-ncmpcpp
     mpc-cli
     mpv
+    amberol
     (callPackage ./cava {withSDL2 = true;})
   ];
   services.mpd = {
