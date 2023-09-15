@@ -114,6 +114,7 @@
 
   environment.systemPackages = with pkgs; [
     config.boot.kernelPackages.cpupower
+    compsize
     wget
     ripgrep
     eza
