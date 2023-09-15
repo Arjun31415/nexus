@@ -28,7 +28,7 @@ in {
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ecbac740-efa1-43ce-9380-4d8c1ab7d519";
     fsType = "btrfs";
-    options = ["subvol=@"];
+    options = ["subvol=@" "compress=zstd"];
   };
 
   fileSystems."/boot" = {
@@ -40,6 +40,9 @@ in {
     fsType = "ntfs";
     options = ["defaults" "uid=1000" "gid=989" "rw"];
   };
+
+  services.btrfs.autoScrub.enable = true;
+  services.btrfs.autoScrub.interval = "weekly";
 
   swapDevices = [];
 
