@@ -3,6 +3,7 @@
   inputs,
   ...
 }: let
+  jetbrainsPkgs = pkgs.callPackage ./jetbrains {};
   tex = pkgs.texlive.combine {
     inherit
       (pkgs.texlive)
@@ -32,6 +33,7 @@ in {
     # tex
     pandoc
     (python311.withPackages python-pkgs)
+    jetbrainsPkgs.rustrover
   ];
 
   programs.direnv = {
