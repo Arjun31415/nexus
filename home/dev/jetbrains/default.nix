@@ -18,6 +18,7 @@
   openssl,
   expat,
   libxcrypt-legacy,
+  fontconfig,
   vmopts ? null,
 }: let
   platforms = lib.platforms.linux ++ ["x86_64-darwin" "aarch64-darwin"];
@@ -305,20 +306,26 @@
     wmClass,
     buildNumber,
     ...
-  }: (mkJetBrainsProduct {
-    inherit pname version src wmClass jdk buildNumber;
-    product = "RustRover";
-    meta = with lib; {
-      homepage = "https://www.jetbrains.com/rust/";
-      inherit description license platforms;
-      longDescription = ''
-        A brand new JetBrains IDE for Rust Developers
-        Try a new feature-rich Rust IDE with timely support, regular updates,
-        and an out-of-the-box experience. Enjoy coding with Rust and focus on what matters.
-      '';
-      maintainers = with maintainers; [dritter tymscar];
-    };
-  });
+  }:
+    (mkJetBrainsProduct {
+      inherit pname version src wmClass jdk buildNumber;
+      product = "RustRover";
+      meta = with lib; {
+        homepage = "https://www.jetbrains.com/rust/";
+        inherit description license platforms;
+        longDescription = ''
+          A brand new JetBrains IDE for Rust Developers
+          Try a new feature-rich Rust IDE with timely support, regular updates,
+          and an out-of-the-box experience. Enjoy coding with Rust and focus on what matters.
+        '';
+        maintainers = with maintainers; [dritter tymscar];
+      };
+    })
+    .overrideAttrs (attrs: {
+      buildInputs =
+        (attrs.buildInputs or [])
+        ++ lib.optionals (stdenv.isLinux) [fontconfig];
+    });
 
   buildPycharm = {
     pname,
