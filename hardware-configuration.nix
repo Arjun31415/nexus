@@ -52,7 +52,10 @@ in {
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform.system = "x86_64-linux";
+  # nixpkgs.hostPlatform.gcc.arch = "znver2";
+  # nixpkgs.hostPlatform.gcc.tune = "znver2";
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   boot = {
     # blacklist nouveau module so that it does not conflict with nvidia drm stuff
