@@ -2,9 +2,15 @@
   description = "NixOS configuration";
 
   inputs = {
-    ags.url = "github:Aylur/ags";
-    tokyonightNur.url = "github:AtaraxiaSjel/nur";
     nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tokyonightNur = {
+      url = "github:AtaraxiaSjel/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hy3 = {
       url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";
@@ -17,9 +23,9 @@
       url = "github:notashelf/arrpc-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     hypr-contrib = {
       url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -28,24 +34,33 @@
     hyprland.url = "github:hyprwm/Hyprland";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impurity.url = "github:outfoxxed/impurity.nix";
+    impurity = {
+      url = "github:outfoxxed/impurity.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mpd-mpris = {
       url = "github:natsukagami/mpd-mpris";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # Nil - Nix LSP
     nix-nil-lsp = {
       url = "github:oxalica/nil";
@@ -54,6 +69,7 @@
     };
     anyrun = {
       url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
@@ -73,10 +89,10 @@
     impurity,
     ...
   }: {
-    formatter = "alejandra";
     nixosConfigurations = {
       omen = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
+        formatter = "alejandra";
         specialArgs = {inherit self system inputs;};
         modules = [
           ./configuration.nix
