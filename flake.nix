@@ -31,7 +31,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +42,6 @@
 
     impurity = {
       url = "github:outfoxxed/impurity.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixpkgs-wayland = {
@@ -90,9 +92,9 @@
     ...
   }: {
     nixosConfigurations = {
+      formatter = "alejandra";
       omen = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        formatter = "alejandra";
         specialArgs = {inherit self system inputs;};
         modules = [
           ./configuration.nix
