@@ -17,7 +17,6 @@
     gnome
     gtk
   '';
-
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_6_4;
@@ -37,6 +36,7 @@
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
+    keep-derivations = true;
     builders-use-substitutes = true;
     substituters = [
       "https://hyprland.cachix.org"
@@ -133,10 +133,8 @@
     nodejs
     gcc
     gnumake
-    cudaPackages_12_2.cudatoolkit
-    cudaPackages.cudnn
-    cmake
-    ninja
+    # cudaPackages_12_2.cudatoolkit
+    # cudaPackages.cudnn
     xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
     llvmPackages_rocm.clang-unwrapped
