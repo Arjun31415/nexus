@@ -18,5 +18,8 @@
     prettierd
     cmake-language-server
     rust-analyzer
+
+    # Linters
+    selene # lua
   ];
 }

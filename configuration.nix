@@ -55,6 +55,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
+  networking.nameservers = ["1.1.1.1" "9.9.9.9"];
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
