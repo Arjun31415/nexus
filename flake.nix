@@ -40,6 +40,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+  
     impurity = {
       url = "github:outfoxxed/impurity.nix";
     };
