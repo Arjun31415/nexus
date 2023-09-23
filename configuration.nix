@@ -149,6 +149,8 @@
     killall
     xorg.xeyes
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
+    inputs.nh.packages.${system}.default
+
   ];
   security.pam.services.swaylock = {};
 
