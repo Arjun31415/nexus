@@ -235,7 +235,6 @@
     };
   };
 
-
   # to boot onto external monitor
   /*
      specialisation = {
