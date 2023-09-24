@@ -104,6 +104,14 @@
             imports = [impurity.nixosModules.impurity];
             impurity.configRoot = self;
           }
+          inputs.nh.nixosModules.default
+          {
+            nh = {
+              enable = true;
+              clean.enable = true;
+              clean.extraArgs = "--keep-since 4d --keep 3";
+            };
+          }
           home-manager.nixosModules.home-manager
           ({impurity, ...}: {
             home-manager.extraSpecialArgs = {inherit inputs impurity;};

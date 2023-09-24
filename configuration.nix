@@ -42,12 +42,14 @@
       "https://hyprland.cachix.org"
       "https://anyrun.cachix.org"
       "https://nixpkgs-wayland.cachix.org"
+      "https://viperml.cachix.org"
     ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "viperml.cachix.org-1:qZhKBMTfmcLL+OG6fj/hzsMEedgKvZVFRRAhq7j8Vh8="
     ];
   };
 
@@ -150,7 +152,6 @@
     xorg.xeyes
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nh.packages.${system}.default
-
   ];
   security.pam.services.swaylock = {};
 
@@ -233,6 +234,7 @@
       enable = true;
     };
   };
+
 
   # to boot onto external monitor
   /*
