@@ -63,6 +63,8 @@
     font-manager
     morgen
     evince
+    kdenlive
+    kdeconnect
     # inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
