@@ -65,6 +65,7 @@
     evince
     kdenlive
     kdeconnect
+    trash-cli
     # inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
