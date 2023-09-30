@@ -66,6 +66,7 @@
     kdenlive
     kdeconnect
     trash-cli
+    inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
     # inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
