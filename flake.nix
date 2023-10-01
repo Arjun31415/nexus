@@ -9,7 +9,6 @@
     };
     prismlauncher = {
       url = "github:PrismLauncher/PrismLauncher";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     tokyonightNur = {
@@ -38,7 +37,7 @@
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
