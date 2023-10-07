@@ -18,7 +18,7 @@
     prettierd
     cmake-language-server
     rust-analyzer
-
+    inputs.nix-nixd-lsp.packages.${pkgs.system}.default
     # Linters
     selene # lua
   ];
