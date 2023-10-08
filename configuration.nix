@@ -31,7 +31,11 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    TERMINAL = "kitty";
+    TERM="kitty";
+  };
   nix.settings.auto-optimise-store = true;
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -87,6 +91,7 @@
     libinput = {
       enable = true;
     };
+    excludePackages = [pkgs.xterm];
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -138,6 +143,7 @@
     nodejs
     gcc
     gnumake
+    xfce.exo
     # cudaPackages_12_2.cudatoolkit
     # cudaPackages.cudnn
     xdg-desktop-portal-hyprland
@@ -173,7 +179,7 @@
     corefonts
   ];
   programs.dconf.enable = true;
-
+  programs.xfconf.enable = true;
   programs.fish.enable = true;
   security.rtkit.enable = true;
   security.polkit.enable = true;
@@ -254,6 +260,7 @@
     plugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-volman
+      thunar-media-tags-plugin
     ];
   };
   services.tumbler.enable = true;
