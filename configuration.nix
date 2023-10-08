@@ -19,7 +19,7 @@
   '';
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_4;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
   boot.loader.grub = {
