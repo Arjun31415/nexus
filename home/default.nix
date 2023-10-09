@@ -30,6 +30,7 @@
     ./communication
     ./hyprland
     ./notifications
+    ./anyrun
   ];
   home.packages = with pkgs; [
     swww
@@ -42,7 +43,6 @@
     pastebinit
     libreoffice-fresh
     fastfetch
-    inputs.anyrun.packages.${pkg.system}.anyrun-with-all-plugins
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
     powertop
@@ -64,7 +64,6 @@
     morgen
     evince
     kdenlive
-    kdeconnect
     trash-cli
     inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
     # inputs.ags.packages.${pkgs.system}.default
@@ -78,7 +77,8 @@
     };
   };
   programs.btop.enable = true;
-
+  services.kdeconnect.enable=true;
+  services.kdeconnect.indicator=true;
   programs.zathura.enable = true;
   services.dunst = {
     enable = true;

@@ -1,0 +1,88 @@
+{
+  inputs,
+  pkgs,
+  config,
+  osConfig,
+  ...
+}: let
+  inherit (inputs) anyrun;
+  anyrun_packages = inputs.anyrun.packages.${pkgs.system};
+in {
+  imports = [anyrun.homeManagerModules.default];
+  programs.anyrun = {
+    enable = true;
+    config = {
+      plugins = with anyrun_packages;
+        [
+          # An array of all the plugins you want, which either can be paths to the .so files, or their packages
+          applications
+          dictionary
+          kidex
+          rink
+          shell
+          stdin
+          symbols
+          translate
+          websearch
+        ]
+        ++ [inputs.anyrun-nixos-options.packages.${pkgs.system}.default];
+
+      width = {absolute = 800;};
+      height = {absolute = 0;};
+      x = {fraction = 0.5;};
+      y = {fraction = 0.5;};
+      # verticalOffset = {absolute = 0;};
+      hideIcons = false;
+      ignoreExclusiveZones = false;
+      closeOnClick = true;
+      showResultsImmediately = false;
+      hidePluginInfo = false;
+      maxEntries = 10;
+    };
+    extraCss = ''
+      #window {
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      box#main {
+        border-radius: 10px;
+        background-color: @theme_bg_color;
+      }
+
+      list#main {
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 10px;
+      }
+
+      list#plugin {
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      label#match-desc {
+        font-size: 10px;
+      }
+
+      label#plugin {
+        font-size: 14px;
+      }
+    '';
+
+    extraConfigFiles."dictionary.ron".text = ''
+      Config(
+        prefix: ":d",
+      )
+    '';
+    extraConfigFiles."translate.ron".text = ''
+      Config(
+        prefix: ":t",
+        language_delimiter: ">",
+        max_entries: 3,
+      )
+    '';
+    extraConfigFiles."nixos-options.ron".text = ''
+      Config(
+        options_path: "${osConfig.system.build.manual.optionsJSON}/share/doc/nixos/options.json"
+      )
+    '';
+  };
+}

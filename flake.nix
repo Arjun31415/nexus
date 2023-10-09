@@ -2,6 +2,10 @@
   description = "NixOS configuration";
 
   inputs = {
+    anyrun-nixos-options = {
+      url = "github:n3oney/anyrun-nixos-options";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
     ags = {
       url = "github:Aylur/ags";
