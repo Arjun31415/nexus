@@ -34,7 +34,7 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     TERMINAL = "kitty";
-    TERM="kitty";
+    TERM = "kitty";
   };
   nix.settings.auto-optimise-store = true;
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
@@ -144,6 +144,7 @@
     gcc
     gnumake
     xfce.exo
+    nix-output-monitor
     # cudaPackages_12_2.cudatoolkit
     # cudaPackages.cudnn
     xdg-desktop-portal-hyprland
@@ -165,6 +166,7 @@
 
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
+  virtualisation.docker.enableNvidia = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
     google-fonts
