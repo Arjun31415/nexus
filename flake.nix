@@ -14,7 +14,6 @@
     prismlauncher = {
       url = "github:PrismLauncher/PrismLauncher";
     };
-
     tokyonightNur = {
       url = "github:AtaraxiaSjel/nur";
       inputs.nixpkgs.follows = "nixpkgs";

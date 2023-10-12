@@ -49,7 +49,6 @@
     cliphist
     stow
     kooha
-    cpupower-gui
     wev
     ngrok
     imv

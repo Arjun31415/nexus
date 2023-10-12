@@ -85,7 +85,6 @@ in {
       };
       open = true;
       nvidiaSettings = false; # add nvidia-settings to pkgs, useless on nixos
-      #      nvidiaPersistenced = true;
       forceFullCompositionPipeline = true;
     };
 
@@ -95,7 +94,6 @@ in {
       driSupport32Bit = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-
         libva
         libva-utils
         vaapiVdpau

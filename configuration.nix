@@ -17,6 +17,7 @@
     gnome
     gtk
   '';
+  services.cpupower-gui.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -36,6 +37,9 @@
     TERMINAL = "kitty";
     TERM = "kitty";
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "mailspring-1.11.0"
+  ];
   nix.settings.auto-optimise-store = true;
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -149,7 +153,7 @@
     # cudaPackages.cudnn
     xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
-    llvmPackages_rocm.clang-unwrapped
+    rocmPackages.llvm.clang-unwrapped
     xdg-utils
     wl-clipboard
     inxi
@@ -161,6 +165,7 @@
     xorg.xeyes
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nh.packages.${system}.default
+    # cpupower-gui
   ];
   security.pam.services.swaylock = {};
 

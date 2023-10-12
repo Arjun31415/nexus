@@ -286,7 +286,7 @@
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#010067"
+    background = "#e05a51"
     foreground = "#15161E"
     frame_color = "#7dcfff"
     timeout = 10

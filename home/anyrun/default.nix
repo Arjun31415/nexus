@@ -32,6 +32,8 @@ in {
       x = {fraction = 0.5;};
       y = {fraction = 0.5;};
       # verticalOffset = {absolute = 0;};
+      # position = "top";
+
       hideIcons = false;
       ignoreExclusiveZones = false;
       closeOnClick = true;
@@ -79,9 +81,16 @@ in {
         max_entries: 3,
       )
     '';
-    extraConfigFiles."nixos-options.ron".text = ''
+    extraConfigFiles."nixos-options.ron".text = let
+      #               ↓ home-manager refers to the nixos configuration as osConfig
+      nixos-options = osConfig.system.build.manual.optionsJSON + "/share/doc/nixos/options.json";
+      # merge your options
+      options = builtins.toJSON {
+        ":nix" = [nixos-options];
+      };
+    in ''
       Config(
-        options_path: "${osConfig.system.build.manual.optionsJSON}/share/doc/nixos/options.json"
+        options:  ${options},
       )
     '';
   };
