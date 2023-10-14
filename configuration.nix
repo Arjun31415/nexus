@@ -165,6 +165,7 @@
     xorg.xeyes
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nh.packages.${system}.default
+    cinnamon.nemo-with-extensions
     # cpupower-gui
   ];
   security.pam.services.swaylock = {};
@@ -262,14 +263,14 @@
     };
   };
   */
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-      thunar-media-tags-plugin
-    ];
-  };
+  # programs.thunar = {
+  #   enable = true;
+  #   plugins = with pkgs.xfce; [
+  #     thunar-archive-plugin
+  #     thunar-volman
+  #     thunar-media-tags-plugin
+  #   ];
+  # };
   services.tumbler.enable = true;
 
   services.gvfs.enable = true;
