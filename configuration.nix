@@ -10,6 +10,15 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+  nixpkgs.overlays = let
+    nightlyOverlay = inputs.nixpkgs-mozilla.overlays.firefox;
+  in [
+    nightlyOverlay
+  ];
+  programs.firefox = {
+    package = pkgs.latest.firefox-nightly-bin;
+    enable = true;
+  };
   environment.etc."greetd/environments".text = ''
     sway
     fish
@@ -140,7 +149,6 @@
     nvtop
     git
     git-lfs
-    firefox
     glib
     glib-networking
     pciutils

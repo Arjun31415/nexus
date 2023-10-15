@@ -95,6 +95,9 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-mozilla = {
+      url = "github:mozilla/nixpkgs-mozilla";
+    };
   };
 
   outputs = inputs @ {
