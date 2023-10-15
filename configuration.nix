@@ -131,6 +131,7 @@
     compsize
     wget
     ripgrep
+    jaq
     eza
     bat
     kitty
