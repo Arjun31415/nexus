@@ -76,8 +76,8 @@
     };
   };
   programs.btop.enable = true;
-  services.kdeconnect.enable=true;
-  services.kdeconnect.indicator=true;
+  services.kdeconnect.enable = true;
+  services.kdeconnect.indicator = true;
   programs.zathura.enable = true;
   services.dunst = {
     enable = true;

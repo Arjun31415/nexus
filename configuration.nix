@@ -53,7 +53,7 @@
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
-    keep-derivations = true;
+    keep-derivations = false;
     builders-use-substitutes = true;
     substituters = [
       "https://hyprland.cachix.org"
