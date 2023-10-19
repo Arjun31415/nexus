@@ -11,6 +11,7 @@
     webcord-vencord
     armcord
     clematis
+    signal-desktop-beta
     inputs.arrpc.packages.${pkgs.system}.arrpc
     (mailspring.overrideAttrs
       (old: {
