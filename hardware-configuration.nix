@@ -68,7 +68,7 @@ in {
   hardware = {
     enableAllFirmware = true;
     nvidia = {
-      package = mkDefault nvidiaPackage;
+      package = mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
       modesetting.enable = true;
       prime = {
         offload = {
