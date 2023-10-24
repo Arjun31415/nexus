@@ -2,8 +2,13 @@
   description = "NixOS configuration";
 
   inputs = {
+    nur.url = "github:nix-community/NUR";
     anyrun-nixos-options = {
       url = "github:n3oney/anyrun-nixos-options";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    arkenfox-firefox-userjs = {
+      url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
@@ -90,13 +95,13 @@
       url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     xdg-portal-hyprland = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-mozilla = {
-      url = "github:mozilla/nixpkgs-mozilla";
+    firefox-nightly = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -106,12 +111,18 @@
     home-manager,
     impurity,
     ...
-  }: {
+  }: let
+    overlays = [inputs.nur.overlay inputs.rust-overlay.overlays.default];
+    pkgs = import nixpkgs {
+      inherit overlays;
+      config.allowUnfree = true;
+    };
+  in {
     nixosConfigurations = {
       formatter = "alejandra";
       omen = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = {inherit self system inputs;};
+        specialArgs = {inherit self system inputs pkgs;};
         modules = [
           ./configuration.nix
           {
@@ -128,7 +139,7 @@
           }
           home-manager.nixosModules.home-manager
           ({impurity, ...}: {
-            home-manager.extraSpecialArgs = {inherit inputs impurity;};
+            home-manager.extraSpecialArgs = {inherit inputs impurity pkgs;};
             #            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.prometheus = import ./home;

@@ -24,7 +24,6 @@
       pygobject3
     ];
 in {
-  nixpkgs.overlays = [inputs.rust-overlay.overlays.default];
   imports = [./lsp];
   home.packages = with pkgs; [
     niv
