@@ -191,6 +191,8 @@
   programs.dconf.enable = true;
   programs.xfconf.enable = true;
   programs.fish.enable = true;
+  programs.sniffnet.enable = true;
+
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.polkit.extraConfig = ''

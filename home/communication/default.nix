@@ -18,5 +18,5 @@
         libPath = lib.makeLibraryPath [pkgs.libglvnd];
       }))
   ];
-  services.arrpc.enable = true;
+  # services.arrpc.enable = true;
 }
