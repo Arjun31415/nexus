@@ -11,10 +11,11 @@
     source = ./mediaplayer.py;
     executable = true;
   };
-  xdg.configFile."waybar/scripts/shell.nix" = {
-    source = ./waybar-shell.nix;
-  };
   xdg.configFile."waybar/scripts/default.nix" = {
     source = ./waybar-default.nix;
+  };
+  xdg.configFile."waybar/scripts/waybar-cava.sh" = {
+    source = ./waybar-cava.sh;
+    executable = true;
   };
 }
