@@ -277,6 +277,13 @@
   # };
   services.tumbler.enable = true;
 
+  services.deluge = {
+    enable = true;
+    web = {
+      enable = true;
+      port = 8112;
+    };
+  };
   services.gvfs.enable = true;
   services.lidarr = {
     enable = true;
