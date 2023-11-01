@@ -17,7 +17,6 @@
     gnome
     gtk
   '';
-  services.cpupower-gui.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -129,7 +128,6 @@
   services.avahi.openFirewall = true;
 
   environment.systemPackages = with pkgs; [
-    config.boot.kernelPackages.cpupower
     compsize
     wget
     ripgrep
@@ -279,6 +277,7 @@
 
   services.deluge = {
     enable = true;
+    group = "media";
     web = {
       enable = true;
       port = 8112;

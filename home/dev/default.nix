@@ -54,7 +54,9 @@ in {
   programs.gh-dash.enable = true;
 
   programs.neovim = {
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.override {
+      libvterm-neovim = inputs.nixpkgs-staging.legacyPackages.${pkgs.system}.libvterm-neovim;
+    };
     vimAlias = true;
     enable = true;
     viAlias = true;

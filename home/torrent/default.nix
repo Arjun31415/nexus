@@ -3,5 +3,5 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [qbittorrent deluge];
+  home.packages = with pkgs; [qbittorrent];
 }
