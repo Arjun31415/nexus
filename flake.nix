@@ -11,7 +11,7 @@
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
     nixpkgs-staging.url = "github:nixos/nixpkgs/staging";
     ags = {
       url = "github:Aylur/ags";
