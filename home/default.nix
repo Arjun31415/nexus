@@ -41,8 +41,8 @@
     starship
     mcfly
     pastebinit
+    (callPackage ./fastfetch {})
     libreoffice-fresh
-    fastfetch
     inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
     powertop
