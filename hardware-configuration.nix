@@ -68,7 +68,7 @@ in {
   hardware = {
     enableAllFirmware = true;
     nvidia = {
-      package = mkDefault config.boot.kernelPackages.nvidiaPackages.production;
+      package = mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
       prime = {
         offload = {
@@ -83,7 +83,7 @@ in {
         enable = true;
         finegrained = true;
       };
-      open = true;
+      open = false;
       nvidiaSettings = false; # add nvidia-settings to pkgs, useless on nixos
       forceFullCompositionPipeline = true;
     };
