@@ -1219,22 +1219,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-staging": {
-      "locked": {
-        "lastModified": 1699488160,
-        "narHash": "sha256-bBkbgqR4PZM/+um8YidtYIZYKKPB9B0Ht4IUOoYVKvk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "50249cdaf29f872fb960dc9110696d208a77fc3a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "staging",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-wayland": {
       "inputs": {
         "flake-compat": "flake-compat_5",
@@ -1433,7 +1417,6 @@
         "nix-nil-lsp": "nix-nil-lsp",
         "nix-nixd-lsp": "nix-nixd-lsp",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-staging": "nixpkgs-staging",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",
         "prismlauncher": "prismlauncher",
