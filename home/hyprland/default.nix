@@ -6,12 +6,12 @@
   ...
 }: let
   inherit (inputs) hyprland hy3;
-  hy3-fullscreen = pkgs.writeShellScriptBin "hy3-fullscreen" builtins.readFile ./hy3-fullscreen.sh;
 in {
   imports = [hyprland.homeManagerModules.default];
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = hyprland.packages.${pkgs.system}.hyprland-nvidia;
     plugins = [hy3.packages.${pkgs.system}.default];
     extraConfig = ''
       source = ${impurity.link ./hyprland.conf}

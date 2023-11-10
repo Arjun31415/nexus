@@ -166,6 +166,8 @@
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nh.packages.${system}.default
     cinnamon.nemo-with-extensions
+    # disk space reporting tool
+    duc
   ];
   security.pam.services.swaylock = {};
 
@@ -245,8 +247,8 @@
   };
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    enableNvidiaPatches = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia;
+    # enableNvidiaPatches = true;
     xwayland = {
       enable = true;
     };
