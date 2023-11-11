@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   lib,
@@ -20,6 +19,7 @@
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_6_5;
+  # boot.tmp.cleanOnBoot = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
   boot.loader.grub = {
@@ -130,6 +130,7 @@
   environment.systemPackages = with pkgs; [
     compsize
     wget
+    fd
     ripgrep
     jaq
     eza
