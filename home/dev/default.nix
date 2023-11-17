@@ -70,6 +70,7 @@ in {
   programs.go.enable = true;
   programs.vscode = {
     enable = true;
+    package = pkgs.vscode.fhs;
     extensions = with pkgs.vscode-extensions; [
       enkia.tokyo-night
       wakatime.vscode-wakatime
