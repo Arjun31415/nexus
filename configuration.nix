@@ -4,7 +4,18 @@
   lib,
   system,
   ...
-}: {
+}: let
+  hyprlandSuspendScript = pkgs.writeShellScript "suspend-hyprland.sh" ''
+    case "$1" in
+        suspend)
+            killall -STOP Hyprland
+            ;;
+        resume)
+            killall -CONT Hyprland
+            ;;
+    esac
+  '';
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -69,6 +80,38 @@
   # Enable networking
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services."hyprland-suspend" = {
+    description = "Suspend Hyprland";
+    unitConfig = {
+      Before = [
+        "systemd-suspend.service"
+        "systemd-hibernate.service"
+        "nvidia-suspend.service"
+        "nvidia-hibernate.service"
+      ];
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${hyprlandSuspendScript} suspend";
+    };
+    wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
+  };
+  systemd.services."hyprland-resume" = {
+    description = "Resume hyprland";
+    unitConfig = {
+      After = [
+        "systemd-suspend.service"
+        "systemd-hibernate.service"
+        "nvidia-suspend.service"
+      ];
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${hyprlandSuspendScript} resume";
+    };
+    wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
+  };
+
   networking.nameservers = ["1.1.1.1" "9.9.9.9"];
 
   # Set your time zone.
