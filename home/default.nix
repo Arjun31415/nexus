@@ -43,7 +43,7 @@
     pastebinit
     (callPackage ./fastfetch {})
     libreoffice-fresh
-    inputs.hyprpaper.packages.${pkg.system}.hyprpaper
+    # inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
     powertop
     cliphist
