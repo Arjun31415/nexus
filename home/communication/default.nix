@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -8,6 +9,14 @@
     ./neomutt
   ];
   home.packages = with pkgs; [
+    (inputs.wrapper-manager.lib.build
+      {
+        inherit pkgs;
+        modules = [
+          ./mailspring
+        ];
+      })
+
     whatsapp-for-linux
     teams-for-linux
     element-desktop-wayland
@@ -16,10 +25,6 @@
     clematis
     signal-desktop-beta
     inputs.arrpc.packages.${pkgs.system}.arrpc
-    (mailspring.overrideAttrs
-      (old: {
-        libPath = lib.makeLibraryPath [pkgs.libglvnd];
-      }))
   ];
   # services.arrpc.enable = true;
 }

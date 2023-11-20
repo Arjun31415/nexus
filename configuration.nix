@@ -209,8 +209,9 @@ in {
     xorg.xeyes
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nh.packages.${system}.default
-    cinnamon.nemo-with-extensions
     # disk space reporting tool
+    libsForQt5.dolphin
+    libsForQt5.dolphin-plugins
     duc
   ];
   security.pam.services.swaylock = {};
