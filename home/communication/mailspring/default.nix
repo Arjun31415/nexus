@@ -9,10 +9,7 @@ in {
   wrappers.mailspring = {
     basePackage = my-mailspring;
     flags = [
-    ''
-    --password-store="gnome-libsecret"
-
-    ''
+    "--password-store=gnome-libsecret"
     ];
   };
 }
