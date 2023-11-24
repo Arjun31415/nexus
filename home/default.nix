@@ -3,7 +3,7 @@
   pkgs,
   inputs,
   ...
-}: {
+}:{
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "prometheus";
@@ -22,6 +22,7 @@
   imports = [
     ./audio
     ./gtk
+    ./qt
     ./torrent
     ./shells
     ./dev
@@ -43,7 +44,6 @@
     pastebinit
     (callPackage ./fastfetch {})
     libreoffice-fresh
-    # inputs.hyprpaper.packages.${pkg.system}.hyprpaper
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
     powertop
     cliphist

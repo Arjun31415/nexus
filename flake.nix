@@ -2,16 +2,17 @@
   description = "NixOS configuration";
 
   inputs = {
+    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
     anyrun-nixos-options = {
       url = "github:n3oney/anyrun-nixos-options";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-colors.url = "github:misterio77/nix-colors";
     arkenfox-firefox-userjs = {
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,13 +71,11 @@
       url = "github:natsukagami/mpd-mpris";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # Nil - Nix LSP
     nix-nil-lsp = {
       url = "github:oxalica/nil";
