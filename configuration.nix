@@ -191,10 +191,7 @@ in {
     nodejs
     gcc
     gnumake
-    xfce.exo
     nix-output-monitor
-    # cudaPackages_12_2.cudatoolkit
-    # cudaPackages.cudnn
     xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
     rocmPackages.llvm.clang-unwrapped
@@ -212,6 +209,7 @@ in {
     # disk space reporting tool
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
+    libsForQt5.xdg-desktop-portal-kde
     duc
   ];
   security.pam.services.swaylock = {};
@@ -231,6 +229,7 @@ in {
     noto-fonts-cjk
     noto-fonts-emoji
     corefonts
+    monaspace
   ];
   programs.dconf.enable = true;
   programs.xfconf.enable = true;
