@@ -120,6 +120,10 @@
           clearurls
         ];
       };
+      background = {
+        id = 1;
+        name = "bg";
+      };
     };
   };
 }
