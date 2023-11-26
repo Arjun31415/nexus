@@ -45,8 +45,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/812a3f6d78681abbfbc0b01f3b5956c38ae06c1c";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
