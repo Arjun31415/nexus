@@ -39,8 +39,8 @@ in {
   };
   xdg.configFile = {
     "qBittorrent/themes/catppuccin.qbtheme".source = builtins.fetchurl {
-       url = "https://github.com/catppuccin/qbittorrent/raw/main/frappe.qbtheme";
-       sha256 = "00y4ykbkd2c206mfhm0k0hvfxg5dv1v1xacd6k578w2yy0yw9664";
+      url = "https://github.com/catppuccin/qbittorrent/raw/main/frappe.qbtheme";
+      sha256 = "00y4ykbkd2c206mfhm0k0hvfxg5dv1v1xacd6k578w2yy0yw9664";
     };
     "kdeglobals".source = builtins.fetchurl {
       url = "https://raw.githubusercontent.com/nonetrix/tokyonight-kde/main/TokyoNight.colors";
