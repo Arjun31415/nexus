@@ -192,7 +192,6 @@ in {
     gcc
     gnumake
     nix-output-monitor
-    xdg-desktop-portal-hyprland
     gcc-unwrapped.lib
     rocmPackages.llvm.clang-unwrapped
     xdg-utils
@@ -209,7 +208,6 @@ in {
     # disk space reporting tool
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
-    libsForQt5.xdg-desktop-portal-kde
     duc
   ];
   security.pam.services.swaylock = {};
@@ -291,8 +289,7 @@ in {
   };
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia;
-    # enableNvidiaPatches = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     xwayland = {
       enable = true;
     };
@@ -319,7 +316,12 @@ in {
   #   ];
   # };
   services.tumbler.enable = true;
-
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.libsForQt5.xdg-desktop-portal-kde
+    ];
+  };
   services.deluge = {
     enable = true;
     group = "media";
