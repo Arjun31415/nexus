@@ -19,12 +19,6 @@ in rec {
     enable = true;
     iconTheme = {
       name = "Tokyonight-Dark";
-      /*
-         package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
-        accent = "maroon";
-      };
-      */
       package = tokyonightGtkIcons;
     };
     theme = {
