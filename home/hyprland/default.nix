@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   impurity,
-  stdenv,
   ...
 }: let
   inherit (inputs) hyprland hy3 hyprland-plugins;
@@ -19,6 +18,7 @@ in {
     ];
     extraConfig = ''
       source = ${impurity.link ./hyprland.conf}
+      bind = $mainMod, p, exec, cliphist list | anyrun --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so --show-results-immediately true --max-entries 100  | cliphist decode | wl-copy
     '';
   };
   xdg.configFile."hypr/hy3-fullscreen.sh" = {
