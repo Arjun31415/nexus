@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  impurity,
   ...
 }: let
   scheme = "catppuccin";
@@ -42,10 +43,7 @@ in {
       url = "https://github.com/catppuccin/qbittorrent/raw/main/frappe.qbtheme";
       sha256 = "00y4ykbkd2c206mfhm0k0hvfxg5dv1v1xacd6k578w2yy0yw9664";
     };
-    "kdeglobals".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/nonetrix/tokyonight-kde/main/TokyoNight.colors";
-      sha256 = "0p3s25jp7bck00jclc995sggwlicl949y099plpk422cxrir6vj2";
-    };
+    "kdeglobals".source = impurity.link ./kdeglobals;
     "Kvantum/${scheme}/${scheme}.kvconfig".source = builtins.fetchurl {
       url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-Maroon/Catppuccin-Mocha-Maroon.kvconfig";
       sha256 = "15gzp8vdy8l6cmkbn89gdi5z8j2my2q3r6gbhi8as9b8aqw9wa27";
