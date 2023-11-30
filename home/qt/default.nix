@@ -12,6 +12,12 @@ with lib; let
 in {
   options.myOptions.themes.qt = {
     enable = mkEnableOption "enable qt theming";
+    qbittorrent-theme = {
+      enable = mkEnableOption "enable qbtorrent theme (.qbtheme). Will have to manually import it later in qbittorrent app";
+      theme-file = mkOption {
+        description = "the theme file contents";
+      };
+    };
     theme-package = {
       name = mkOption {
         description = "qt theme name";
@@ -50,10 +56,7 @@ in {
       };
     };
     xdg.configFile = {
-      "qBittorrent/themes/catppuccin.qbtheme".source = builtins.fetchurl {
-        url = "https://github.com/catppuccin/qbittorrent/raw/main/frappe.qbtheme";
-        sha256 = "00y4ykbkd2c206mfhm0k0hvfxg5dv1v1xacd6k578w2yy0yw9664";
-      };
+      "qBittorrent/themes/catppuccin.qbtheme".source = mkIf cfg.qbittorrent-theme.enable cfg.qbittorrent-theme.theme-file;
       "kdeglobals".source = impurity.link ./kdeglobals;
       "Kvantum/${scheme}/${scheme}.kvconfig".source = builtins.fetchurl {
         url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-Maroon/Catppuccin-Mocha-Maroon.kvconfig";
