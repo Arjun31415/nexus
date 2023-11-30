@@ -5,25 +5,29 @@
   lib,
   impurity,
   ...
-}: let
-  scheme = "catppuccin";
+}:
+with lib; let
   cfg = config.myOptions.themes.qt;
-  theme-package = pkgs.catppuccin-kde.override {
-    flavour = ["mocha"];
-    accents = ["maroon"];
-  };
+  scheme = cfg.theme-package.name;
 in {
   options.myOptions.themes.qt = {
-    enable = lib.mkEnableOption "enable qt theming";
+    enable = mkEnableOption "enable qt theming";
+    theme-package = {
+      name = mkOption {
+        description = "qt theme name";
+        type = types.str;
+      };
+      package = mkOption {
+        description = "qt theme package";
+        type = types.package;
+      };
+    };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     qt = {
       enable = true;
-      style = {
-        name = "Catppuccin-Mocha-Dark";
-        package = theme-package;
-      };
+      style = cfg.theme-package;
     };
     home = {
       packages = with pkgs; [

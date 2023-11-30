@@ -18,7 +18,16 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "23.11";
-  myOptions.themes.qt.enable = true;
+  myOptions.themes.qt = {
+    enable = true;
+    theme-package = {
+      name = "catppuccin";
+      package = pkgs.catppuccin-kde.override {
+        flavour = ["mocha"];
+        accents = ["maroon"];
+      };
+    };
+  };
   imports = [
     ./audio
     ./gtk
