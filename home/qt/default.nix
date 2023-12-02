@@ -47,10 +47,10 @@ in {
 
       sessionVariables = {
         # increase priority
-        QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
+        # QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
         QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
-        # QT_QPA_PLATFORMTHEME = "qt5ct";
+        QT_QPA_PLATFORMTHEME = "qtct";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         DISABLE_QT_COMPAT = "0";
       };
@@ -69,7 +69,7 @@ in {
       "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
         General.theme = "catppuccin";
         Applications.catppuccin = ''
-          qt5ct, org.kde.dolphin, org.kde.kalendar, org.qbittorrent.qBittorrent, hyprland-share-picker, dolphin-emu, Nextcloud, nextcloud, cantata, org.kde.kid3-qt
+          qt5ct, qt6ct, org.kde.dolphin, org.kde.kalendar, org.qbittorrent.qBittorrent, hyprland-share-picker, dolphin-emu, Nextcloud, nextcloud, cantata, org.kde.kid3-qt
         '';
       };
     };

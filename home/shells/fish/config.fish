@@ -1,7 +1,9 @@
 export EDITOR=nvim
 set fish_greeting # Disable greeting
 set VIRTUAL_ENV_DISABLE_PROMPT 1
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+# set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x MANPAGER "nvim +Man!"
+set MANWIDTH 999
 set SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 
 # alias rusty-man="rusty-man --viewer tui"
