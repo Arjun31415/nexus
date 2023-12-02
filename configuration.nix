@@ -15,6 +15,14 @@
             ;;
     esac
   '';
+  swaylock-effects = inputs.nixpkgs-wayland.packages.${pkgs.system}.swaylock-effects.overrideAttrs {
+    src = pkgs.fetchFromGitHub {
+      owner = "jirutka";
+      repo = "swaylock-effects";
+      rev = "dd9db0efbdf85c4c9116644d4b5fbee6c1c27e90";
+      hash = "sha256-/ixrlCn9cvhE0h0rUfYO8fsy3dThfNAttYB6fYo27EI=";
+    };
+  };
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -203,7 +211,7 @@ in {
     tree
     killall
     xorg.xeyes
-    inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
+    swaylock-effects
     inputs.nh.packages.${system}.default
     # disk space reporting tool
     libsForQt5.dolphin
