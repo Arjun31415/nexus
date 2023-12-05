@@ -2,8 +2,33 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
-}: {
+}: let
+  browser = ["firefox-nightly.desktop"];
+
+  associations = {
+    "text/html" = browser;
+    "x-scheme-handler/http" = browser;
+    "x-scheme-handler/https" = browser;
+    "x-scheme-handler/ftp" = browser;
+    "x-scheme-handler/about" = browser;
+    "x-scheme-handler/unknown" = browser;
+    "application/x-extension-htm" = browser;
+    "application/x-extension-html" = browser;
+    "application/x-extension-shtml" = browser;
+    "application/xhtml+xml" = browser;
+    "application/x-extension-xhtml" = browser;
+    "application/x-extension-xht" = browser;
+
+    "audio/*" = ["mpv.desktop"];
+    "video/*" = ["mpv.dekstop"];
+    "image/*" = ["imv.desktop"];
+    "application/json" = browser;
+    "x-scheme-handler/spotify" = ["spotify.desktop"];
+    "inode/directory" = "org.kde.dolphin.desktop";
+  };
+in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "prometheus";
@@ -92,6 +117,12 @@
       XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
     };
   };
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = associations;
+    defaultApplications = associations;
+  };
+
   programs.btop.enable = true;
   services.kdeconnect.enable = true;
   services.kdeconnect.indicator = true;

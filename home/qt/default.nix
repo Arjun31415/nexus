@@ -48,7 +48,7 @@ in {
 
       sessionVariables = {
         # increase priority
-        # QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
+        QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
         QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
         QT_QPA_PLATFORMTHEME = "qtct";

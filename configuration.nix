@@ -218,6 +218,7 @@ in {
     libsForQt5.dolphin-plugins
     duc
   ];
+
   security.pam.services.swaylock = {};
 
   virtualisation.docker.enable = true;
@@ -324,6 +325,7 @@ in {
   #   ];
   # };
   services.tumbler.enable = true;
+  xdg.autostart.enable = true;
   xdg.portal = {
     enable = true;
     extraPortals = [
