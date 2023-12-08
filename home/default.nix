@@ -20,6 +20,7 @@
     "application/xhtml+xml" = browser;
     "application/x-extension-xhtml" = browser;
     "application/x-extension-xht" = browser;
+    "application/pdf" = "org.pwmt.zathura.desktop";
 
     "audio/*" = ["mpv.desktop"];
     "video/*" = ["mpv.dekstop"];
