@@ -49,7 +49,11 @@ in {
     enable = true;
     extensions = [pkgs.gh-eco];
     gitCredentialHelper.enable = true;
-    settings.editor = "nvim";
+    settings = {
+      # Workaround for https://github.com/nix-community/home-manager/issues/4744
+      version = 1;
+      editor = "nvim";
+    };
   };
   programs.gh-dash.enable = true;
 
