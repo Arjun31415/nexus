@@ -148,11 +148,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1702211075,
-        "narHash": "sha256-QD5w0y9/EfbIhoYAyl5ull1Fkupv1lH+uQwYPPzmTBk=",
+        "lastModified": 1702297595,
+        "narHash": "sha256-wv1yu+/7vggggVLQ8QvcA3wcVgS5a+rV46anONZRlx8=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "6ec4ff2de737fa726bc6b623c9b9b39793df6eff",
+        "rev": "060883bc7237f7a5e7f1829d2b2d746fd9617c88",
         "type": "github"
       },
       "original": {
@@ -1311,11 +1311,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1702286544,
-        "narHash": "sha256-40eyoDy0m02fVdyZnuDMN63alMTOTr+pmdMzlT2TNl0=",
+        "lastModified": 1702305048,
+        "narHash": "sha256-HUvHjL3fmsacjkAFbDm17lxrgVq7165hYV04DE8pV6I=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "6f5d3e909a700d7db205ea7115e9661a15bee445",
+        "rev": "e222a3c43b58005c093e36135ef03705a1953077",
         "type": "github"
       },
       "original": {
@@ -1387,11 +1387,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1702199760,
-        "narHash": "sha256-gm08CNtO3LLiD3OXUEuh/ONq5+s3VCYWUr3OKMsj+ro=",
+        "lastModified": 1702289404,
+        "narHash": "sha256-nvaeeRlCnDmoLrIS9KjmM3/DcufgYAzSAvZzYycjIJM=",
         "owner": "PrismLauncher",
         "repo": "PrismLauncher",
-        "rev": "ad6ca1c6ea6bede085ee7dd1385e3aef24fad9ae",
+        "rev": "a39e2a11457f078438e3b172a430c038e8a60364",
         "type": "github"
       },
       "original": {
