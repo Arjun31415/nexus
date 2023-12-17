@@ -23,6 +23,7 @@
     webcord-vencord
     armcord
     clematis
+    # (callPackage signal-desktop-beta {})
     signal-desktop-beta
     inputs.arrpc.packages.${pkgs.system}.arrpc
   ];

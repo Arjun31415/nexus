@@ -340,7 +340,9 @@ in {
       port = 8112;
     };
   };
-  services.gvfs.enable = true;
+  services.gvfs = {
+    enable = true;
+  };
   services.lidarr = {
     enable = true;
     group = "media";

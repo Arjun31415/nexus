@@ -84,6 +84,7 @@ in {
     starship
     mcfly
     pastebinit
+    mtpfs
     # (callPackage ./fastfetch {})
     fastfetch
     libreoffice-fresh
