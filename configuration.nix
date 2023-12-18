@@ -201,7 +201,6 @@ in {
     gnumake
     nix-output-monitor
     gcc-unwrapped.lib
-    rocmPackages.llvm.clang-unwrapped
     xdg-utils
     wl-clipboard
     inxi

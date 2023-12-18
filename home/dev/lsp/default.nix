@@ -7,7 +7,7 @@
     stylua
     lua-language-server
     inputs.nix-nil-lsp.packages.${pkgs.system}.default
-    clang-tools
+    clang-tools_17
     shellcheck
     nodePackages_latest.bash-language-server
     nodePackages_latest.pyright
