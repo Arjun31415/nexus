@@ -148,11 +148,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1702902376,
-        "narHash": "sha256-Bqa3vMshQ13UaswYRae1LMazLJ+FkB6glZBsYheTba0=",
+        "lastModified": 1702988723,
+        "narHash": "sha256-INUdqqu0SoNy58bLzOEoxT4hZ3M7zO5ENHeNAIMxTo0=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "6b563f53465a99b96436901a95892540578065bd",
+        "rev": "2e317534dc6211a1f687827f7c8d21ea9a6bed17",
         "type": "github"
       },
       "original": {
@@ -708,11 +708,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1702942390,
-        "narHash": "sha256-RrYg08s00PAoIIrXMbmyqHbNpj7MER0vUmdI8oaOSQI=",
+        "lastModified": 1702986956,
+        "narHash": "sha256-HSXyJxXKqDqaAVoJhvbA+u8iDLS/TuCD6+w4eDqMIeI=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "ef445093f9fbd9a41a91914ef45e6499b3afa54d",
+        "rev": "d9b74ff96b3e3f0341a386451b9a3375b6f05503",
         "type": "github"
       },
       "original": {
@@ -1311,11 +1311,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1702957303,
-        "narHash": "sha256-MspofgHcwmDRsfBtVoXRBluNz49OejQGvn7VM+aoSfc=",
+        "lastModified": 1702990649,
+        "narHash": "sha256-CiBj9iAnplMRXUeHXaKI/kk0tHZ3XFN3uvV0/Oz1nvo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "06f325fc281e404efda68baa45246ebc8a9e961b",
+        "rev": "4b24bd5f1f5fed16415f1031e3416a5e3342f19f",
         "type": "github"
       },
       "original": {
@@ -1387,11 +1387,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1702804755,
-        "narHash": "sha256-7pKog1X3uPMgWL0MT6vO5q/CWWCXfCpjQ/hmL0GW6/s=",
+        "lastModified": 1702985085,
+        "narHash": "sha256-ycdWlf+hvYialN4gqvFcW1GJatRaMZhJmzdLa80qxws=",
         "owner": "PrismLauncher",
         "repo": "PrismLauncher",
-        "rev": "2993306226a938b9d28e1e5561542361261abf4d",
+        "rev": "e39a03421a6e8cdf58f8b5d98388b9eef55d44b7",
         "type": "github"
       },
       "original": {
@@ -1646,11 +1646,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1702888929,
-        "narHash": "sha256-0lApPpePRQvp31YCLg+aV88a07xQvBnIv40o/iJbzm4=",
+        "lastModified": 1702975300,
+        "narHash": "sha256-VcjmPjKEIpMX/5kdQ/+Er/Lk0YAeYna2a9EXVzCN4iQ=",
         "owner": "AtaraxiaSjel",
         "repo": "nur",
-        "rev": "71dd91d75f30f18ede9c176494f596a070bbb725",
+        "rev": "f5ca8ac948b2118407447da5789dd0e63f879a91",
         "type": "github"
       },
       "original": {
