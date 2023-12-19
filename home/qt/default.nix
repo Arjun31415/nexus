@@ -37,13 +37,9 @@ in {
     };
     home = {
       packages = with pkgs; [
-        qt5.qttools
         qt6Packages.qtstyleplugin-kvantum
         libsForQt5.qtstyleplugin-kvantum
         libsForQt5.qt5ct
-        qt6Packages.qt6ct
-        breeze-icons
-        libsForQt5.kde-cli-tools
       ];
 
       sessionVariables = {
@@ -53,6 +49,7 @@ in {
         QT_QPA_PLATFORM = "wayland;xcb";
         QT_QPA_PLATFORMTHEME = "qtct";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        # remain backwards compatible with qt5
         DISABLE_QT_COMPAT = "0";
       };
     };

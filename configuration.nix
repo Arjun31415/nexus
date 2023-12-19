@@ -212,9 +212,17 @@ in {
     xorg.xeyes
     swaylock-effects
     inputs.nh.packages.${system}.default
+    plasma5Packages.dolphin
+    plasma5Packages.dolphin-plugins
+    plasma5Packages.kio
+    plasma5Packages.kio-extras
+    plasma5Packages.kimageformats
+    plasma5Packages.kdegraphics-thumbnailers
+    plasma5Packages.kio-admin
+    kio-fuse
+
     # disk space reporting tool
-    libsForQt5.dolphin
-    libsForQt5.dolphin-plugins
+
     duc
   ];
 
@@ -397,7 +405,7 @@ in {
     ];
   };
   # https://github.com/NixOS/nixpkgs/issues/24913
-    security.wrappers."mount.nfs" = {
+  security.wrappers."mount.nfs" = {
     setuid = true;
     owner = "root";
     group = "root";
