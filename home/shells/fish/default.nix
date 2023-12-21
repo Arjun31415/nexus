@@ -89,15 +89,6 @@ in {
     };
     plugins = [
       {
-        name = "z";
-        src = pkgs.fetchFromGitHub {
-          owner = "jethrokuan";
-          repo = "z";
-          rev = "master";
-          sha256 = "+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=";
-        };
-      }
-      {
         name = "wakatime-fish";
         src = pkgs.fishPlugins.wakatime-fish.src;
       }
@@ -105,6 +96,14 @@ in {
         name = "sponge";
         src = pkgs.fishPlugins.sponge.src;
       }
+      {
+        name = "done";
+        src = pkgs.fishPlugins.done.src;
+      }
     ];
+  };
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
   };
 }
