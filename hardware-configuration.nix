@@ -24,7 +24,7 @@ in {
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd" "acpi_call"];
   boot.extraModulePackages = with config.boot.kernelPackages; [acpi_call];
-
+  services.rpcbind.enable = true; # needed for NFS
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ecbac740-efa1-43ce-9380-4d8c1ab7d519";
     fsType = "btrfs";
@@ -39,6 +39,11 @@ in {
     device = "/dev/disk/by-label/Shared";
     fsType = "ntfs";
     options = ["defaults" "uid=1000" "gid=989" "rw"];
+  };
+  fileSystems."/mnt/nfs-shared" = {
+    device = "192.168.1.120:/nfs-shared";
+    fsType = "nfs";
+    options = ["x-systemd.automount" "noauto" ];
   };
 
   services.btrfs.autoScrub.enable = true;
