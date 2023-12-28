@@ -43,7 +43,7 @@ in {
   fileSystems."/mnt/nfs-shared" = {
     device = "192.168.1.120:/nfs-shared";
     fsType = "nfs";
-    options = ["x-systemd.automount" "noauto" "noatime" "nodiratime"];
+    options = ["noauto" "noatime" "nodiratime"];
   };
 
   services.btrfs.autoScrub.enable = true;

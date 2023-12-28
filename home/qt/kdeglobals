@@ -130,11 +130,31 @@ ForegroundNormal=215,218,224
 ForegroundPositive=179,225,163
 ForegroundVisited=173,142,230
 
-[KDE]
-contrast=4
-
 [General]
 ColorScheme=BreezeDark
 Name=Tokyo Night
-shadeSortColumn=true
 TerminalApplication=kitty
+shadeSortColumn=true
+
+[KDE]
+contrast=4
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=true
+Speedbar Width=286
+View Style=DetailTree
