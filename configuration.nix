@@ -220,6 +220,7 @@ in {
     plasma5Packages.kdegraphics-thumbnailers
     plasma5Packages.kio-admin
     kio-fuse
+    waypipe
 
     # disk space reporting tool
 
