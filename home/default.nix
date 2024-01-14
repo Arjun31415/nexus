@@ -109,6 +109,17 @@ in {
     kdenlive
     trash-cli
     inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
+    (lutris.override {
+      extraPkgs = pkgs: [
+        wineWowPackages.waylandFull
+        winetricks
+        wine-wayland
+        # List package dependencies here
+      ];
+    })
+    wineWowPackages.waylandFull
+    wine-wayland
+    winetricks
     # inputs.ags.packages.${pkgs.system}.default
   ];
   fonts.fontconfig.enable = true;
