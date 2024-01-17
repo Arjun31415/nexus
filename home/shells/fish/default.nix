@@ -88,10 +88,10 @@ in {
       };
     };
     plugins = [
-      {
-        name = "wakatime-fish";
-        src = pkgs.fishPlugins.wakatime-fish.src;
-      }
+      # {
+      #   name = "wakatime-fish";
+      #   src = pkgs.fishPlugins.wakatime-fish.src;
+      # }
       {
         name = "sponge";
         src = pkgs.fishPlugins.sponge.src;
