@@ -23,6 +23,7 @@
       hash = "sha256-/ixrlCn9cvhE0h0rUfYO8fsy3dThfNAttYB6fYo27EI=";
     };
   };
+  kernel_pkg = pkgs.linuxPackages_latest;
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -37,7 +38,7 @@ in {
   '';
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = kernel_pkg;
   # boot.tmp.cleanOnBoot = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
@@ -155,7 +156,7 @@ in {
   users.users.prometheus = {
     isNormalUser = true;
     description = "Prometheus";
-    extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input"];
+    extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input" "samply"];
     shell = pkgs.fish;
   };
 
@@ -177,8 +178,16 @@ in {
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
+  security.wrappers.samply = {
+    source = "${pkgs.samply}/bin/samply";
+    capabilities = "cap_perfmon+ep";
+    owner = "root";
+    group = "media";
+  };
 
   environment.systemPackages = with pkgs; [
+    kernel_pkg.perf
+    perf-tools
     compsize
     wget
     fd
