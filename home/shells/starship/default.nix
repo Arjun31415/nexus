@@ -16,7 +16,7 @@
         "$directory"
         "[](bold fg:#9db4fb)"
         "([─](bold fg:#93bcfc)$git_branch$git_status[](bold fg:#8cc2fd))"
-        "([─](bold fg:cyan)$cmd_duration[](bold fg:cyan))"
+        "([─](bold fg:cyan)$cmd_duration[](bold fg:cyan)) "
         "$nix_shell"
         "$python"
         "$rust"
