@@ -108,6 +108,7 @@ in {
     evince
     kdenlive
     trash-cli
+    steam
     inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
     (lutris.override {
       extraPkgs = pkgs: [
@@ -118,7 +119,7 @@ in {
       ];
     })
     wineWowPackages.waylandFull
-    wine-wayland
+    # wine-wayland
     winetricks
     # inputs.ags.packages.${pkgs.system}.default
   ];
