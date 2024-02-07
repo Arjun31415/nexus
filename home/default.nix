@@ -122,6 +122,7 @@ in {
     # wine-wayland
     winetricks
     # inputs.ags.packages.${pkgs.system}.default
+    openfortivpn
   ];
   fonts.fontconfig.enable = true;
   xdg.userDirs = {

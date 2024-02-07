@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.arrpc.homeManagerModules.default
+    # inputs.arrpc.homeManagerModules.default
     ./neomutt
   ];
   home.packages = with pkgs; [
