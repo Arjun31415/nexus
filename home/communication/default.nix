@@ -25,6 +25,7 @@
     clematis
     # (callPackage signal-desktop-beta {})
     signal-desktop-beta
+    remmina
     inputs.arrpc.packages.${pkgs.system}.arrpc
   ];
   # services.arrpc.enable = true;
