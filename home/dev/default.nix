@@ -94,4 +94,16 @@ in {
       yzhang.markdown-all-in-one
     ];
   };
+  programs.foot = {
+    enable = true;
+    server.enable = true;
+    settings = {
+      main = {
+        dpi-aware = "yes";
+      };
+      mouse = {
+        hide-when-typing = "yes";
+      };
+    };
+  };
 }
