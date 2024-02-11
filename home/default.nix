@@ -123,6 +123,8 @@ in {
     winetricks
     # inputs.ags.packages.${pkgs.system}.default
     openfortivpn
+    networkmanager-fortisslvpn
+    networkmanagerapplet
   ];
   fonts.fontconfig.enable = true;
   xdg.userDirs = {
