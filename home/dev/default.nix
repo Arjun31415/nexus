@@ -32,6 +32,7 @@ in {
     # tex
     pandoc
     (python311.withPackages python-pkgs)
+    neovide
     # jetbrainsPkgs.rustrover
   ];
 
