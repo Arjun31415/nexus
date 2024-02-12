@@ -5,7 +5,7 @@ set VIRTUAL_ENV_DISABLE_PROMPT 1
 set -x MANPAGER "nvim +Man!"
 set MANWIDTH 999
 set SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
-
+fish_vi_key_bindings
 # alias rusty-man="rusty-man --viewer tui"
 # alias unset 'set --erase'
 # alias neovim="nvim"
