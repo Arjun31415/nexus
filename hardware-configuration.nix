@@ -19,11 +19,16 @@ in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+  boot = {
+    initrd = {
+      availableKernelModules = ["xhci_pci" "nvme" "ahci" "usb_storage" "sd_mod" "sdhci_pci"];
+      kernelModules = ["kvm-amd" "acpi_call"];
+    };
+    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+    # blacklist nouveau module so that it does not conflict with nvidia drm stuff
+    blacklistedKernelModules = ["nouveau"];
+  };
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "ahci" "usb_storage" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd" "acpi_call"];
-  boot.extraModulePackages = with config.boot.kernelPackages; [acpi_call];
   services.rpcbind.enable = true; # needed for NFS
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ecbac740-efa1-43ce-9380-4d8c1ab7d519";
@@ -65,16 +70,11 @@ in {
   # nixpkgs.hostPlatform.gcc.arch = "znver2";
   # nixpkgs.hostPlatform.gcc.tune = "znver2";
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  boot = {
-    # blacklist nouveau module so that it does not conflict with nvidia drm stuff
-    # also the nouveau performance is godawful, I'd rather run linux on a piece of paper than use nouveau
-    blacklistedKernelModules = ["nouveau"];
-  };
   time.hardwareClockInLocalTime = true;
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
   hardware = {
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     enableAllFirmware = true;
     nvidia = {
       package = mkDefault config.boot.kernelPackages.nvidiaPackages.stable;

@@ -59,10 +59,10 @@ in {
   nixpkgs.config.permittedInsecurePackages = [
     "mailspring-1.11.0"
   ];
-  nix.settings.auto-optimise-store = true;
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    auto-optimise-store = true;
     keep-derivations = false;
     builders-use-substitutes = true;
     substituters = [
@@ -88,38 +88,6 @@ in {
   networking.hostName = "Omen"; # Define your hostname.
   # Enable networking
   networking.networkmanager.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
-  systemd.services."hyprland-suspend" = {
-    description = "Suspend Hyprland";
-    unitConfig = {
-      Before = [
-        "systemd-suspend.service"
-        "systemd-hibernate.service"
-        "nvidia-suspend.service"
-        "nvidia-hibernate.service"
-      ];
-    };
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${hyprlandSuspendScript} suspend";
-    };
-    wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
-  };
-  systemd.services."hyprland-resume" = {
-    description = "Resume hyprland";
-    unitConfig = {
-      After = [
-        "systemd-suspend.service"
-        "systemd-hibernate.service"
-        "nvidia-suspend.service"
-      ];
-    };
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${hyprlandSuspendScript} resume";
-    };
-    wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
-  };
   networking.nameservers = ["1.1.1.1" "9.9.9.9"];
 
   # Set your time zone.
@@ -140,17 +108,6 @@ in {
     LC_TIME = "en_IN";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "";
-    libinput = {
-      enable = true;
-    };
-    excludePackages = [pkgs.xterm];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.prometheus = {
     isNormalUser = true;
@@ -159,17 +116,6 @@ in {
     shell = pkgs.fish;
   };
 
-  # Allow unfree packages
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  services.tlp = {
-    enable = true;
-    settings = {
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
-    };
-  };
   services.auto-cpufreq.enable = true;
   services.printing.enable = true;
   services.printing.drivers = [pkgs.epson-escpr];
@@ -177,12 +123,6 @@ in {
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
-  security.wrappers.samply = {
-    source = "${pkgs.samply}/bin/samply";
-    capabilities = "cap_perfmon+ep";
-    owner = "root";
-    group = "media";
-  };
 
   environment.systemPackages = with pkgs; [
     kernel_pkg.perf
@@ -234,8 +174,31 @@ in {
 
     duc
   ];
-
-  security.pam.services.swaylock = {};
+  services.tlp = {
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 75;
+      STOP_CHARGE_THRESH_BAT0 = 80;
+    };
+  };
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --user-menu --time --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbVariant = "";
+    libinput = {
+      enable = true;
+    };
+    excludePackages = [pkgs.xterm];
+  };
 
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
@@ -258,26 +221,79 @@ in {
   programs.xfconf.enable = true;
   programs.fish.enable = true;
   programs.sniffnet.enable = true;
-
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (
-        subject.isInGroup("users")
-          && (
-            action.id == "org.freedesktop.login1.reboot" ||
-            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-            action.id == "org.freedesktop.login1.power-off" ||
-            action.id == "org.freedesktop.login1.power-off-multiple-sessions" ||
-          )
-        )
-      {
-        return polkit.Result.YES;
-      }
-    })
-  '';
+  security = {
+    pam.services = {
+      greetd.enableGnomeKeyring = true;
+      swaylock = {};
+    };
+    wrappers."mount.nfs" = {
+      setuid = true;
+      owner = "root";
+      group = "root";
+      source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
+    };
+    wrappers.samply = {
+      source = "${pkgs.samply}/bin/samply";
+      capabilities = "cap_perfmon+ep";
+      owner = "root";
+      group = "media";
+    };
+    rtkit.enable = true;
+    polkit = {
+      enable = true;
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions" ||
+              )
+            )
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
+    };
+  };
   systemd = {
+    services.NetworkManager-wait-online.enable = false;
+    services."hyprland-resume" = {
+      description = "Resume hyprland";
+      unitConfig = {
+        After = [
+          "systemd-suspend.service"
+          "systemd-hibernate.service"
+          "nvidia-suspend.service"
+        ];
+      };
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${hyprlandSuspendScript} resume";
+      };
+      wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
+    };
+
+    services."hyprland-suspend" = {
+      description = "Suspend Hyprland";
+      unitConfig = {
+        Before = [
+          "systemd-suspend.service"
+          "systemd-hibernate.service"
+          "nvidia-suspend.service"
+          "nvidia-hibernate.service"
+        ];
+      };
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${hyprlandSuspendScript} suspend";
+      };
+      wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
+    };
+
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = ["graphical-session.target"];
@@ -291,18 +307,11 @@ in {
         TimeoutStopSec = 10;
       };
     };
+    tmpfiles.rules = [
+      "d /shared-torents/Downloads 0770 lidarr media - -"
+    ];
   };
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --user-menu --time --cmd Hyprland";
-        user = "greeter";
-      };
-    };
-  };
-  security.pam.services.greetd.enableGnomeKeyring = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -374,9 +383,6 @@ in {
   };
   services.bazarr.enable = true;
   services.prowlarr.enable = true;
-  systemd.tmpfiles.rules = [
-    "d /shared-torents/Downloads 0770 lidarr media - -"
-  ];
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
   programs.sway.enable = true;
@@ -414,12 +420,6 @@ in {
     ];
   };
   # https://github.com/NixOS/nixpkgs/issues/24913
-  security.wrappers."mount.nfs" = {
-    setuid = true;
-    owner = "root";
-    group = "root";
-    source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
-  };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
