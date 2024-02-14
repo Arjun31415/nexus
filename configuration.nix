@@ -120,7 +120,6 @@ in {
     };
     wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
   };
-
   networking.nameservers = ["1.1.1.1" "9.9.9.9"];
 
   # Set your time zone.

@@ -25,7 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3";
+      url = "github:Arjun31415/hy3";
       inputs.hyprland.follows = "hyprland";
     };
     wrapper-manager = {
