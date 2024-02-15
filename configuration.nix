@@ -126,7 +126,7 @@ in {
   services.avahi.openFirewall = true;
 
   environment.systemPackages = with pkgs; [
-    (linuxKernel.packagesFor (kernel .override {
+    (linuxKernel.packagesFor (kernel.override {
       stdenv = gcc12Stdenv;
       buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
     }))
