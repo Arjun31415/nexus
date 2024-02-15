@@ -24,6 +24,7 @@
     };
   };
   kernel_pkg = pkgs.linuxPackages_latest;
+  kernel = pkgs.linuxKernel.kernels.linux_6_7;
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -125,8 +126,11 @@ in {
   services.avahi.openFirewall = true;
 
   environment.systemPackages = with pkgs; [
-    kernel_pkg.perf
-    perf-tools
+    (linuxKernel.packagesFor (kernel .override {
+      stdenv = gcc12Stdenv;
+      buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
+    }))
+    .perf
     compsize
     wget
     fd
