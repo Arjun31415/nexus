@@ -119,6 +119,12 @@
     pkgs = import nixpkgs {
       inherit overlays;
       config.allowUnfree = true;
+      # localSystem = {
+      #   gcc.arch = "znver2";
+      #   gcc.tune = "znver2";
+      #   system = "x86_64-linux";
+      #   features = ["gccarch-znver2"];
+      # };
     };
   in {
     nixosConfigurations = {

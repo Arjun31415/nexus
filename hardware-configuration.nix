@@ -66,9 +66,7 @@ in {
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform.system = "x86_64-linux";
-  # nixpkgs.hostPlatform.gcc.arch = "znver2";
-  # nixpkgs.hostPlatform.gcc.tune = "znver2";
+  nix.settings.system-features = ["benchmark" "big-parallel" "kvm" "nixos-test" "gccarch-znver2"];
 
   time.hardwareClockInLocalTime = true;
   services.xserver.videoDrivers = ["nvidia"];
