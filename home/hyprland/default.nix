@@ -13,9 +13,8 @@ in {
     systemdIntegration = true;
     package = hyprland.packages.${pkgs.system}.hyprland;
     plugins = [
-      # stupid plugins broken now
       hy3.packages.${pkgs.system}.default
-      hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
+      # hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
     ];
     extraConfig = ''
       source = ${impurity.link ./hyprland.conf}

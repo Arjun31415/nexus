@@ -35,7 +35,7 @@ in {
     neovide
     # jetbrainsPkgs.rustrover
   ];
-
+  programs.zellij.enable = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;

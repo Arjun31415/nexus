@@ -139,7 +139,6 @@ in {
     eza
     bat
     kitty
-    wezterm
     dunst
     nvtop
     git
