@@ -4,9 +4,12 @@
   impurity,
   ...
 }: let
-  inherit (inputs) hyprland hy3 hyprland-plugins;
+  inherit (inputs) hyprland hy3 hypridle;
 in {
-  imports = [hyprland.homeManagerModules.default];
+  imports = [
+    hyprland.homeManagerModules.default
+    hypridle.homeManagerModules.default
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -21,9 +24,17 @@ in {
       bind = $mainMod, p, exec, cliphist list | anyrun --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so --show-results-immediately true --max-entries 100  | cliphist decode | wl-copy
     '';
   };
-  xdg.configFile."hypr/hy3-fullscreen.sh" = {
-    source = ./hy3-fullscreen.sh;
-    executable = true;
-    onChange = "systemctl --user restart waybar";
+  services.hypridle = {
+    enable = true;
+    lockCmd = "swaylock";
+    unlockCmd = "notify-send \"unlock!\""; # same as above, but unlock
+    ignoreDbusInhibit = false;
+    beforeSleepCmd = "notify-send \"Zzz\""; # command ran before sleep
+    afterSleepCmd = "notify-send \"Awake!\""; # command ran after sleep
+    listeners = [
+      {
+        timeout = 1200;
+      }
+    ];
   };
 }

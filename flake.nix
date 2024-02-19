@@ -94,8 +94,8 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
+    hypridle = {
+      url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xdg-portal-hyprland = {
