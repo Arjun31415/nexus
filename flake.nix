@@ -41,7 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/13d985489788fa5349b3457d6eb1c19bad8f37e9";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
@@ -109,6 +109,12 @@
     firefox-nightly = {
       url = "github:nix-community/flake-firefox-nightly";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # A TUI file manager
+    yazi = {
+      url = "github:sxyazi/yazi";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
   };
 

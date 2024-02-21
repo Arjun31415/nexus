@@ -35,6 +35,20 @@ in {
     neovide
     # jetbrainsPkgs.rustrover
   ];
+  programs.yazi = {
+    enableFishIntegration = true;
+    enable = true;
+    package = inputs.yazi.packages.${pkgs.system}.default;
+    keymap = {
+      manager.prepend_keymap = [
+        {
+          on = ["<C-s>"];
+          exec = "shell \"$SHELL\" --block --confirm";
+          desc = "Open shell here";
+        }
+      ];
+    };
+  };
   programs.zellij.enable = true;
   programs.direnv = {
     enable = true;
