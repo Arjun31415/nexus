@@ -27,7 +27,7 @@ in {
   imports = [./lsp];
   home.packages = with pkgs; [
     niv
-    # wakapi
+    wakapi
     rust-bin.nightly.latest.default
     # tex
     pandoc

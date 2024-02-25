@@ -41,7 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/13d985489788fa5349b3457d6eb1c19bad8f37e9";
+      url = "github:hyprwm/Hyprland";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
