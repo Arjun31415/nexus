@@ -51,6 +51,7 @@ in {
     efiSupport = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
+  services.tailscale.enable = true;
   boot.supportedFilesystems = ["ntfs"];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
