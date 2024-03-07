@@ -33,6 +33,7 @@ in {
     pandoc
     (python311.withPackages python-pkgs)
     neovide
+    google-cloud-sdk-gce
     # jetbrainsPkgs.rustrover
   ];
   programs.yazi = {
