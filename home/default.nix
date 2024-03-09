@@ -144,7 +144,10 @@ in {
   programs.btop.enable = true;
   services.kdeconnect.enable = true;
   services.kdeconnect.indicator = true;
-  programs.zathura.enable = true;
+  programs.zathura = {
+    enable = true;
+    extraConfig = "set selection-clipboard clipboard";
+  };
   services.dunst = {
     enable = true;
   };
