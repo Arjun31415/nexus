@@ -61,6 +61,7 @@ in {
     userName = "Arjun31415";
     userEmail = "arjunp0710@gmail.com";
   };
+  programs.gitui.enable = true;
   programs.gh = {
     enable = true;
     extensions = [pkgs.gh-eco];

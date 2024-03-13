@@ -98,7 +98,8 @@ in {
     ngrok
     imv
     hunspell
-    hunspellDicts.en_US
+    hunspellDicts.en_US-large
+    hunspellDicts.en_GB-large
     todoist-electron
     notion-app-enhanced
     font-awesome
