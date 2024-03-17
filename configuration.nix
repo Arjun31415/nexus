@@ -86,6 +86,7 @@ in {
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
+  boot.kernel.sysctl."fs.inotify.max_user_watches" = 100000;
 
   networking.hostName = "Omen"; # Define your hostname.
   # Enable networking
@@ -132,6 +133,7 @@ in {
       buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
     }))
     .perf
+    fswatch
     compsize
     wget
     fd
