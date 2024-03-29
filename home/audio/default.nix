@@ -49,7 +49,7 @@ in {
   };
   services.mpd-mpris = {
     enable = true;
-    package = inputs.mpd-mpris.packages.${pkgs.system}.default;
+    # package = inputs.mpd-mpris.packages.${pkgs.system}.default;
   };
 
   programs.spicetify = {

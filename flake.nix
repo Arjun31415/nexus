@@ -75,10 +75,10 @@
       url = "github:the-argus/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mpd-mpris = {
-      url = "github:natsukagami/mpd-mpris";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # mpd-mpris = {
+    #   url = "github:natsukagami/mpd-mpris";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
