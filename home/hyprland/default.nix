@@ -4,7 +4,7 @@
   impurity,
   ...
 }: let
-  inherit (inputs) hyprland hy3 hypridle hyprlock;
+  inherit (inputs) hyprland hy3 hypridle hyprlock hyprland-plugins;
 in {
   imports = [
     hyprland.homeManagerModules.default
@@ -19,6 +19,7 @@ in {
     plugins = [
       # hy3.packages.${pkgs.system}.default
       # hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
+      hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
     extraConfig = ''
       source = ${impurity.link ./hyprland.conf}
