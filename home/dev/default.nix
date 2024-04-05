@@ -34,6 +34,7 @@ in {
     (python311.withPackages python-pkgs)
     neovide
     google-cloud-sdk-gce
+    tree-sitter
     # jetbrainsPkgs.rustrover
   ];
   programs.yazi = {
