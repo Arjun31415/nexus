@@ -16,8 +16,6 @@
           ./mailspring
         ];
       })
-
-    whatsapp-for-linux
     teams-for-linux
     element-desktop-wayland
     webcord-vencord
