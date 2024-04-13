@@ -65,7 +65,7 @@ in {
   programs.gitui.enable = true;
   programs.gh = {
     enable = true;
-    extensions = [pkgs.gh-eco];
+    extensions = [];
     gitCredentialHelper.enable = true;
     settings = {
       # Workaround for https://github.com/nix-community/home-manager/issues/4744
@@ -76,11 +76,7 @@ in {
   programs.gh-dash.enable = true;
 
   programs.neovim = {
-    # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.override {
-    #   libvterm-neovim = inputs.nixpkgs-staging.legacyPackages.${pkgs.system}.libvterm-neovim;
-    # };
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-
     vimAlias = true;
     enable = true;
     viAlias = true;
