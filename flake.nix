@@ -148,9 +148,9 @@
             imports = [impurity.nixosModules.impurity];
             impurity.configRoot = self;
           }
-          inputs.nh.nixosModules.default
           {
-            nh = {
+            programs.nh = {
+              package = inputs.nh.packages.${system}.default;
               enable = true;
               clean.enable = true;
               clean.extraArgs = "--keep-since 4d --keep 3";
