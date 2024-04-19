@@ -19,7 +19,7 @@ in {
     plugins = [
       # hy3.packages.${pkgs.system}.default
       # hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
-      hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
     extraConfig = ''
       source = ${impurity.link ./hyprland.conf}

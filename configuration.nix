@@ -209,7 +209,7 @@ in {
       enable = true;
       theme = "aerial-sddm-theme";
       extraPackages = with pkgs.gst_all_1;
-        [gst-plugins-good gst-libav]
+        [gst-plugins-good gst-libav gst-plugins-bad gst-plugins-ugly]
         ++ (with pkgs.libsForQt5; [
           phonon-backend-gstreamer
           qt5.qtmultimedia

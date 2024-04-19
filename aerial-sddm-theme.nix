@@ -7,14 +7,6 @@
 stdenv.mkDerivation {
   name = "aerial-sddm-theme";
   dontBuild = true;
-  # propagatedBuildInputs= with gst_all_1;
-  #   [gst-plugins-good gst-libav]
-  #   ++ (with libsForQt5; [
-  #     phonon-backend-gstreamer
-  #     qt5.qtmultimedia
-  #     qt5.qtquickcontrols
-  #     qt5.qtgraphicaleffects
-  #   ]);
   installPhase = ''
     mkdir -p $out/share/sddm/themes
     cp -aR $src $out/share/sddm/themes/aerial-sddm-theme
