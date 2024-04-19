@@ -128,6 +128,7 @@ in {
   services.avahi.openFirewall = true;
 
   environment.systemPackages = with pkgs; [
+    (callPackage ./aerial-sddm-theme.nix {})
     (linuxKernel.packagesFor (kernel.override {
       stdenv = gcc12Stdenv;
       buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
@@ -187,15 +188,15 @@ in {
       STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --user-menu --time --cmd Hyprland";
-        user = "greeter";
-      };
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --user-menu --time --cmd Hyprland";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
   services.xserver = {
     enable = true;
     layout = "us";
@@ -204,6 +205,18 @@ in {
       enable = true;
     };
     excludePackages = [pkgs.xterm];
+    displayManager.sddm = {
+      enable = true;
+      theme = "aerial-sddm-theme";
+      extraPackages = with pkgs.gst_all_1;
+        [gst-plugins-good gst-libav]
+        ++ (with pkgs.libsForQt5; [
+          phonon-backend-gstreamer
+          qt5.qtmultimedia
+          qt5.qtquickcontrols
+          qt5.qtgraphicaleffects
+        ]);
+    };
   };
 
   virtualisation.docker.enable = true;
