@@ -219,9 +219,9 @@ in {
     };
   };
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.storageDriver = "btrfs";
-  virtualisation.docker.enableNvidia = true;
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.storageDriver = "btrfs";
+  # virtualisation.docker.enableNvidia = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
     google-fonts
