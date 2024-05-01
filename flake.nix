@@ -79,6 +79,10 @@
     #   url = "github:natsukagami/mpd-mpris";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";

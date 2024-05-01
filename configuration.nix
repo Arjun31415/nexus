@@ -128,7 +128,7 @@ in {
   services.avahi.openFirewall = true;
 
   environment.systemPackages = with pkgs; [
-    (callPackage ./aerial-sddm-theme.nix {})
+    (libsForQt5.callPackage ./tokyo-night-sddm.nix {})
     (linuxKernel.packagesFor (kernel.override {
       stdenv = gcc12Stdenv;
       buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
@@ -207,15 +207,8 @@ in {
     excludePackages = [pkgs.xterm];
     displayManager.sddm = {
       enable = true;
-      theme = "aerial-sddm-theme";
-      extraPackages = with pkgs.gst_all_1;
-        [gst-plugins-good gst-libav gst-plugins-bad gst-plugins-ugly]
-        ++ (with pkgs.libsForQt5; [
-          phonon-backend-gstreamer
-          qt5.qtmultimedia
-          qt5.qtquickcontrols
-          qt5.qtgraphicaleffects
-        ]);
+      theme = "tokyo-night-sddm";
+      wayland.enable=true;
     };
   };
 
@@ -239,7 +232,6 @@ in {
   programs.dconf.enable = true;
   programs.xfconf.enable = true;
   programs.fish.enable = true;
-  programs.sniffnet.enable = true;
   security = {
     pam.services = {
       greetd.enableGnomeKeyring = true;
