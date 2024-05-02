@@ -10,7 +10,7 @@
     #   hyprlandSupport = true;
     #   experimentalPatches = true;
     # };
-    package=inputs.waybar.packages.${pkgs.system}.default;
+    package = inputs.waybar.packages.${pkgs.system}.default;
     systemd.enable = false;
   };
 }

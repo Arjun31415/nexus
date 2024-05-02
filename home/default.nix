@@ -34,7 +34,7 @@ in {
   # paths it should manage.
   home.username = "prometheus";
   home.homeDirectory = "/home/prometheus";
-  home.sessionPath=["$HOME/.cargo/bin"];
+  home.sessionPath = ["$HOME/.cargo/bin"];
   nixpkgs.config.allowUnfree = true;
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

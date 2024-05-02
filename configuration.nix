@@ -208,7 +208,7 @@ in {
     displayManager.sddm = {
       enable = true;
       theme = "tokyo-night-sddm";
-      wayland.enable=true;
+      wayland.enable = true;
     };
   };
 
