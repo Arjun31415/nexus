@@ -106,7 +106,7 @@ in {
     font-awesome
     material-symbols
     siji
-    font-manager
+    # font-manager
     morgen
     evince
     kdenlive
