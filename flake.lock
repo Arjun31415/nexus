@@ -797,11 +797,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1714785484,
-        "narHash": "sha256-nuwQK+01v1o0KjlRPr+b/hsOKm4ssNCV71U9a8Yiclw=",
+        "lastModified": 1714822562,
+        "narHash": "sha256-1rSle8rxT6sf6vFa5HYIp5y/S187R7Uxwr5Wd0/kh3Q=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "40201a760acd7c5ca10f27e7d0fdeb71c20df89f",
+        "rev": "25964e5a2b633aed191915efa0de0489bf94dbb9",
         "type": "github"
       },
       "original": {
@@ -1407,11 +1407,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1714763619,
-        "narHash": "sha256-yMOssiBshBjWVIexz3yr5Bv43iNmYI5V/jVywDz/eCQ=",
+        "lastModified": 1714817721,
+        "narHash": "sha256-ZbwR1hJt54TTIX6wn7a1GzAqrXKgVaj6Bt+kaB5VxUw=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "72b4f4d09252e9c3c80ec1908b15bd5e1f3c3509",
+        "rev": "ecb6ed1e46ec578b13d43e74e603b6f3f9c8f259",
         "type": "github"
       },
       "original": {
@@ -1438,11 +1438,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1714656196,
-        "narHash": "sha256-kjQkA98lMcsom6Gbhw8SYzmwrSo+2nruiTcTZp5jK7o=",
+        "lastModified": 1714750952,
+        "narHash": "sha256-oOUdvPrO8CbupgDSaPou+Jv6GL+uQA2QlE33D7OLzkM=",
         "owner": "Nixos",
         "repo": "nixpkgs",
-        "rev": "94035b482d181af0a0f8f77823a790b256b7c3cc",
+        "rev": "5fd8536a9a5932d4ae8de52b7dc08d92041237fc",
         "type": "github"
       },
       "original": {
@@ -1486,11 +1486,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1714796414,
-        "narHash": "sha256-AmFkW6m2Hzt6kFBlgOQrH4vHfHAyY3DWUxAbZyuOp4U=",
+        "lastModified": 1714822436,
+        "narHash": "sha256-QnWfY6LlKBi5asOFaAe86A1rejF2LFzIRCzWZUUZvMc=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "354428490b46e0ae3c8015e20540f335bbd7ce60",
+        "rev": "33f7913ac4b94015e465b9be78f90c5df6bfa498",
         "type": "github"
       },
       "original": {
@@ -1912,11 +1912,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1714638215,
-        "narHash": "sha256-qr+KPNz9Pb/F6EDHKoRA0ZdC4OxXHCvPV80TZ1WJnY0=",
+        "lastModified": 1714809162,
+        "narHash": "sha256-WIKmpbNkuLPI1NPrt8c8AqsnE7v/BK2Hyvri6hl2Kak=",
         "owner": "AtaraxiaSjel",
         "repo": "nur",
-        "rev": "7cf150e88d162bc4f425727e6e6bea8621aa46a3",
+        "rev": "44bc9240c9bdd859b5351ff1c9c91dd278794685",
         "type": "github"
       },
       "original": {
