@@ -71,8 +71,12 @@ in {
   time.hardwareClockInLocalTime = true;
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
+  programs.ryzen-monitor-ng.enable = true;
   hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.amd = {
+      ryzen-smu = {enable = true;};
+      updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    };
     enableAllFirmware = true;
     nvidia = {
       package = mkDefault config.boot.kernelPackages.nvidiaPackages.stable;

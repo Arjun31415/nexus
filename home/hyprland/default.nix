@@ -8,7 +8,7 @@
 in {
   imports = [
     hyprland.homeManagerModules.default
-    hypridle.homeManagerModules.default
+    # hypridle.homeManagerModules.default
     hyprlock.homeManagerModules.default
   ];
 
@@ -26,19 +26,19 @@ in {
       bind = $mainMod, p, exec, cliphist list | anyrun --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so --show-results-immediately true --max-entries 100  | cliphist decode | wl-copy
     '';
   };
-  services.hypridle = {
-    enable = true;
-    lockCmd = "swaylock";
-    unlockCmd = "notify-send \"unlock!\""; # same as above, but unlock
-    ignoreDbusInhibit = false;
-    beforeSleepCmd = "notify-send \"Zzz\""; # command ran before sleep
-    afterSleepCmd = "notify-send \"Awake!\""; # command ran after sleep
-    listeners = [
-      {
-        timeout = 1200;
-      }
-    ];
-  };
+  # services.hypridle = {
+  #   enable = true;
+  #   lockCmd = "swaylock";
+  #   unlockCmd = "notify-send \"unlock!\""; # same as above, but unlock
+  #   ignoreDbusInhibit = false;
+  #   beforeSleepCmd = "notify-send \"Zzz\""; # command ran before sleep
+  #   afterSleepCmd = "notify-send \"Awake!\""; # command ran after sleep
+  #   listeners = [
+  #     {
+  #       timeout = 1200;
+  #     }
+  #   ];
+  # };
   programs.hyprlock = {
     enable = true;
     general.disable_loading_bar = false;
