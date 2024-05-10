@@ -41,7 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=e4e84064f2d07810e0c150bce1369a0a00503e9a";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
@@ -111,7 +111,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly = {
-      url = "github:nix-community/flake-firefox-nightly";
+      url = "github:nix-community/flake-firefox-nightly/072b624574505bb58f527ea9de0df2fd5c69728a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # A TUI file manager
