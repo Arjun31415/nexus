@@ -8,8 +8,6 @@
 in {
   imports = [
     hyprland.homeManagerModules.default
-    # hypridle.homeManagerModules.default
-    hyprlock.homeManagerModules.default
   ];
 
   wayland.windowManager.hyprland = {
@@ -41,35 +39,43 @@ in {
   # };
   programs.hyprlock = {
     enable = true;
-    general.disable_loading_bar = false;
-    backgrounds = [
-      {
-        monitor = "eDP-1";
-        path = "/home/prometheus/Pictures/Wallpapers/Ayanokouji.png";
-        # color = "rgba(25, 20, 20, 1.0)";
-      }
-    ];
-    input-fields = [
-      {
-        monitor = "eDP-1";
-        size = {
-          width = 200;
-          height = 50;
-        };
-        outline_thickness = 3;
-        outer_color = "rgb(151515)";
-        inner_color = "rgb(200, 200, 200)";
-        font_color = "rgb(10, 10, 10)";
-        fade_on_empty = true;
-        placeholder_text = "<i>Input Password...</i>"; # Text rendered in the input box when it's empty.
-        # hide_input = false;
-        position = {
-          x = 0;
-          y = -20;
-        };
-        halign = "center";
-        valign = "center";
-      }
-    ];
+    settings = {
+      input-fields = [
+        {
+          monitor = "eDP-1";
+          size = {
+            width = 200;
+            height = 50;
+          };
+          outline_thickness = 3;
+          outer_color = "rgb(151515)";
+          inner_color = "rgb(200, 200, 200)";
+          font_color = "rgb(10, 10, 10)";
+          fade_on_empty = true;
+          placeholder_text = "<i>Input Password...</i>"; # Text rendered in the input box when it's empty.
+          # hide_input = false;
+          position = {
+            x = 0;
+            y = -20;
+          };
+          halign = "center";
+          valign = "center";
+        }
+      ];
+      general.disable_loading_bar = false;
+      backgrounds = [
+        {
+          monitor = "eDP-1";
+          path = "/home/prometheus/Pictures/Wallpapers/Ayanokouji.png";
+          # color = "rgba(25, 20, 20, 1.0)";
+        }
+        {
+          monitor = "HDMI-A-1";
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
+    };
   };
 }

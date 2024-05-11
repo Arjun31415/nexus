@@ -111,7 +111,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly = {
-      url = "github:nix-community/flake-firefox-nightly/072b624574505bb58f527ea9de0df2fd5c69728a";
+      url = "github:nix-community/flake-firefox-nightly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # A TUI file manager
