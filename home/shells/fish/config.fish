@@ -44,7 +44,7 @@ end
 
 if type -q fastfetch
     if test -d ~/.config/fastfetch/presets
-        fastfetch --load-config ~/.config/fastfetch/presets/neofetch
+        fastfetch --load-config ~/.config/fastfetch/presets/neofetch.jsonc
     else
         fastfetch
     end
