@@ -112,21 +112,21 @@ in {
     kdenlive
     trash-cli
     steam
-    inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
-    (lutris.override {
-      extraPkgs = pkgs: [
-        wineWowPackages.waylandFull
-        winetricks
-        wine-wayland
-        # List package dependencies here
-      ];
-    })
-    wineWowPackages.waylandFull
+    # inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
+    # (lutris.override {
+    #   extraPkgs = pkgs: [
+    #     wineWowPackages.waylandFull
+    #     winetricks
+    #     wine-wayland
+    #     # List package dependencies here
+    #   ];
+    # })
+    # wineWowPackages.waylandFull
     # wine-wayland
-    winetricks
+    # winetricks
     # inputs.ags.packages.${pkgs.system}.default
-    openfortivpn
-    networkmanager-fortisslvpn
+    # openfortivpn
+    # networkmanager-fortisslvpn
     networkmanagerapplet
   ];
   fonts.fontconfig.enable = true;

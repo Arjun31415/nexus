@@ -76,8 +76,10 @@ in {
       "https://cache.garnix.io"
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
+      "https://nixpkgs-wayland.cachix.org"
     ];
     trusted-public-keys = [
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
@@ -89,10 +91,12 @@ in {
   };
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 100000;
 
-  networking.hostName = "Omen"; # Define your hostname.
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.nameservers = ["1.1.1.1" "9.9.9.9"];
+  networking = {
+    hostName = "Omen"; # Define your hostname.
+    # Enable networking
+    networkmanager.enable = true;
+    nameservers = ["1.1.1.1" "9.9.9.9"];
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
