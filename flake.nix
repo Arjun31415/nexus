@@ -59,7 +59,7 @@
     };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     nh = {
       url = "github:viperML/nh";
@@ -130,7 +130,11 @@
     impurity,
     ...
   }: let
-    overlays = [inputs.nur.overlay inputs.rust-overlay.overlays.default];
+    overlays = [
+      inputs.nur.overlay
+      inputs.rust-overlay.overlays.default
+      inputs.neovim-nightly-overlay.overlay
+    ];
     pkgs = import nixpkgs {
       inherit overlays;
       config.allowUnfree = true;
