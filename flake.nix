@@ -13,13 +13,13 @@
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ags = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    prismlauncher = {
-      url = "github:PrismLauncher/PrismLauncher";
-    };
+    # ags = {
+    #   url = "github:Aylur/ags";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # prismlauncher = {
+    #   url = "github:PrismLauncher/PrismLauncher";
+    # };
     tokyonightNur = {
       url = "github:AtaraxiaSjel/nur";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,10 +76,6 @@
       url = "github:the-argus/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # mpd-mpris = {
-    #   url = "github:natsukagami/mpd-mpris";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     waybar = {
       url = "github:Alexays/Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
