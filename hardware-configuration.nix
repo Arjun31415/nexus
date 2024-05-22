@@ -27,6 +27,7 @@ in {
     extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     # blacklist nouveau module so that it does not conflict with nvidia drm stuff
     blacklistedKernelModules = ["nouveau"];
+    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
   };
 
   services.rpcbind.enable = true; # needed for NFS
