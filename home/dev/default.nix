@@ -76,7 +76,7 @@ in {
   programs.gh-dash.enable = true;
 
   programs.neovim = {
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
     vimAlias = true;
     enable = true;
     viAlias = true;

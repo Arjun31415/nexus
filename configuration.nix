@@ -124,7 +124,6 @@ in {
     shell = pkgs.fish;
   };
 
-  services.auto-cpufreq.enable = true;
   services.printing.enable = true;
   services.printing.drivers = [pkgs.epson-escpr];
 
@@ -414,11 +413,11 @@ in {
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.undervolt.amdctl = {
-    enable = true;
-    mode = "dec";
-    pstateVoltages = [143 100 62];
-  };
+  # services.undervolt.amdctl = {
+  #   enable = true;
+  #   mode = "inc";
+  #   pstateVoltages = [143 100 62];
+  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
