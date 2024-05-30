@@ -29,8 +29,7 @@ in {
     blacklistedKernelModules = ["nouveau"];
     kernelParams = [
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-      "initcall_blacklist=acpi_cpufreq_init"
-      "amd_pstate=active"
+      "amd_pstate=passive"
     ];
   };
 
@@ -73,6 +72,7 @@ in {
 
   nix.settings.system-features = ["benchmark" "big-parallel" "kvm" "nixos-test" "gccarch-znver2"];
 
+  programs.corectrl.enable = true;
   time.hardwareClockInLocalTime = true;
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
