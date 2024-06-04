@@ -8,7 +8,6 @@
       url = "github:n3oney/anyrun-nixos-options";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
     arkenfox-firefox-userjs = {
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,9 +15,6 @@
     # ags = {
     #   url = "github:Aylur/ags";
     #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # prismlauncher = {
-    #   url = "github:PrismLauncher/PrismLauncher";
     # };
     tokyonightNur = {
       url = "github:AtaraxiaSjel/nur";
