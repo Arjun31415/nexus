@@ -26,7 +26,7 @@ in rec {
       package = tokyonightGtkTheme;
     };
     cursorTheme = {
-      name = "Catpuccin-Mocha-Maroon-Cursors";
+      name = "catpuccin-mocha-maroon-cursors";
       package = pkgs.catppuccin-cursors.mochaMaroon;
     };
     gtk3.extraConfig = {
@@ -40,15 +40,15 @@ in rec {
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      cursor-theme = "Catpuccin-Mocha-Maroon-Cursors";
+      cursor-theme = "catpuccin-mocha-maroon-cursors";
       gtk-theme = "Tokyonight-Storm-BL";
       icon-theme = "Tokyonight-Dark";
       enable-hot-corners = false;
     };
   };
   home.pointerCursor = {
-    package = pkgs.catppuccin-cursors.mochaDark;
-    name = "Catppuccin-Mocha-Maroon-Cursors";
+    package = pkgs.catppuccin-cursors.mochaMaroon;
+    name = "catppuccin-mocha-maroon-cursors";
     size = 24;
     gtk.enable = true;
     x11.enable = true;
