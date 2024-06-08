@@ -5,6 +5,7 @@
 }: let
   tokyonightGtkTheme = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-theme;
   tokyonightGtkIcons = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-icons;
+  catppucin-cursors = inputs.catppuccin-cursors.packages.${pkgs.system}.default;
 in rec {
   home.packages = with pkgs; [
     home.pointerCursor.package
@@ -14,6 +15,7 @@ in rec {
     nwg-drawer
     nwg-bar
     gnome.file-roller
+    catppucin-cursors
   ];
   gtk = {
     enable = true;
@@ -32,7 +34,6 @@ in rec {
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
-
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };

@@ -12,6 +12,9 @@
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin-cursors = {
+      url = "github:catppuccin/cursors";
+    };
     # ags = {
     #   url = "github:Aylur/ags";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -93,7 +96,7 @@
     };
     anyrun = {
       # url = "github:anyrun-org/anyrun/3c2e38ea65bf85a3afcceb24ffa4787ba0c22da5";
-      
+
       url = "github:anyrun-org/anyrun/";
       inputs.nixpkgs.follows = "nixpkgs";
     };

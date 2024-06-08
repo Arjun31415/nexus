@@ -367,6 +367,7 @@ in {
   services.tumbler.enable = true;
   xdg.autostart.enable = true;
   xdg.portal = {
+    wlr.enable = lib.mkForce true;
     enable = true;
     extraPortals = [
       pkgs.libsForQt5.xdg-desktop-portal-kde

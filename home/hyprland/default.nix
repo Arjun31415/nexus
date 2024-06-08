@@ -24,6 +24,7 @@ in {
       bind = $mainMod, p, exec, cliphist list | anyrun --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so --show-results-immediately true --max-entries 100  | cliphist decode | wl-copy
     '';
   };
+  # needed for sway
   # services.hypridle = {
   #   enable = true;
   #   lockCmd = "swaylock";
