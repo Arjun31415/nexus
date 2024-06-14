@@ -32,6 +32,9 @@ in {
 
     ./modules/amdctl
   ];
+  services.udev.extraRules=''
+  SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
+  '';
   environment.etc."greetd/environments".text = ''
     sway
     fish
@@ -120,7 +123,7 @@ in {
   users.users.prometheus = {
     isNormalUser = true;
     description = "Prometheus";
-    extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input" "samply"];
+    extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input" "samply" "usb"];
     shell = pkgs.fish;
   };
 
@@ -401,6 +404,7 @@ in {
   services.prowlarr.enable = true;
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
+  users.groups.usb.members=["prometheus"];
   programs.sway.enable = true;
 
   # started in user sessions.
