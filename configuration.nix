@@ -32,6 +32,7 @@ in {
 
     ./modules/amdctl
   ];
+  services.hardware.openrgb.enable = true;
   services.udev.extraRules=''
   SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
   '';
