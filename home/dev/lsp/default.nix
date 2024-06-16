@@ -19,7 +19,7 @@
       selene # lua
     ]
     ++ (with pkgs.nodePackages_latest; [
-      bash-language-server
+      # bash-language-server
       typescript-language-server
       vim-language-server
       vscode-css-languageserver-bin
