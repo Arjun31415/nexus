@@ -24,7 +24,7 @@
     };
   };
   kernel_pkg = pkgs.linuxPackages_latest;
-  kernel = pkgs.linuxKernel.kernels.linux_6_8;
+  kernel = pkgs.linuxKernel.kernels.linux_6_9;
 in {
   imports = [
     # Include the results of the hardware scan.
