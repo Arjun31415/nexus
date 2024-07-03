@@ -401,7 +401,7 @@ in {
     enable = true;
     group = "media";
   };
-  services.bazarr.enable = true;
+  # services.bazarr.enable = true;
   services.prowlarr.enable = true;
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
