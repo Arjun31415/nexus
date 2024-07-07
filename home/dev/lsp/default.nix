@@ -22,7 +22,7 @@
       # bash-language-server
       typescript-language-server
       vim-language-server
-      vscode-css-languageserver-bin
-      vscode-json-languageserver-bin
+      # vscode-css-languageserver-bin
+      # vscode-json-languageserver-bin
     ]);
 }
