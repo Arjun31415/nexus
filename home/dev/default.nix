@@ -33,7 +33,7 @@ in {
     pandoc
     (python311.withPackages python-pkgs)
     neovide
-    google-cloud-sdk-gce
+    # google-cloud-sdk-gce
     tree-sitter
     # jetbrainsPkgs.rustrover
   ];
