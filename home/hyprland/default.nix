@@ -39,15 +39,13 @@ in {
   #   ];
   # };
   programs.hyprlock = {
+    package = hyprlock.packages.${pkgs.system}.hyprlock;
     enable = true;
     settings = {
-      input-fields = [
+      input-field = [
         {
           monitor = "eDP-1";
-          size = {
-            width = 200;
-            height = 50;
-          };
+          size = "200, 50";
           outline_thickness = 3;
           outer_color = "rgb(151515)";
           inner_color = "rgb(200, 200, 200)";
@@ -55,16 +53,13 @@ in {
           fade_on_empty = true;
           placeholder_text = "<i>Input Password...</i>"; # Text rendered in the input box when it's empty.
           # hide_input = false;
-          position = {
-            x = 0;
-            y = -20;
-          };
+          position = "0, -20";
           halign = "center";
           valign = "center";
         }
       ];
       general.disable_loading_bar = false;
-      backgrounds = [
+      background = [
         {
           monitor = "eDP-1";
           path = "/home/prometheus/Pictures/Wallpapers/Ayanokouji.png";

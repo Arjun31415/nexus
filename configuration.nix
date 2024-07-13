@@ -33,8 +33,8 @@ in {
     ./modules/amdctl
   ];
   services.hardware.openrgb.enable = true;
-  services.udev.extraRules=''
-  SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
   '';
   environment.etc."greetd/environments".text = ''
     sway
@@ -242,6 +242,7 @@ in {
   programs.fish.enable = true;
   security = {
     pam.services = {
+      hyprlock = {};
       greetd.enableGnomeKeyring = true;
       swaylock = {};
     };
@@ -405,7 +406,7 @@ in {
   services.prowlarr.enable = true;
   services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
-  users.groups.usb.members=["prometheus"];
+  users.groups.usb.members = ["prometheus"];
   programs.sway.enable = true;
 
   # started in user sessions.
