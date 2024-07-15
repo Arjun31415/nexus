@@ -10,9 +10,9 @@
   };
 
   spicetify = inputs.spicetify-nix;
-  spicePkgs = spicetify.packages.${pkgs.system}.default;
+  spicePkgs = spicetify.legacyPackages.${pkgs.system};
 in {
-  imports = [./easyeffects spicetify.homeManagerModule];
+  imports = [./easyeffects spicetify.homeManagerModules.default];
 
   home.packages = with pkgs; [
     my-ncmpcpp
@@ -63,5 +63,6 @@ in {
       adblock
       volumePercentage
     ];
+    enabledCustomApps = with spicePkgs.apps; [reddit lyricsPlus];
   };
 }
