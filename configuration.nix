@@ -67,6 +67,7 @@ in {
     "mailspring-1.11.0"
   ];
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
+  nix.trustedUsers = ["root" "@wheel"];
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
