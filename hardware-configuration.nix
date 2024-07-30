@@ -78,6 +78,8 @@ in {
   programs.xwayland.enable = true;
   programs.ryzen-monitor-ng.enable = true;
   hardware.enableRedistributableFirmware = true;
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   hardware = {
     cpu.amd = {
       ryzen-smu = {enable = true;};

@@ -45,6 +45,7 @@ in {
   '';
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
+services.blueman.enable = true;
   boot.kernelPackages = kernel_pkg;
   # boot.tmp.cleanOnBoot = true;
   # Bootloader.
