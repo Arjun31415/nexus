@@ -60,7 +60,7 @@ in {
     "mailspring-1.11.0"
   ];
   nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
-  nix.trustedUsers = ["root" "@wheel"];
+  nix.settings.trusted-users = ["root" "@wheel"];
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
@@ -126,7 +126,7 @@ in {
   services.printing.drivers = [pkgs.epson-escpr];
 
   services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   services.avahi.openFirewall = true;
 
   environment.systemPackages = with pkgs; [
@@ -198,19 +198,20 @@ in {
   #     };
   #   };
   # };
+  services.libinput = {
+    enable = true;
+  };
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "tokyo-night-sddm";
+    wayland.enable = true;
+  };
+
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "";
-    libinput = {
-      enable = true;
-    };
+    xkb.layout = "us";
+    xkb.variant = "";
     excludePackages = [pkgs.xterm];
-    displayManager.sddm = {
-      enable = true;
-      theme = "tokyo-night-sddm";
-      wayland.enable = true;
-    };
   };
 
   # virtualisation.docker.enable = true;

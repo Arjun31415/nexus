@@ -12,7 +12,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable= true;
     package = hyprland.packages.${pkgs.system}.hyprland;
     plugins = [
       # hy3.packages.${pkgs.system}.default
