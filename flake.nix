@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     anyrun-nixos-options = {
       url = "github:n3oney/anyrun-nixos-options";

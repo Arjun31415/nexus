@@ -9,12 +9,12 @@
 in rec {
   home.packages = with pkgs; [
     home.pointerCursor.package
-    gnome.gnome-tweaks
+    gnome-tweaks
     gtk.theme.package
     gtk.iconTheme.package
     nwg-drawer
     nwg-bar
-    gnome.file-roller
+    file-roller
     catppucin-cursors
   ];
   gtk = {

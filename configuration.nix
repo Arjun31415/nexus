@@ -15,16 +15,8 @@
             ;;
     esac
   '';
-  swaylock-effects = inputs.nixpkgs-wayland.packages.${pkgs.system}.swaylock-effects.overrideAttrs {
-    src = pkgs.fetchFromGitHub {
-      owner = "jirutka";
-      repo = "swaylock-effects";
-      rev = "dd9db0efbdf85c4c9116644d4b5fbee6c1c27e90";
-      hash = "sha256-/ixrlCn9cvhE0h0rUfYO8fsy3dThfNAttYB6fYo27EI=";
-    };
-  };
   kernel_pkg = pkgs.linuxPackages_latest;
-  kernel = pkgs.linuxKernel.kernels.linux_6_9;
+  kernel = pkgs.linuxKernel.kernels.linux_6_10;
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -45,7 +37,7 @@ in {
   '';
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
-services.blueman.enable = true;
+  services.blueman.enable = true;
   boot.kernelPackages = kernel_pkg;
   # boot.tmp.cleanOnBoot = true;
   # Bootloader.
@@ -154,7 +146,7 @@ services.blueman.enable = true;
     bat
     kitty
     dunst
-    nvtop
+    nvtopPackages.full
     git
     git-lfs
     glib
@@ -175,7 +167,6 @@ services.blueman.enable = true;
     tree
     killall
     xorg.xeyes
-    swaylock-effects
     inputs.nh.packages.${system}.default
     plasma5Packages.dolphin
     plasma5Packages.dolphin-plugins
@@ -246,7 +237,6 @@ services.blueman.enable = true;
     pam.services = {
       hyprlock = {};
       greetd.enableGnomeKeyring = true;
-      swaylock = {};
     };
     wrappers."mount.nfs" = {
       setuid = true;
