@@ -18,7 +18,6 @@
       })
     teams-for-linux
     element-desktop-wayland
-    webcord-vencord
     (callPackage ../armcord {})
     clematis
     # (callPackage signal-desktop-beta {})
