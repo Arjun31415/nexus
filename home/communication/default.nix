@@ -18,12 +18,12 @@
       })
     teams-for-linux
     element-desktop-wayland
-    (callPackage ../armcord {})
+    # (callPackage ../armcord {})
     clematis
     # (callPackage signal-desktop-beta {})
     signal-desktop-beta
     remmina
-    inputs.arrpc.packages.${pkgs.system}.arrpc
+    (discord-canary.override {withOpenASAR = true;})
   ];
   # services.arrpc.enable = true;
 }
