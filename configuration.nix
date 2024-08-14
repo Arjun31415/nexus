@@ -3,6 +3,7 @@
   inputs,
   lib,
   system,
+  options,
   ...
 }: let
   hyprlandSuspendScript = pkgs.writeShellScript "suspend-hyprland.sh" ''
@@ -97,7 +98,8 @@ in {
   };
 
   # Set your time zone.
-  time.timeZone = "Asia/Kolkata";
+  time.timeZone = "Europe/Amsterdam";
+  networking.timeServers = options.networking.timeServers.default;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
@@ -371,33 +373,33 @@ in {
       pkgs.libsForQt5.xdg-desktop-portal-kde
     ];
   };
-  services.deluge = {
-    enable = true;
-    group = "media";
-    web = {
-      enable = true;
-      port = 8112;
-    };
-  };
+  # services.deluge = {
+  #   enable = true;
+  #   group = "media";
+  #   web = {
+  #     enable = true;
+  #     port = 8112;
+  #   };
+  # };
   services.gvfs = {
     enable = true;
   };
-  services.lidarr = {
-    enable = true;
-    group = "media";
-  };
-  services.sonarr = {
-    enable = true;
-    group = "media";
-  };
-
-  services.radarr = {
-    enable = true;
-    group = "media";
-  };
+  # services.lidarr = {
+  #   enable = true;
+  #   group = "media";
+  # };
+  # services.sonarr = {
+  #   enable = true;
+  #   group = "media";
+  # };
+  #
+  # services.radarr = {
+  #   enable = true;
+  #   group = "media";
+  # };
   # services.bazarr.enable = true;
-  services.prowlarr.enable = true;
-  services.readarr.enable = true;
+  # services.prowlarr.enable = true;
+  # services.readarr.enable = true;
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
   users.groups.usb.members = ["prometheus"];
   programs.sway.enable = true;

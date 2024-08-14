@@ -73,7 +73,7 @@ in {
   nix.settings.system-features = ["benchmark" "big-parallel" "kvm" "nixos-test" "gccarch-znver2"];
 
   programs.corectrl.enable = true;
-  time.hardwareClockInLocalTime = true;
+  time.hardwareClockInLocalTime = false;
   services.xserver.videoDrivers = ["nvidia"];
   programs.xwayland.enable = true;
   programs.ryzen-monitor-ng.enable = true;
