@@ -139,7 +139,6 @@ in {
     }))
     .perf
     fswatch
-    compsize
     wget
     fd
     ripgrep
@@ -179,9 +178,7 @@ in {
     plasma5Packages.kio-admin
     kio-fuse
     waypipe
-
     # disk space reporting tool
-
     duc
   ];
   services.tlp = {
