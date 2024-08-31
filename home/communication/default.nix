@@ -16,7 +16,7 @@
           ./mailspring
         ];
       })
-    teams-for-linux
+    # teams-for-linux
     element-desktop-wayland
     # (callPackage ../armcord {})
     clematis
