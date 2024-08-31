@@ -40,7 +40,7 @@ in {
   programs.yazi = {
     enableFishIntegration = true;
     enable = true;
-    # package = inputs.yazi.packages.${pkgs.system}.default;
+    package = inputs.yazi.packages.${pkgs.system}.default;
     keymap = {
       manager.prepend_keymap = [
         {
