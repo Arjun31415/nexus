@@ -20,7 +20,7 @@
     "application/xhtml+xml" = browser;
     "application/x-extension-xhtml" = browser;
     "application/x-extension-xht" = browser;
-    "application/pdf" = "org.pwmt.zathura.desktop";
+    "application/pdf" = "sioyek.desktop";
 
     "audio/*" = ["mpv.desktop"];
     "video/*" = ["mpv.dekstop"];
@@ -151,6 +151,7 @@ in {
     enable = true;
     extraConfig = "set selection-clipboard clipboard";
   };
+  programs.sioyek.enable = true;
   services.dunst = {
     enable = true;
   };
