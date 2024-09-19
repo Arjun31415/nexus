@@ -3,6 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
+    # lix = {
+    #   url = "git+https://git.lix.systems/lix-project/lix/src/commit/10ac99a79c789dad2d5b40101ffd41a5c7ef9622";
+    #   flake = false;
+    # };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.lix.follows = "lix";
+    };
     nur.url = "github:nix-community/NUR";
     anyrun-nixos-options = {
       url = "github:n3oney/anyrun-nixos-options";
@@ -125,6 +134,7 @@
     nixpkgs,
     home-manager,
     impurity,
+    lix-module,
     ...
   }: let
     overlays = [
@@ -146,14 +156,25 @@
     nixosConfigurations = {
       formatter = "alejandra";
       omen = nixpkgs.lib.nixosSystem rec {
+        pkgs = import nixpkgs {
+          inherit overlays;
+          config.allowUnfree = true;
+          # localSystem = {
+          #   gcc.arch = "znver2";
+          #   gcc.tune = "znver2";
+          #   system = "x86_64-linux";
+          #   features = ["gccarch-znver2"];
+          # };
+        };
         system = "x86_64-linux";
-        specialArgs = {inherit self system inputs pkgs;};
+        specialArgs = {inherit self system inputs;};
         modules = [
+          lix-module.nixosModules.default
           ./configuration.nix
-          {
-            imports = [impurity.nixosModules.impurity];
-            impurity.configRoot = self;
-          }
+          # {
+          #   imports = [impurity.nixosModules.impurity];
+          #   impurity.configRoot = self;
+          # }
           {
             programs.nh = {
               package = inputs.nh.packages.${system}.default;
@@ -163,21 +184,21 @@
             };
           }
           home-manager.nixosModules.home-manager
-          ({impurity, ...}: {
-            home-manager.extraSpecialArgs = {inherit inputs impurity pkgs;};
-            #            home-manager.useGlobalPkgs = true;
+          ({...}: {
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.prometheus = import ./home;
           })
         ];
       };
-      omen-impure =
-        self.nixosConfigurations.omen.extendModules
-        {
-          modules = [
-            {impurity.enable = true;}
-          ];
-        };
+      # omen-impure =
+      #   self.nixosConfigurations.omen.extendModules
+      #   {
+      #     modules = [
+      #       {impurity.enable = true;}
+      #     ];
+      #   };
     };
   };
 }

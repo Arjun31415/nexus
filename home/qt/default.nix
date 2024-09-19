@@ -3,7 +3,7 @@
   config,
   pkgs,
   lib,
-  impurity,
+  # impurity,
   ...
 }:
 with lib; let
@@ -55,7 +55,7 @@ in {
     };
     xdg.configFile = {
       "qBittorrent/themes/catppuccin.qbtheme".source = mkIf cfg.qbittorrent-theme.enable cfg.qbittorrent-theme.theme-file;
-      "kdeglobals".source = impurity.link ./kdeglobals;
+      "kdeglobals".source = ./kdeglobals;
       "Kvantum/${scheme}/${scheme}.kvconfig".source = builtins.fetchurl {
         url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-Maroon/Catppuccin-Mocha-Maroon.kvconfig";
         sha256 = "15gzp8vdy8l6cmkbn89gdi5z8j2my2q3r6gbhi8as9b8aqw9wa27";

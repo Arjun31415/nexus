@@ -57,10 +57,7 @@ in {
     TERMINAL = "kitty";
     TERM = "kitty";
   };
-  nixpkgs.config.permittedInsecurePackages = [
-    "mailspring-1.11.0"
-  ];
-  nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
+  # nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
   nix.settings.trusted-users = ["root" "@wheel"];
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];

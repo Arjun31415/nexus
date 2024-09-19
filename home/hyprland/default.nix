@@ -1,10 +1,12 @@
 {
   pkgs,
   inputs,
-  impurity,
+  # impurity,
   ...
 }: let
   inherit (inputs) hyprland hy3 hypridle hyprlock hyprland-plugins;
+
+  hyprland_config= builtins.readFile ./hyprland.conf;
 in {
   imports = [
     hyprland.homeManagerModules.default
@@ -20,7 +22,7 @@ in {
       # hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
     extraConfig = ''
-      source = ${impurity.link ./hyprland.conf}
+      ${hyprland_config}
       bind = $mainMod, p, exec, cliphist list | anyrun --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so --show-results-immediately true --max-entries 100  | cliphist decode | wl-copy
     '';
   };
