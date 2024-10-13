@@ -410,6 +410,14 @@ in {
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = ["mydatabase"];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
   # services.undervolt.amdctl = {
   #   enable = true;
   #   mode = "inc";
