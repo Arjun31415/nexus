@@ -418,6 +418,7 @@ in {
       local all       all     trust
     '';
   };
+  # services.pgadmin.enable = true;
   # services.undervolt.amdctl = {
   #   enable = true;
   #   mode = "inc";
