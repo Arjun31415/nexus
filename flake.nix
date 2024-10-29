@@ -115,7 +115,7 @@
     };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly = {
       url = "github:nix-community/flake-firefox-nightly";
