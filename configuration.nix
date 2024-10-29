@@ -25,10 +25,6 @@ in {
 
     ./modules/amdctl
   ];
-  services.hardware.openrgb.enable = true;
-  services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
-  '';
   environment.etc."greetd/environments".text = ''
     sway
     fish
@@ -36,30 +32,30 @@ in {
     gnome
     gtk
   '';
-  services.gnome.gnome-keyring.enable = true;
-  services.dbus.enable = true;
-  services.blueman.enable = true;
-  boot.kernelPackages = kernel_pkg;
-  # boot.tmp.cleanOnBoot = true;
-  # Bootloader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.grub = {
-    useOSProber = true;
-    configurationLimit = 10;
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
+  boot = {
+    kernelPackages = kernel_pkg;
+    # boot.tmp.cleanOnBoot = true;
+    # Bootloader.
+    loader.systemd-boot.enable = false;
+    loader.grub = {
+      useOSProber = true;
+      configurationLimit = 10;
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+    };
+    loader.efi.canTouchEfiVariables = true;
+    supportedFilesystems = ["ntfs"];
+    kernel.sysctl."fs.inotify.max_user_watches" = 100000;
   };
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     TERMINAL = "kitty";
     TERM = "kitty";
   };
-  # nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
-  nix.settings.trusted-users = ["root" "@wheel"];
   nix.settings = {
+    # nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
+    trusted-users = ["root" "@wheel"];
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
     keep-derivations = false;
@@ -85,7 +81,6 @@ in {
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-  boot.kernel.sysctl."fs.inotify.max_user_watches" = 100000;
 
   networking = {
     hostName = "Omen"; # Define your hostname.
@@ -120,21 +115,123 @@ in {
     extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input" "samply" "usb"];
     shell = pkgs.fish;
   };
+  services = {
+    hardware.openrgb.enable = true;
+    udev.extraRules = ''
+      SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
+    '';
+    gnome.gnome-keyring.enable = true;
+    dbus.enable = true;
+    blueman.enable = true;
+    printing.enable = true;
+    printing.drivers = [pkgs.epson-escpr];
+    avahi.enable = true;
+    avahi.nssmdns4 = true;
+    avahi.openFirewall = true;
+    tlp = {
+      enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT0 = 75;
+        STOP_CHARGE_THRESH_BAT0 = 80;
+      };
+    };
+    # services.greetd = {
+    #   enable = true;
+    #   settings = {
+    #     default_session = {
+    #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --user-menu --time --cmd Hyprland";
+    #       user = "greeter";
+    #     };
+    #   };
+    # };
+    libinput = {
+      enable = true;
+    };
+    displayManager.sddm = {
+      enable = true;
+      theme = "tokyo-night-sddm";
+      wayland.enable = true;
+    };
 
-  services.printing.enable = true;
-  services.printing.drivers = [pkgs.epson-escpr];
+    xserver = {
+      enable = true;
+      xkb.layout = "us";
+      xkb.variant = "";
+      excludePackages = [pkgs.xterm];
+    };
 
-  services.avahi.enable = true;
-  services.avahi.nssmdns4 = true;
-  services.avahi.openFirewall = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      audio.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+    };
+
+    # to boot onto external monitor
+    /*
+       specialisation = {
+      external-display.configuration = {
+        system.nixos.tags = ["external-display"];
+        hardware.nvidia = {
+          prime.offload.enable = lib.mkForce false;
+          powerManagement.enable = lib.mkForce false;
+        };
+      };
+    };
+    */
+    # programs.thunar = {
+    #   enable = true;
+    #   plugins = with pkgs.xfce; [
+    #     thunar-archive-plugin
+    #     thunar-volman
+    #     thunar-media-tags-plugin
+    #   ];
+    # };
+    tumbler.enable = true;
+    #deluge = {
+    #   enable = true;
+    #   group = "media";
+    #   web = {
+    #     enable = true;
+    #     port = 8112;
+    #   };
+    # };
+    gvfs = {
+      enable = true;
+    };
+
+    # started in user sessions.
+    # programs.mtr.enable = truqe;
+    # programs.gnupg.agent = {
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
+
+    # List services that you want to enable:
+
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+    postgresql = {
+      enable = true;
+      ensureDatabases = ["mydatabase"];
+      authentication = pkgs.lib.mkOverride 10 ''
+        #type database  DBuser  auth-method
+        local all       all     trust
+      '';
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     (libsForQt5.callPackage ./tokyo-night-sddm.nix {})
-    (linuxKernel.packagesFor (kernel.override {
-      stdenv = gcc12Stdenv;
-      buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
-    }))
-    .perf
+    # (linuxKernel.packagesFor (kernel.override {
+    #   stdenv = gcc12Stdenv;
+    #   buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
+    # }))
+    # .perf
+    kernel_pkg.perf
     fswatch
     wget
     fd
@@ -178,37 +275,6 @@ in {
     # disk space reporting tool
     duc
   ];
-  services.tlp = {
-    enable = true;
-    settings = {
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
-    };
-  };
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --user-menu --time --cmd Hyprland";
-  #       user = "greeter";
-  #     };
-  #   };
-  # };
-  services.libinput = {
-    enable = true;
-  };
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "tokyo-night-sddm";
-    wayland.enable = true;
-  };
-
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-    xkb.variant = "";
-    excludePackages = [pkgs.xterm];
-  };
 
   # virtualisation.docker.enable = true;
   # virtualisation.docker.storageDriver = "btrfs";
@@ -222,7 +288,7 @@ in {
     dina-font
     proggyfonts
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     corefonts
     monaspace
@@ -269,38 +335,39 @@ in {
     };
   };
   systemd = {
-    services.NetworkManager-wait-online.enable = false;
-    services."hyprland-resume" = {
-      description = "Resume hyprland";
-      unitConfig = {
-        After = [
-          "systemd-suspend.service"
-          "systemd-hibernate.service"
-          "nvidia-suspend.service"
-        ];
+    services = {
+      NetworkManager-wait-online.enable = false;
+      "hyprland-resume" = {
+        description = "Resume hyprland";
+        unitConfig = {
+          After = [
+            "systemd-suspend.service"
+            "systemd-hibernate.service"
+            "nvidia-suspend.service"
+          ];
+        };
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${hyprlandSuspendScript} resume";
+        };
+        wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
       };
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${hyprlandSuspendScript} resume";
+      "hyprland-suspend" = {
+        description = "Suspend Hyprland";
+        unitConfig = {
+          Before = [
+            "systemd-suspend.service"
+            "systemd-hibernate.service"
+            "nvidia-suspend.service"
+            "nvidia-hibernate.service"
+          ];
+        };
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${hyprlandSuspendScript} suspend";
+        };
+        wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
       };
-      wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
-    };
-
-    services."hyprland-suspend" = {
-      description = "Suspend Hyprland";
-      unitConfig = {
-        Before = [
-          "systemd-suspend.service"
-          "systemd-hibernate.service"
-          "nvidia-suspend.service"
-          "nvidia-hibernate.service"
-        ];
-      };
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${hyprlandSuspendScript} suspend";
-      };
-      wantedBy = ["systemd-suspend.service" "systemd-hibernate.service"];
     };
 
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -320,16 +387,6 @@ in {
       "d /shared-torents/Downloads 0770 lidarr media - -"
     ];
   };
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    audio.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -338,28 +395,6 @@ in {
       enable = true;
     };
   };
-
-  # to boot onto external monitor
-  /*
-     specialisation = {
-    external-display.configuration = {
-      system.nixos.tags = ["external-display"];
-      hardware.nvidia = {
-        prime.offload.enable = lib.mkForce false;
-        powerManagement.enable = lib.mkForce false;
-      };
-    };
-  };
-  */
-  # programs.thunar = {
-  #   enable = true;
-  #   plugins = with pkgs.xfce; [
-  #     thunar-archive-plugin
-  #     thunar-volman
-  #     thunar-media-tags-plugin
-  #   ];
-  # };
-  services.tumbler.enable = true;
   xdg.autostart.enable = true;
   xdg.portal = {
     wlr.enable = lib.mkForce true;
@@ -367,17 +402,6 @@ in {
     extraPortals = [
       pkgs.libsForQt5.xdg-desktop-portal-kde
     ];
-  };
-  # services.deluge = {
-  #   enable = true;
-  #   group = "media";
-  #   web = {
-  #     enable = true;
-  #     port = 8112;
-  #   };
-  # };
-  services.gvfs = {
-    enable = true;
   };
   # services.lidarr = {
   #   enable = true;
@@ -398,26 +422,6 @@ in {
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
   users.groups.usb.members = ["prometheus"];
   programs.sway.enable = true;
-
-  # started in user sessions.
-  # programs.mtr.enable = truqe;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.postgresql = {
-    enable = true;
-    ensureDatabases = ["mydatabase"];
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
-    '';
-  };
   # services.pgadmin.enable = true;
   # services.undervolt.amdctl = {
   #   enable = true;

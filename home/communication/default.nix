@@ -23,7 +23,8 @@
     # (callPackage signal-desktop-beta {})
     signal-desktop-beta
     remmina
-    (discord-canary.override {withOpenASAR = true;})
+    # (discord-canary.override {withOpenASAR = true;})
+    discord-canary
   ];
   # services.arrpc.enable = true;
 }
