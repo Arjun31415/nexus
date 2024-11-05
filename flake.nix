@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
-    # lix = {
-    #   url = "git+https://git.lix.systems/lix-project/lix/src/commit/10ac99a79c789dad2d5b40101ffd41a5c7ef9622";
-    #   flake = false;
-    # };
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,16 +62,16 @@
       inputs.hyprland.follows = "hyprland";
     };
     neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/neovim-nightly-overlay/flake-update";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nh = {
       url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impurity = {
-      url = "github:outfoxxed/impurity.nix";
-    };
+    # impurity = {
+    #   url = "github:outfoxxed/impurity.nix";
+    # };
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -133,7 +129,7 @@
     self,
     nixpkgs,
     home-manager,
-    impurity,
+    # impurity,
     lix-module,
     ...
   }: let
@@ -156,16 +152,7 @@
     nixosConfigurations = {
       formatter = "alejandra";
       omen = nixpkgs.lib.nixosSystem rec {
-        pkgs = import nixpkgs {
-          inherit overlays;
-          config.allowUnfree = true;
-          # localSystem = {
-          #   gcc.arch = "znver2";
-          #   gcc.tune = "znver2";
-          #   system = "x86_64-linux";
-          #   features = ["gccarch-znver2"];
-          # };
-        };
+        inherit pkgs;
         system = "x86_64-linux";
         specialArgs = {inherit self system inputs;};
         modules = [

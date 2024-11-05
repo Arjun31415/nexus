@@ -76,7 +76,7 @@ in {
   programs.gh-dash.enable = true;
 
   programs.neovim = {
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    package = pkgs.neovim;
     vimAlias = true;
     enable = true;
     viAlias = true;
