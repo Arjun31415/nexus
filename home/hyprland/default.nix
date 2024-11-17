@@ -6,7 +6,7 @@
 }: let
   inherit (inputs) hyprland hy3 hypridle hyprlock hyprland-plugins;
 
-  hyprland_config= builtins.readFile ./hyprland.conf;
+  hyprland_config = builtins.readFile ./hyprland.conf;
 in {
   imports = [
     hyprland.homeManagerModules.default

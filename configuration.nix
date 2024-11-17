@@ -279,6 +279,9 @@ in {
   # virtualisation.docker.enable = true;
   # virtualisation.docker.storageDriver = "btrfs";
   # virtualisation.docker.enableNvidia = true;
+
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = ["prometheus"];
   virtualisation.vmware.host.enable = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
