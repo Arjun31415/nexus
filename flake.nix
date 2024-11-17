@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,9 +17,7 @@
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin-cursors = {
-      url = "github:catppuccin/cursors";
-    };
+    catppuccin.url = "github:catppuccin/nix";
     # ags = {
     #   url = "github:Aylur/ags";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -111,13 +109,14 @@
     };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      # inputs.hyprutils.url = "github:hyprwm/hyprutils";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly = {
       url = "github:nix-community/flake-firefox-nightly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # A TUI file manager
+    # A TUI file manageri
     yazi = {
       url = "github:sxyazi/yazi";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -131,6 +130,7 @@
     home-manager,
     # impurity,
     lix-module,
+    catppuccin,
     ...
   }: let
     overlays = [
@@ -156,6 +156,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit self system inputs;};
         modules = [
+          catppuccin.nixosModules.catppuccin
           lix-module.nixosModules.default
           ./configuration.nix
           # {
@@ -175,7 +176,7 @@
             home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.prometheus = import ./home;
+            home-manager.users.prometheus = {imports = [./home catppuccin.homeManagerModules.catppuccin];};
           })
         ];
       };
