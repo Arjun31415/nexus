@@ -109,7 +109,7 @@
     };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      # inputs.hyprutils.url = "github:hyprwm/hyprutils";
+      inputs.hyprutils.url = "github:hyprwm/hyprutils";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly = {
@@ -157,7 +157,7 @@
         specialArgs = {inherit self system inputs;};
         modules = [
           catppuccin.nixosModules.catppuccin
-          lix-module.nixosModules.default
+          # lix-module.nixosModules.default
           ./configuration.nix
           # {
           #   imports = [impurity.nixosModules.impurity];

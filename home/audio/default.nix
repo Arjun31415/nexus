@@ -19,7 +19,8 @@ in {
     mpc-cli
     mpv
     amberol
-    (cava.override {withSDL2 = true;})
+    # (cava.override {withSDL2 = true;})
+    (pkgs.callPackage ./cava.nix {})
   ];
   services.mpd = {
     enable = true;
