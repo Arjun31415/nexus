@@ -8,7 +8,7 @@
       stylua
       lua-language-server
       inputs.nix-nil-lsp.packages.${pkgs.system}.default
-      clang-tools_17
+      clang-tools
       shellcheck
       pyright
       prettierd

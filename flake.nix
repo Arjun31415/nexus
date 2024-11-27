@@ -17,6 +17,9 @@
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    prismlauncher={
+      url="github:PrismLauncher/PrismLauncher";
+    };
     catppuccin.url = "github:catppuccin/nix";
     # ags = {
     #   url = "github:Aylur/ags";
@@ -107,10 +110,14 @@
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprutils = {
+      url = "github:hyprwm/hyprutils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.hyprutils.url = "github:hyprwm/hyprutils";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprutils.follows = "hyprutils";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly = {
       url = "github:nix-community/flake-firefox-nightly";

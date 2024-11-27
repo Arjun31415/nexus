@@ -69,6 +69,7 @@ in {
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
       "https://nixpkgs-wayland.cachix.org"
+      "https://prismlauncher.cachix.org"
     ];
     trusted-public-keys = [
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
@@ -79,6 +80,7 @@ in {
       "viperml.cachix.org-1:qZhKBMTfmcLL+OG6fj/hzsMEedgKvZVFRRAhq7j8Vh8="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "prismlauncher.cachix.org-1:9/n/FGyABA2jLUVfY+DEp4hKds/rwO+SCOtbOkDzd+c="
     ];
   };
 
@@ -426,6 +428,7 @@ in {
   users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
   users.groups.usb.members = ["prometheus"];
   programs.sway.enable = true;
+  programs.noisetorch.enable = true;
   # services.pgadmin.enable = true;
   # services.undervolt.amdctl = {
   #   enable = true;
