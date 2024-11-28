@@ -20,8 +20,7 @@
     element-desktop-wayland
     # (callPackage ../armcord {})
     clematis
-    # (callPackage signal-desktop-beta {})
-    signal-desktop-beta
+    signal-desktop
     remmina
     # (discord-canary.override {withOpenASAR = true;})
     discord-canary
