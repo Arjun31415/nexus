@@ -52,7 +52,7 @@ in {
     enable = true;
     # package = inputs.mpd-mpris.packages.${pkgs.system}.default;
   };
-
+  services.mpd-discord-rpc.enable = true;
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.catppuccin;
