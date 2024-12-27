@@ -92,7 +92,9 @@ in {
   };
 
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  # time.timeZone = "Europe/Amsterdam";
+
+  time.timeZone = "Asia/Calcutta";
   networking.timeServers = options.networking.timeServers.default;
 
   # Select internationalisation properties.
@@ -109,15 +111,10 @@ in {
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
   };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.prometheus = {
-    isNormalUser = true;
-    description = "Prometheus";
-    extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input" "samply" "usb"];
-    shell = pkgs.fish;
-  };
   services = {
+    # automatic-timezoned.enable=true;
+    # localtime.enable = true;
+    # geoclue2={enable = true; enableWifi=false;};
     hardware.openrgb.enable = true;
     udev.extraRules = ''
       SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
@@ -277,14 +274,30 @@ in {
     # disk space reporting tool
     duc
   ];
-
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
   # virtualisation.docker.enable = true;
   # virtualisation.docker.storageDriver = "btrfs";
   # virtualisation.docker.enableNvidia = true;
-
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = ["prometheus"];
-  virtualisation.vmware.host.enable = true;
+  programs = {
+    virt-manager.enable = true;
+    dconf.enable = true;
+    xfconf.enable = true;
+    fish.enable = true;
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = inputs.xdph.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      xwayland = {
+        enable = true;
+      };
+    };
+    sway.enable = true;
+    noisetorch.enable = true;
+  };
+  # virtualisation.vmware.host.enable = true;
   fonts.packages = with pkgs; [
     # (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
     nerd-fonts.fira-code
@@ -302,9 +315,6 @@ in {
     corefonts
     monaspace
   ];
-  programs.dconf.enable = true;
-  programs.xfconf.enable = true;
-  programs.fish.enable = true;
   security = {
     pam.services = {
       hyprlock = {};
@@ -396,14 +406,6 @@ in {
       "d /shared-torents/Downloads 0770 lidarr media - -"
     ];
   };
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage = inputs.xdph.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-    xwayland = {
-      enable = true;
-    };
-  };
   xdg.autostart.enable = true;
   xdg.portal = {
     wlr.enable = lib.mkForce true;
@@ -412,6 +414,19 @@ in {
       pkgs.libsForQt5.xdg-desktop-portal-kde
     ];
   };
+  users = {
+    # Define a user account. Don't forget to set a password with ‘passwd’.
+    users.prometheus = {
+      isNormalUser = true;
+      description = "Prometheus";
+      extraGroups = ["networkmanager" "wheel" "docker" "prometheus" "input" "samply" "usb" "libvirtd"];
+      shell = pkgs.fish;
+    };
+    groups.libvirtd.members = ["prometheus"];
+    groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
+    groups.usb.members = ["prometheus"];
+  };
+
   # services.lidarr = {
   #   enable = true;
   #   group = "media";
@@ -428,10 +443,6 @@ in {
   # services.bazarr.enable = true;
   # services.prowlarr.enable = true;
   # services.readarr.enable = true;
-  users.groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
-  users.groups.usb.members = ["prometheus"];
-  programs.sway.enable = true;
-  programs.noisetorch.enable = true;
   # services.pgadmin.enable = true;
   # services.undervolt.amdctl = {
   #   enable = true;
@@ -445,6 +456,7 @@ in {
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   networking.firewall = {
+    trustedInterfaces=["virbr0"];
     enable = true;
     allowedTCPPortRanges = [
       {

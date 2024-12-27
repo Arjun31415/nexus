@@ -52,6 +52,10 @@ in rec {
       icon-theme = "Tokyonight-Dark";
       enable-hot-corners = false;
     };
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
   };
   catppuccin.pointerCursor = {
     enable = true;

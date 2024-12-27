@@ -57,6 +57,7 @@ in {
     nix-direnv.enable = true;
   };
   programs.git = {
+    lfs.enable = true;
     enable = true;
     delta.enable = true;
     userName = "Arjun31415";

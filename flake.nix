@@ -17,8 +17,8 @@
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    prismlauncher={
-      url="github:PrismLauncher/PrismLauncher";
+    prismlauncher = {
+      url = "github:PrismLauncher/PrismLauncher";
     };
     catppuccin.url = "github:catppuccin/nix";
     # ags = {

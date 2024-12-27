@@ -17,7 +17,7 @@
         ];
       })
     # teams-for-linux
-    element-desktop-wayland
+    element
     # (callPackage ../armcord {})
     clematis
     signal-desktop
