@@ -129,6 +129,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -144,6 +148,7 @@
       inputs.nur.overlay
       inputs.rust-overlay.overlays.default
       inputs.neovim-nightly-overlay.overlays.default
+      # (import ./dmraid-overlay.nix)
     ];
     pkgs = import nixpkgs {
       inherit overlays;

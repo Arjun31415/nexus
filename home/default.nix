@@ -85,10 +85,8 @@ in {
     mcfly
     pastebinit
     mtpfs
-    # (callPackage ./fastfetch {})
     fastfetch
     libreoffice-fresh
-    jabref
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
     powertop
     cliphist

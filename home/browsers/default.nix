@@ -80,6 +80,14 @@
                   template = "https://search.nixos.org/packages";
                   params = [
                     {
+                      name = "sort";
+                      value = "relevance";
+                    }
+                    {
+                      name = "channel";
+                      value = "unstable";
+                    }
+                    {
                       name = "type";
                       value = "packages";
                     }

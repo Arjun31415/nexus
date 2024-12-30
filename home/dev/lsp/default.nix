@@ -17,6 +17,7 @@
       # inputs.nix-nixd-lsp.packages.${pkgs.system}.default
       # Linters
       selene # lua
+      codespell
     ]
     ++ (with pkgs.nodePackages_latest; [
       # bash-language-server

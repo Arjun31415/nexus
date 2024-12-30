@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }: {
   imports = [
@@ -21,7 +20,6 @@
     # (callPackage ../armcord {})
     clematis
     signal-desktop
-    remmina
     # (discord-canary.override {withOpenASAR = true;})
     discord-canary
   ];

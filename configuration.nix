@@ -123,7 +123,7 @@ in {
     dbus.enable = true;
     blueman.enable = true;
     printing.enable = true;
-    printing.drivers = [pkgs.epson-escpr];
+    # printing.drivers = [pkgs.epson-escpr];
     avahi.enable = true;
     avahi.nssmdns4 = true;
     avahi.openFirewall = true;
@@ -262,6 +262,7 @@ in {
     killall
     xorg.xeyes
     inputs.nh.packages.${system}.default
+    inputs.zen-browser.packages.${pkgs.system}.default
     plasma5Packages.dolphin
     plasma5Packages.dolphin-plugins
     plasma5Packages.kio
@@ -456,7 +457,7 @@ in {
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   networking.firewall = {
-    trustedInterfaces=["virbr0"];
+    trustedInterfaces = ["virbr0"];
     enable = true;
     allowedTCPPortRanges = [
       {
