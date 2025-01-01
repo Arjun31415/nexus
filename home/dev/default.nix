@@ -32,7 +32,7 @@ in {
     # tex
     pandoc
     (python311.withPackages python-pkgs)
-    neovide
+    # neovide
     # google-cloud-sdk-gce
     tree-sitter
     # jetbrainsPkgs.rustrover
@@ -109,6 +109,7 @@ in {
     ];
   };
   programs.foot = {
+    package=pkgs.foot.overrideAttrs{version="1.20.0";};
     enable = true;
     server.enable = true;
     settings = {
