@@ -32,9 +32,10 @@ in {
     # tex
     pandoc
     (python311.withPackages python-pkgs)
-    # neovide
+    neovide
     # google-cloud-sdk-gce
     tree-sitter
+    fzf
     # jetbrainsPkgs.rustrover
   ];
   programs.yazi = {
@@ -109,7 +110,7 @@ in {
     ];
   };
   programs.foot = {
-    package=pkgs.foot.overrideAttrs{version="1.20.0";};
+    package = pkgs.callPackage ./foot.nix {};
     enable = true;
     server.enable = true;
     settings = {

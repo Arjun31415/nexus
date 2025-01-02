@@ -25,10 +25,6 @@
       url = "github:neovim/neovim";
       flake = false;
     };
-    # ags = {
-    #   url = "github:Aylur/ags";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     tokyonightNur = {
       url = "github:AtaraxiaSjel/nur";
       inputs.nixpkgs.follows = "nixpkgs";
