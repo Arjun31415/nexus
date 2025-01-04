@@ -110,7 +110,6 @@ in {
     ];
   };
   programs.foot = {
-    package = pkgs.callPackage ./foot.nix {};
     enable = true;
     server.enable = true;
     settings = {
