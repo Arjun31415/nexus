@@ -10,7 +10,7 @@
       inputs.nix-nil-lsp.packages.${pkgs.system}.default
       clang-tools
       shellcheck
-      pyright
+      basedpyright
       prettierd
       cmake-language-server
       rust-analyzer
