@@ -92,9 +92,9 @@ in {
   };
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/Amsterdam";
 
-  time.timeZone = "Asia/Calcutta";
+  # time.timeZone = "Asia/Calcutta";
   networking.timeServers = options.networking.timeServers.default;
 
   # Select internationalisation properties.
@@ -123,7 +123,7 @@ in {
     dbus.enable = true;
     blueman.enable = true;
     printing.enable = true;
-    # printing.drivers = [pkgs.epson-escpr];
+    printing.drivers = [pkgs.epson-escpr];
     avahi.enable = true;
     avahi.nssmdns4 = true;
     avahi.openFirewall = true;
