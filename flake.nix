@@ -21,10 +21,10 @@
       url = "github:PrismLauncher/PrismLauncher";
     };
     catppuccin.url = "github:catppuccin/nix";
-    neovim-src = {
-      url = "github:neovim/neovim";
-      flake = false;
-    };
+    # neovim-src = {
+    #   url = "github:neovim/neovim";
+    #   flake = false;
+    # };
     tokyonightNur = {
       url = "github:AtaraxiaSjel/nur";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,7 +65,7 @@
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.neovim-src.follows = "neovim-src";
+      # inputs.neovim-src.follows = "neovim-src";
     };
     nh = {
       url = "github:viperML/nh";
