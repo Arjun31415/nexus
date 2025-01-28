@@ -57,7 +57,7 @@ in rec {
       uris = ["qemu:///system"];
     };
   };
-  catppuccin.pointerCursor = {
+  catppuccin.cursors = {
     enable = true;
     accent = "maroon";
     flavor = "mocha";

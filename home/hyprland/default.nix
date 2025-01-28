@@ -26,20 +26,28 @@ in {
       bind = $mainMod, p, exec, cliphist list | anyrun --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so --show-results-immediately true --max-entries 100  | cliphist decode | wl-copy
     '';
   };
-  # needed for sway
-  # services.hypridle = {
-  #   enable = true;
-  #   lockCmd = "swaylock";
-  #   unlockCmd = "notify-send \"unlock!\""; # same as above, but unlock
-  #   ignoreDbusInhibit = false;
-  #   beforeSleepCmd = "notify-send \"Zzz\""; # command ran before sleep
-  #   afterSleepCmd = "notify-send \"Awake!\""; # command ran after sleep
-  #   listeners = [
-  #     {
-  #       timeout = 1200;
-  #     }
-  #   ];
-  # };
+  services.hypridle = {
+    enable = true;
+    package = hypridle.packages.${pkgs.system}.hypridle;
+    settings = {
+      general = {
+        lock_cmd = "hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+      };
+      listener = [
+        {
+          timeout = 120;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 1200;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
   programs.hyprlock = {
     package = hyprlock.packages.${pkgs.system}.hyprlock;
     enable = true;
