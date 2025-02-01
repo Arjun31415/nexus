@@ -16,6 +16,7 @@ in {
     enable = true;
     systemd.enable = true;
     package = hyprland.packages.${pkgs.system}.hyprland;
+    # package = null;
     plugins = [
       # hy3.packages.${pkgs.system}.default
       # hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
