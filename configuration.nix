@@ -100,6 +100,7 @@ in {
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
 
+  programs.obs-studio.enable=true;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
@@ -201,7 +202,6 @@ in {
     gvfs = {
       enable = true;
     };
-
     # started in user sessions.
     # programs.mtr.enable = truqe;
     # programs.gnupg.agent = {
