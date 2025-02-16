@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
