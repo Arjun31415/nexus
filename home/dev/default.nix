@@ -94,7 +94,7 @@ in {
     extensions = with pkgs.vscode-extensions; [
       enkia.tokyo-night
       wakatime.vscode-wakatime
-      rust-lang.rust-analyzer
+      # rust-lang.rust-analyzer
       svelte.svelte-vscode
       jock.svg
       tabnine.tabnine-vscode
