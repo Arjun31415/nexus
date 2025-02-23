@@ -128,6 +128,9 @@ in {
     # networkmanager-fortisslvpn
     networkmanagerapplet
   ];
+  nixGL.packages = inputs.nixgl.packages;
+  nixGL.defaultWrapper = "nvidia";
+  nixGL.installScripts = ["nvidia"];
   fonts.fontconfig.enable = true;
   xdg.userDirs = {
     enable = true;

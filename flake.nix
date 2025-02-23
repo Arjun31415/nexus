@@ -9,6 +9,10 @@
       # inputs.lix.follows = "lix";
     };
     nur.url = "github:nix-community/NUR";
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     anyrun-nixos-options = {
       url = "github:n3oney/anyrun-nixos-options";
       inputs.nixpkgs.follows = "nixpkgs";

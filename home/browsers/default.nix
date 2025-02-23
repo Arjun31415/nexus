@@ -14,12 +14,12 @@
         ];
       })
   ];
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";}
-    ];
-  };
+  # programs.chromium = {
+  #   enable = true;
+  #   extensions = [
+  #     {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";}
+  #   ];
+  # };
   programs.firefox = {
     arkenfox = {
       enable = true;
