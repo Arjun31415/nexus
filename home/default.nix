@@ -106,7 +106,7 @@ in {
     # font-manager
     morgen
     evince
-    kdenlive
+    kdePackages.kdenlive
     trash-cli
     steam
     # (callPackage ./davinci-resolve {})
