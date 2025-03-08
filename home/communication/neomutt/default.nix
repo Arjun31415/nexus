@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  programs.neomutt.enable = true;
+  programs.neomutt.enable = false;
 }

@@ -100,7 +100,7 @@ in {
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
 
-  programs.obs-studio.enable=true;
+  programs.obs-studio.enable = true;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
@@ -120,7 +120,11 @@ in {
     udev.extraRules = ''
       SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
     '';
-    gnome.gnome-keyring.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+      # gnome-online-accounts.enable = true;
+      # evolution-data-server.enable = true;
+    };
     dbus.enable = true;
     blueman.enable = true;
     printing.enable = true;
@@ -279,6 +283,7 @@ in {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
   };
+  # services.accounts-daemon.enable = true;
   # virtualisation.docker.enable = true;
   # virtualisation.docker.storageDriver = "btrfs";
   # virtualisation.docker.enableNvidia = true;
@@ -457,6 +462,7 @@ in {
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   networking.firewall = {
+    checkReversePath = false;
     trustedInterfaces = ["virbr0"];
     enable = true;
     allowedTCPPortRanges = [

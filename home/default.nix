@@ -98,17 +98,17 @@ in {
     hunspell
     hunspellDicts.en_US-large
     hunspellDicts.en_GB-large
-    todoist-electron
+    planify
     notion-app-enhanced
     font-awesome
     material-symbols
     siji
     # font-manager
-    morgen
     evince
     kdePackages.kdenlive
     trash-cli
     steam
+    eduvpn-client
     # (callPackage ./davinci-resolve {})
     # inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
     # prismlauncher

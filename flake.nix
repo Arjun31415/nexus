@@ -158,6 +158,7 @@
     pkgs = import nixpkgs {
       inherit overlays;
       config.allowUnfree = true;
+      config.allowUnfreePredicate = _: true;
       # localSystem = {
       #   gcc.arch = "znver2";
       #   gcc.tune = "znver2";
