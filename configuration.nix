@@ -16,8 +16,8 @@
             ;;
     esac
   '';
-  kernel_pkg = pkgs.linuxPackages_latest;
-  kernel = pkgs.linuxKernel.kernels.linux_6_10;
+  # kernel_pkg = pkgs.linuxPackages_latest;
+  kernel_pkg = pkgs.linuxPackages_6_13;
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -284,9 +284,9 @@ in {
     spiceUSBRedirection.enable = true;
   };
   # services.accounts-daemon.enable = true;
-  # virtualisation.docker.enable = true;
-  # virtualisation.docker.storageDriver = "btrfs";
-  # virtualisation.docker.enableNvidia = true;
+  virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "btrfs";
+  virtualisation.docker.enableNvidia = true;
   programs = {
     virt-manager.enable = true;
     dconf.enable = true;

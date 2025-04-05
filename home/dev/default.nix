@@ -93,13 +93,13 @@ in {
     package = pkgs.vscode.fhs;
     extensions = with pkgs.vscode-extensions; [
       enkia.tokyo-night
-      wakatime.vscode-wakatime
+      # wakatime.vscode-wakatime
       # rust-lang.rust-analyzer
-      svelte.svelte-vscode
+      # svelte.svelte-vscode
       jock.svg
-      tabnine.tabnine-vscode
+      # tabnine.tabnine-vscode
       tamasfe.even-better-toml
-      xadillax.viml
+      # xadillax.viml
       ms-vscode.cpptools
       njpwerner.autodocstring
       twxs.cmake

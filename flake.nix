@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -157,6 +157,7 @@
     ];
     pkgs = import nixpkgs {
       inherit overlays;
+      system = "x86_64-linux";
       config.allowUnfree = true;
       config.allowUnfreePredicate = _: true;
       # localSystem = {
@@ -175,12 +176,7 @@
         specialArgs = {inherit self system inputs;};
         modules = [
           catppuccin.nixosModules.catppuccin
-          # lix-module.nixosModules.default
           ./configuration.nix
-          # {
-          #   imports = [impurity.nixosModules.impurity];
-          #   impurity.configRoot = self;
-          # }
           {
             programs.nh = {
               package = inputs.nh.packages.${system}.default;
