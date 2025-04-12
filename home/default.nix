@@ -111,7 +111,7 @@ in {
     eduvpn-client
     # (callPackage ./davinci-resolve {})
     # inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
-    # prismlauncher
+    prismlauncher
     # (lutris.override {
     #   extraPkgs = pkgs: [
     #     wineWowPackages.waylandFull

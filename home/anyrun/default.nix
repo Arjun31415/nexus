@@ -2,14 +2,15 @@
   inputs,
   pkgs,
   osConfig,
+lib,
   ...
 }: let
   inherit (inputs) anyrun;
   anyrun_packages = inputs.anyrun.packages.${pkgs.system};
 in {
-  imports = [anyrun.homeManagerModules.default];
+  # imports = [anyrun.homeManagerModules.default];
   programs.anyrun = {
-    enable = true;
+    enable = lib.mkForce true;
     config = {
       plugins = with anyrun_packages;
         [

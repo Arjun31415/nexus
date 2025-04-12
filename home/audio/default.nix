@@ -56,7 +56,7 @@ in {
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.catppuccin;
-    colorScheme = "moccha";
+    colorScheme = "mocha";
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay
       shuffle

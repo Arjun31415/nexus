@@ -108,7 +108,7 @@
     anyrun = {
       # url = "github:anyrun-org/anyrun/3c2e38ea65bf85a3afcceb24ffa4787ba0c22da5";
 
-      url = "github:anyrun-org/anyrun/";
+      url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
