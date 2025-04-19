@@ -284,9 +284,9 @@ in {
     spiceUSBRedirection.enable = true;
   };
   # services.accounts-daemon.enable = true;
-  virtualisation.docker.enable = true;
-  virtualisation.docker.storageDriver = "btrfs";
-  virtualisation.docker.enableNvidia = true;
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.storageDriver = "btrfs";
+  # virtualisation.docker.enableNvidia = true;
   programs = {
     virt-manager.enable = true;
     dconf.enable = true;
