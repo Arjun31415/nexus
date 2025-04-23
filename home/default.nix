@@ -99,7 +99,7 @@ in {
     hunspellDicts.en_US-large
     hunspellDicts.en_GB-large
     planify
-    notion-app-enhanced
+    (callPackage ./notion {})
     font-awesome
     material-symbols
     siji
