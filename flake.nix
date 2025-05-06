@@ -190,7 +190,7 @@
             home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.prometheus = {imports = [./home catppuccin.homeManagerModules.catppuccin];};
+            home-manager.users.prometheus = {imports = [./home catppuccin.homeModules.catppuccin];};
           })
         ];
       };
