@@ -98,7 +98,7 @@ in {
     hunspell
     hunspellDicts.en_US-large
     hunspellDicts.en_GB-large
-    planify
+    # planify
     (callPackage ./notion {})
     font-awesome
     material-symbols

@@ -72,7 +72,7 @@
       # inputs.neovim-src.follows = "neovim-src";
     };
     nh = {
-      url = "github:viperML/nh";
+      url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # impurity = {
