@@ -85,7 +85,7 @@ in {
   };
 
   networking = {
-    hostName = "Omen"; # Define your hostname.
+    hostName = "omen"; # Define your hostname.
     # Enable networking
     networkmanager.enable = true;
     nameservers = ["1.1.1.1" "9.9.9.9"];
@@ -250,7 +250,7 @@ in {
     glib
     glib-networking
     pciutils
-    pavucontrol
+    pwvucontrol
     nodejs
     gcc
     gnumake

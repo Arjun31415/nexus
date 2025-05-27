@@ -133,7 +133,7 @@ in {
           car = "";
           default = ["󰕿" "󰖀" "󰕾"];
         };
-        "on-click" = "pavucontrol";
+        "on-click" = "pwvucontrol";
       };
       wireplumber = {
         "scroll-step" = 5;
@@ -149,7 +149,7 @@ in {
           car = "";
           default = ["󰕿" "󰖀" "󰕾"];
         };
-        "on-click" = "pavucontrol";
+        "on-click" = "pwvucontrol";
       };
       "custom/power" = {
         format = "⏻";
