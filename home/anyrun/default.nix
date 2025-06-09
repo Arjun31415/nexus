@@ -2,7 +2,7 @@
   inputs,
   pkgs,
   osConfig,
-lib,
+  lib,
   ...
 }: let
   inherit (inputs) anyrun;

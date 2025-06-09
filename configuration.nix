@@ -278,6 +278,7 @@ in {
     waypipe
     # disk space reporting tool
     duc
+    wayvnc
   ];
   virtualisation = {
     libvirtd.enable = true;
@@ -432,7 +433,7 @@ in {
     groups.media.members = ["radarr" "sonarr" "lidarr" "bazarr" "prowlarr" "prometheus"];
     groups.usb.members = ["prometheus"];
   };
-
+  services.tailscale.enable = true;
   # services.lidarr = {
   #   enable = true;
   #   group = "media";
