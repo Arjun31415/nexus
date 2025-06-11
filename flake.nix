@@ -25,6 +25,13 @@
       url = "github:PrismLauncher/PrismLauncher";
     };
     catppuccin.url = "github:catppuccin/nix";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # neovim-src = {
     #   url = "github:neovim/neovim";
     #   flake = false;
