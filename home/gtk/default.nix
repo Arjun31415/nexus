@@ -4,8 +4,9 @@
   lib,
   ...
 }: let
-  tokyonightGtkTheme = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-theme;
+  # tokyonightGtkTheme = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-theme;
   tokyonightGtkIcons = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-icons;
+  tokyonightPkg = pkgs.tokyonight-gtk-theme.overrideAttrs {iconVariants = ["Dark"];};
   flavor = "mocha";
   accent = "maroon";
 in rec {
@@ -16,35 +17,25 @@ in rec {
     nwg-drawer
     nwg-bar
     file-roller
+    # tokyonightPkg
   ];
   catppuccin = {
     inherit flavor accent;
-    gtk = {
-      inherit flavor accent;
-      enable = true;
-    };
     cursors = {
       inherit flavor accent;
       enable = true;
     };
   };
-  # gtk.catppuccin.enable = true;
-  # gtk.catppuccin.accent = "maroon";
-  # gtk.catppuccin.flavor = "mocha";
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Tokyonight-Dark";
+      name = "Tokyonight-Light";
       package = tokyonightGtkIcons;
     };
-    # theme = {
-    #   name = "Tokyonight-Storm-BL";
-    #   package = tokyonightGtkTheme;
-    # };
-    # cursorTheme = {
-    #   name = "catppuccin-mocha-maroon-cursors";
-    #   package = pkgs.catppuccin-cursors.mochaMaroon;
-    # };
+    theme = {
+      name = "Tokyonight-Dark";
+      package = tokyonightPkg;
+    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
@@ -57,8 +48,8 @@ in rec {
       color-scheme = "prefer-dark";
       # this will be set by catppuccin home manager module
       # cursor-theme = "catpuccin-mocha-maroon-cursors";
-      # gtk-theme = "Tokyonight-Storm-BL";
-      icon-theme = "Tokyonight-Dark";
+      # gtk-theme = "Tokyonight-Dark";
+      # icon-theme = "Tokyonight-Dark";
       enable-hot-corners = false;
     };
     "org/virt-manager/virt-manager/connections" = {

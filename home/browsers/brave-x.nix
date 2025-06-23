@@ -2,7 +2,7 @@
 {pkgs, ...}: {
   wrappers.bravex = {
     basePackage = pkgs.brave;
-    flags = [
+    prependFlags = [
       "--enable-features=WebUIDarkMode"
     ];
     # extraWrapperFlags = "--unset WAYLAND_DISPLAY --unset NIXOS_OZONE_WL";

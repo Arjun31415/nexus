@@ -8,13 +8,13 @@
     ./neomutt
   ];
   home.packages = with pkgs; [
-    (inputs.wrapper-manager.lib.build
+    (inputs.wrapper-manager.lib
       {
         inherit pkgs;
         modules = [
           ./mailspring
         ];
-      })
+      }).config.build.toplevel
     # teams-for-linux
     element
     # (callPackage ../armcord {})

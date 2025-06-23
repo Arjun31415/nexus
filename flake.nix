@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
+    # mpd-nixpkgs.url = "github:NixOS/nixpkgs/d38cf01b42c0c768de923c40fa9b6e112442835f";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +47,6 @@
     };
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     arrpc = {
       url = "github:notashelf/arrpc-flake";
@@ -106,7 +106,6 @@
     nix-nil-lsp = {
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
     nix-nixd-lsp = {
       url = "github:nix-community/nixd";
@@ -156,11 +155,19 @@
     catppuccin,
     ...
   }: let
+    # system = "x86_64-linux";
     overlays = [
-      inputs.nur.overlay
+      inputs.nur.overlays.default
       inputs.rust-overlay.overlays.default
       inputs.neovim-nightly-overlay.overlays.default
       # (import ./dmraid-overlay.nix)
+      # (self: super: (let
+      #   mypkgs = import inputs.mpd-nixpkgs {
+      #     system = system;
+      #   };
+      # in {
+      #   mpd = mypkgs.mpd;
+      # }))
     ];
     pkgs = import nixpkgs {
       inherit overlays;

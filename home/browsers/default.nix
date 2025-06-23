@@ -6,13 +6,13 @@
   imports = [inputs.arkenfox-firefox-userjs.hmModules.default];
 
   home.packages = [
-    (inputs.wrapper-manager.lib.build
+    (inputs.wrapper-manager.lib
       {
         inherit pkgs;
         modules = [
           ./brave-x.nix
         ];
-      })
+      }).config.build.toplevel
   ];
   # programs.chromium = {
   #   enable = true;
@@ -25,7 +25,8 @@
       enable = true;
       version = "103.0";
     };
-    package = inputs.firefox-nightly.packages.${pkgs.system}.firefox-nightly-bin.override {
+    # package = inputs.firefox-nightly.packages.${pkgs.system}.firefox-nightly-bin.override {
+    package = pkgs.firefox-bin.override {
       extraPolicies = {
         DisableFirefoxStudies = true;
         DisablePocket = true;
@@ -103,7 +104,7 @@
             };
             "NixOS Wiki" = {
               urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
+              icon = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = ["@nw"];
             };
@@ -123,7 +124,7 @@
           user_pref("media.rdd-vpx.enabled", true);
         '';
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           clearurls
         ];
