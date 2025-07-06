@@ -38,8 +38,8 @@
     #   flake = false;
     # };
     tokyonightNur = {
-      url = "github:AtaraxiaSjel/nur";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:AtaraxiaSjel/nur/f76d325552b69f7cacff4e9f86ecad5586844050";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     hy3 = {
       url = "github:outfoxxed/hy3";

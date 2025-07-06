@@ -92,23 +92,23 @@ in {
     };
     enableAllFirmware = true;
     nvidia = {
-      # package = mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
-      package = let
-        rcu_patch = pkgs.fetchpatch {
-          url = "https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/x11-drivers/nvidia-drivers/files/nvidia-drivers-550.107.02-kernel-6.11-fbdev.patch";
-          hash = "sha256-E9k7wmuHTtJJZMc0h8pCtcjQ84EO3QlB+sNnOYWMyFw=";
-        };
-      in
-        config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "570.86.16";
-          sha256_64bit = "sha256-RWPqS7ZUJH9JEAWlfHLGdqrNlavhaR1xMyzs8lJhy9U=";
-          sha256_aarch64 = "sha256-RiO2njJ+z0DYBo/1DKa9GmAjFgZFfQ1/1Ga+vXG87vA=";
-          openSha256 = "sha256-DuVNA63+pJ8IB7Tw2gM4HbwlOh1bcDg2AN2mbEU9VPE=";
-          settingsSha256 = "sha256-9rtqh64TyhDF5fFAYiWl3oDHzKJqyOW3abpcf2iNRT8=";
-          persistencedSha256 = "sha256-3mp9X/oV8o2TH9720NnoXROxQ4g98nNee+DucXpQy3w=";
-
-          # patches = [rcu_patch];
-        };
+      package = mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
+      # package = let
+      #   rcu_patch = pkgs.fetchpatch {
+      #     url = "https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/x11-drivers/nvidia-drivers/files/nvidia-drivers-550.107.02-kernel-6.11-fbdev.patch";
+      #     hash = "sha256-E9k7wmuHTtJJZMc0h8pCtcjQ84EO3QlB+sNnOYWMyFw=";
+      #   };
+      # in
+      #   config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      #     version = "570.86.16";
+      #     sha256_64bit = "sha256-RWPqS7ZUJH9JEAWlfHLGdqrNlavhaR1xMyzs8lJhy9U=";
+      #     sha256_aarch64 = "sha256-RiO2njJ+z0DYBo/1DKa9GmAjFgZFfQ1/1Ga+vXG87vA=";
+      #     openSha256 = "sha256-DuVNA63+pJ8IB7Tw2gM4HbwlOh1bcDg2AN2mbEU9VPE=";
+      #     settingsSha256 = "sha256-9rtqh64TyhDF5fFAYiWl3oDHzKJqyOW3abpcf2iNRT8=";
+      #     persistencedSha256 = "sha256-3mp9X/oV8o2TH9720NnoXROxQ4g98nNee+DucXpQy3w=";
+      #
+      #     # patches = [rcu_patch];
+      #   };
       modesetting.enable = true;
       prime = {
         offload = {

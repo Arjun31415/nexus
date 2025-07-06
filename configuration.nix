@@ -16,8 +16,8 @@
             ;;
     esac
   '';
-  # kernel_pkg = pkgs.linuxPackages_latest;
-  kernel_pkg = pkgs.linuxPackages_6_13;
+  kernel_pkg = pkgs.linuxPackages_latest;
+  # kernel_pkg = pkgs.linuxPackages_6_13;
 in {
   imports = [
     # Include the results of the hardware scan.
