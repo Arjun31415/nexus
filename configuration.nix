@@ -92,7 +92,7 @@ in {
   };
 
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  # time.timeZone = "Europe/Amsterdam";
 
   # time.timeZone = "Asia/Calcutta";
   networking.timeServers = options.networking.timeServers.default;
@@ -113,9 +113,13 @@ in {
     LC_TIME = "en_IN";
   };
   services = {
-    # automatic-timezoned.enable=true;
-    # localtime.enable = true;
-    # geoclue2={enable = true; enableWifi=false;};
+    tzupdate.enable = true;
+    # geoclue2 = {
+    #   geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+    #   enable = true;
+    #   enableWifi = true;
+    # };
+    # automatic-timezoned.enable = true;
     hardware.openrgb.enable = true;
     udev.extraRules = ''
       SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
