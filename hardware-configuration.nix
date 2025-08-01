@@ -6,6 +6,7 @@
   lib,
   pkgs,
   modulesPath,
+  inputs,
   ...
 }:
 with lib; let
@@ -86,13 +87,14 @@ in {
   };
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   hardware = {
+    graphics.package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa;
     cpu.amd = {
       ryzen-smu = {enable = true;};
       updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
     enableAllFirmware = true;
     nvidia = {
-      package = mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
+      package = mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
       # package = let
       #   rcu_patch = pkgs.fetchpatch {
       #     url = "https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/x11-drivers/nvidia-drivers/files/nvidia-drivers-550.107.02-kernel-6.11-fbdev.patch";
