@@ -10,12 +10,12 @@
   ...
 }:
 with lib; let
-  nvStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
-  nvBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
+  nvStable = config.boot.kernelPackages.nvidiaPackages.stable;
+  nvBeta = config.boot.kernelPackages.nvidiaPackages.beta;
   nvidiaPackage =
-    if (versionOlder nvBeta nvStable)
-    then config.boot.kernelPackages.nvidiaPackages.stable
-    else config.boot.kernelPackages.nvidiaPackages.beta;
+    if (versionOlder nvBeta.version nvStable.version)
+    then nvStable
+    else nvBeta;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -94,7 +94,7 @@ in {
     };
     enableAllFirmware = true;
     nvidia = {
-      package = mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
+      package = nvidiaPackage;
       # package = let
       #   rcu_patch = pkgs.fetchpatch {
       #     url = "https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/x11-drivers/nvidia-drivers/files/nvidia-drivers-550.107.02-kernel-6.11-fbdev.patch";
