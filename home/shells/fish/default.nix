@@ -1,6 +1,19 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   fish_config = builtins.readFile ./config.fish;
 in {
+  home.file.".local/bin/nix-command-not-found" = {
+    text = ''
+      #!/usr/bin/env bash
+      source ${inputs.nix-index-database.packages.${pkgs.system}.default}/etc/profile.d/command-not-found.sh
+      command_not_found_handle "$@"
+    '';
+    executable = true;
+  };
+  programs.command-not-found.enable = false;
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -11,6 +24,7 @@ in {
       unset = "set --erase";
       neovim = "nvim";
       ls = "eza -al --color=always --group-directories-first --icons";
+      ogls = "ls";
       # all files and dirs
       la = "eza -a --color=always --group-directories-first --icons";
       # long format
@@ -86,6 +100,11 @@ in {
 
         '';
       };
+      __fish_command_not_found_handler = {
+        onEvent = "fish_command_not_found";
+        body = "~/.local/bin/nix-command-not-found $argv";
+      };
+      gitignore = "curl -sL https://www.gitignore.io/api/$argv";
     };
     plugins = [
       # {

@@ -15,8 +15,9 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
-    package = hyprland.packages.${pkgs.system}.hyprland;
-    # package = null;
+    # package = hyprland.packages.${pkgs.system}.hyprland;
+    package = null;
+    portalPackage = null;
     plugins = [
       # hy3.packages.${pkgs.system}.default
       # hyprland-plugins.packages.${pkgs.system}.hyprwinwrap

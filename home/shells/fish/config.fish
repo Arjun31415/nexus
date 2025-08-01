@@ -5,6 +5,8 @@ set VIRTUAL_ENV_DISABLE_PROMPT 1
 set -x MANPAGER "nvim +Man!"
 set MANWIDTH 999
 set SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+set sponge_purge_only_on_exit true
+
 fish_vi_key_bindings
 
 if test -f ~/.venv/bin/activate.fish

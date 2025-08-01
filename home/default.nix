@@ -35,6 +35,12 @@ in {
   home.username = "prometheus";
   home.homeDirectory = "/home/prometheus";
   home.sessionPath = ["$HOME/.cargo/bin"];
+  home.activation = {
+  rmSomeThing = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    rm -rf ~/.nix-defexpr
+    rm -rf ~/.nix-profile
+  '';
+};
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -107,7 +113,6 @@ in {
     evince
     kdePackages.kdenlive
     trash-cli
-    steam
     eduvpn-client
     # (callPackage ./davinci-resolve {})
     # inputs.prismlauncher.packages.${pkgs.system}.prismlauncher

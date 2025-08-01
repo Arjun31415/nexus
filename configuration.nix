@@ -53,7 +53,9 @@ in {
     TERMINAL = "kitty";
     TERM = "kitty";
   };
+  nix.channel.enable = false;
   nix.settings = {
+    use-xdg-base-directories = true;
     # nix.registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
     trusted-users = ["root" "@wheel"];
     experimental-features = ["nix-command" "flakes"];
@@ -267,7 +269,6 @@ in {
     pciutils
     pwvucontrol
     nodejs
-    nix-index
     gcc
     gnumake
     nix-output-monitor

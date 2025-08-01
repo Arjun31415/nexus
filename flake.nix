@@ -2,12 +2,16 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
     # mpd-nixpkgs.url = "github:NixOS/nixpkgs/d38cf01b42c0c768de923c40fa9b6e112442835f";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.lix.follows = "lix";
+    };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
     nixgl = {
@@ -28,23 +32,18 @@
     catppuccin.url = "github:catppuccin/nix";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-
       # THIS IS IMPORTANT
       # Mismatched system dependencies will lead to crashes and other issues.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # neovim-src = {
-    #   url = "github:neovim/neovim";
-    #   flake = false;
-    # };
     tokyonightNur = {
       url = "github:AtaraxiaSjel/nur/f76d325552b69f7cacff4e9f86ecad5586844050";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    hy3 = {
-      url = "github:outfoxxed/hy3";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hy3 = {
+    #   url = "github:outfoxxed/hy3";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
     };
@@ -57,8 +56,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=e4e84064f2d07810e0c150bce1369a0a00503e9a";
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
@@ -76,7 +74,6 @@
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.neovim-src.follows = "neovim-src";
     };
     nh = {
       url = "github:nix-community/nh";
@@ -112,8 +109,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     anyrun = {
-      # url = "github:anyrun-org/anyrun/3c2e38ea65bf85a3afcceb24ffa4787ba0c22da5";
-
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -123,11 +118,6 @@
     };
     hyprutils = {
       url = "github:hyprwm/hyprutils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.hyprutils.follows = "hyprutils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly = {
@@ -153,6 +143,7 @@
     # impurity,
     lix-module,
     catppuccin,
+    nix-index-database,
     ...
   }: let
     # system = "x86_64-linux";
@@ -190,6 +181,7 @@
         specialArgs = {inherit self system inputs;};
         modules = [
           catppuccin.nixosModules.catppuccin
+          nix-index-database.nixosModules.nix-index
           ./configuration.nix
           {
             programs.nh = {
