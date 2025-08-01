@@ -71,6 +71,17 @@ in {
       "https://nixpkgs-wayland.cachix.org"
       "https://prismlauncher.cachix.org"
     ];
+    trusted-substituters = [
+      "https://hyprland.cachix.org"
+      "https://anyrun.cachix.org"
+      "https://nixpkgs-wayland.cachix.org"
+      "https://viperml.cachix.org"
+      "https://cache.garnix.io"
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://nixpkgs-wayland.cachix.org"
+      "https://prismlauncher.cachix.org"
+    ];
     trusted-public-keys = [
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
@@ -256,6 +267,7 @@ in {
     pciutils
     pwvucontrol
     nodejs
+    nix-index
     gcc
     gnumake
     nix-output-monitor
@@ -300,7 +312,7 @@ in {
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      portalPackage = inputs.xdph.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland = {
         enable = true;
       };
