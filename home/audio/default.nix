@@ -15,7 +15,7 @@ in {
   imports = [./easyeffects spicetify.homeManagerModules.default];
 
   home.packages = with pkgs; [
-    # my-ncmpcpp
+    my-ncmpcpp
     mpc-cli
     mpv
     amberol
