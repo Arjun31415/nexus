@@ -244,59 +244,62 @@ in {
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    (libsForQt5.callPackage ./tokyo-night-sddm.nix {})
-    # (linuxKernel.packagesFor (kernel.override {
-    #   stdenv = gcc12Stdenv;
-    #   buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
-    # }))
-    # .perf
-    kernel_pkg.perf
-    fswatch
-    wget
-    fd
-    ripgrep
-    jaq
-    eza
-    bat
-    kitty
-    dunst
-    nvtopPackages.full
-    git
-    git-lfs
-    glib
-    glib-networking
-    pciutils
-    pwvucontrol
-    nodejs
-    gcc
-    gnumake
-    nix-output-monitor
-    gcc-unwrapped.lib
-    xdg-utils
-    wl-clipboard
-    inxi
-    playerctl
-    libnotify
-    dex
-    tree
-    killall
-    xorg.xeyes
-    inputs.nh.packages.${system}.default
-    inputs.zen-browser.packages.${pkgs.system}.default
-    plasma5Packages.dolphin
-    plasma5Packages.dolphin-plugins
-    plasma5Packages.kio
-    plasma5Packages.kio-extras
-    plasma5Packages.kimageformats
-    plasma5Packages.kdegraphics-thumbnailers
-    plasma5Packages.kio-admin
-    kio-fuse
-    waypipe
-    # disk space reporting tool
-    duc
-    wayvnc
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      (libsForQt5.callPackage ./tokyo-night-sddm.nix {})
+      # (linuxKernel.packagesFor (kernel.override {
+      #   stdenv = gcc12Stdenv;
+      #   buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
+      # }))
+      # .perf
+      kernel_pkg.perf
+      fswatch
+      wget
+      fd
+      ripgrep
+      jaq
+      eza
+      bat
+      kitty
+      dunst
+      nvtopPackages.full
+      git
+      git-lfs
+      glib
+      glib-networking
+      pciutils
+      pwvucontrol
+      nodejs
+      gcc
+      gnumake
+      nix-output-monitor
+      gcc-unwrapped.lib
+      xdg-utils
+      wl-clipboard
+      inxi
+      playerctl
+      libnotify
+      dex
+      tree
+      killall
+      xorg.xeyes
+      inputs.nh.packages.${system}.default
+      inputs.zen-browser.packages.${pkgs.system}.default
+      kio-fuse
+      waypipe
+      # disk space reporting tool
+      duc
+      wayvnc
+    ]
+    ++ (with pkgs.kdePackages; [
+      dolphin
+      dolphin-plugins
+      kio
+      kio-extras
+      kimageformats
+      kdegraphics-thumbnailers
+      kio-admin
+    ]);
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
@@ -435,7 +438,7 @@ in {
     wlr.enable = lib.mkForce true;
     enable = true;
     extraPortals = [
-      pkgs.libsForQt5.xdg-desktop-portal-kde
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
   };
   users = {
