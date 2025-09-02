@@ -203,15 +203,10 @@ in {
       };
     };
     */
-    # programs.thunar = {
-    #   enable = true;
-    #   plugins = with pkgs.xfce; [
-    #     thunar-archive-plugin
-    #     thunar-volman
-    #     thunar-media-tags-plugin
-    #   ];
-    # };
     tumbler.enable = true;
+    gvfs = {
+      enable = true;
+    };
     #deluge = {
     #   enable = true;
     #   group = "media";
@@ -220,9 +215,6 @@ in {
     #     port = 8112;
     #   };
     # };
-    gvfs = {
-      enable = true;
-    };
     # started in user sessions.
     # programs.mtr.enable = truqe;
     # programs.gnupg.agent = {
@@ -244,8 +236,17 @@ in {
     };
   };
 
-  environment.systemPackages = with pkgs;
-    [
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+      thunar-media-tags-plugin
+    ];
+  };
+
+  environment.systemPackages =
+    with pkgs; [
       (libsForQt5.callPackage ./tokyo-night-sddm.nix {})
       # (linuxKernel.packagesFor (kernel.override {
       #   stdenv = gcc12Stdenv;
@@ -291,15 +292,16 @@ in {
       duc
       wayvnc
     ]
-    ++ (with pkgs.kdePackages; [
-      dolphin
-      dolphin-plugins
-      kio
-      kio-extras
-      kimageformats
-      kdegraphics-thumbnailers
-      kio-admin
-    ]);
+    # ++ (with pkgs.kdePackages; [
+    #   dolphin
+    #   dolphin-plugins
+    #   kio
+    #   kio-extras
+    #   kimageformats
+    #   kdegraphics-thumbnailers
+    #   kio-admin
+    # ])
+    ;
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;

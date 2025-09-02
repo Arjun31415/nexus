@@ -36,11 +36,11 @@ in {
   home.homeDirectory = "/home/prometheus";
   home.sessionPath = ["$HOME/.cargo/bin"];
   home.activation = {
-  rmSomeThing = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    rm -rf ~/.nix-defexpr
-    rm -rf ~/.nix-profile
-  '';
-};
+    rmSomeThing = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      rm -rf ~/.nix-defexpr
+      rm -rf ~/.nix-profile
+    '';
+  };
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -59,13 +59,9 @@ in {
         sha256 = "00y4ykbkd2c206mfhm0k0hvfxg5dv1v1xacd6k578w2yy0yw9664";
       };
     };
-    theme-package = {
-      name = "catppuccin";
-      package = pkgs.catppuccin-kde.override {
-        flavour = ["mocha"];
-        accents = ["maroon"];
-      };
-    };
+    style.name = "kvantum";
+    platformTheme.name = "kvantum";
+    catppuccin.enable = true;
   };
   imports = [
     ./audio
@@ -132,6 +128,7 @@ in {
     # openfortivpn
     # networkmanager-fortisslvpn
     networkmanagerapplet
+    zapzap
   ];
   nixGL.packages = inputs.nixgl.packages;
   nixGL.defaultWrapper = "nvidia";
