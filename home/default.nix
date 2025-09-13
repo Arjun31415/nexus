@@ -129,6 +129,7 @@ in {
     # networkmanager-fortisslvpn
     networkmanagerapplet
     zapzap
+    guitarix
   ];
   nixGL.packages = inputs.nixgl.packages;
   nixGL.defaultWrapper = "nvidia";

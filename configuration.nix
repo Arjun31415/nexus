@@ -188,7 +188,7 @@ in {
       alsa.support32Bit = true;
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
+      jack.enable = true;
     };
 
     # to boot onto external monitor
@@ -291,6 +291,7 @@ in {
       # disk space reporting tool
       duc
       wayvnc
+      helvum
     ]
     # ++ (with pkgs.kdePackages; [
     #   dolphin
@@ -345,9 +346,25 @@ in {
     monaspace
   ];
   security = {
-    pam.services = {
-      hyprlock = {};
-      greetd.enableGnomeKeyring = true;
+    pam = {
+      loginLimits = [
+        {
+          domain = "*";
+          type = "-";
+          item = "memlock";
+          value = "8192000";
+        }
+        {
+          domain = "*";
+          type = "-";
+          item = "rtprio";
+          value = "95";
+        }
+      ];
+      services = {
+        hyprlock = {};
+        greetd.enableGnomeKeyring = true;
+      };
     };
     wrappers."mount.nfs" = {
       setuid = true;
