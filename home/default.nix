@@ -131,9 +131,11 @@ in {
     zapzap
     guitarix
   ];
-  nixGL.packages = inputs.nixgl.packages;
-  nixGL.defaultWrapper = "nvidia";
-  nixGL.installScripts = ["nvidia"];
+  # nixGL = {
+  #   packages = inputs.nixgl.packages;
+  #   defaultWrapper = "nvidia";
+  #   installScripts = ["nvidia"];
+  # };
   fonts.fontconfig.enable = true;
   xdg.userDirs = {
     enable = true;
