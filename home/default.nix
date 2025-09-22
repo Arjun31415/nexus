@@ -76,6 +76,7 @@ in {
     ./hyprland
     ./notifications
     ./anyrun
+    ./guitarix
   ];
   home.packages = with pkgs; [
     swww
@@ -129,7 +130,7 @@ in {
     # networkmanager-fortisslvpn
     networkmanagerapplet
     zapzap
-    guitarix
+    # guitarix
     gxplugins-lv2
   ];
   # nixGL = {

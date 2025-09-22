@@ -253,7 +253,7 @@ in {
       #   buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
       # }))
       # .perf
-      kernel_pkg.perf
+      perf
       fswatch
       wget
       fd
