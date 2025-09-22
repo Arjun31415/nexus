@@ -292,6 +292,7 @@ in {
       duc
       wayvnc
       helvum
+      gxplugins-lv2
     ]
     # ++ (with pkgs.kdePackages; [
     #   dolphin

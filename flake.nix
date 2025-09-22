@@ -109,7 +109,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     anyrun = {
-      url = "github:anyrun-org/anyrun";
+      url = "github:anyrun-org/anyrun/c787318f590102b68fbd2e5b02ea47e96f4ecb62";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {

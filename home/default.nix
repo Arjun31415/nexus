@@ -131,7 +131,6 @@ in {
     networkmanagerapplet
     zapzap
     # guitarix
-    gxplugins-lv2
   ];
   # nixGL = {
   #   packages = inputs.nixgl.packages;
