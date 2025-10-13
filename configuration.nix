@@ -136,7 +136,6 @@ in {
     #   enableWifi = true;
     # };
     # automatic-timezoned.enable = true;
-    hardware.openrgb.enable = true;
     udev.extraRules = ''
       SUBSYSTEMS=="usb", ACTION=="add", GROUP="usb", MODE="0664"
     '';

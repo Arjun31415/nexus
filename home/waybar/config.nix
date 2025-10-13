@@ -157,7 +157,7 @@ in {
         tooltip = false;
       };
       "custom/spotify" = {
-        format = "<span font_family=\"Material Design Icons\">{icon}</span>{}";
+        format = "<span font_family=\"Material Design Icons\">{icon}</span>{text}";
         escape = true;
         "max-length" = 40;
         "on-click" = "playerctl play-pause";
