@@ -75,7 +75,7 @@ in {
 
   programs.corectrl.enable = true;
   time.hardwareClockInLocalTime = false;
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia" "displaylink" "modesetting"];
   programs.xwayland.enable = true;
   programs.ryzen-monitor-ng.enable = true;
   hardware.enableRedistributableFirmware = true;

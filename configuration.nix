@@ -4,6 +4,7 @@
   lib,
   system,
   options,
+  config,
   ...
 }: let
   hyprlandSuspendScript = pkgs.writeShellScript "suspend-hyprland.sh" ''
@@ -43,6 +44,13 @@ in {
       enable = true;
       device = "nodev";
       efiSupport = true;
+    };
+    extraModulePackages = [config.boot.kernelPackages.evdi];
+    initrd = {
+      # List of modules that are always loaded by the initrd.
+      kernelModules = [
+        "evdi"
+      ];
     };
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = ["ntfs"];
@@ -295,6 +303,7 @@ in {
       wayvnc
       helvum
       gxplugins-lv2
+      displaylink
     ]
     # ++ (with pkgs.kdePackages; [
     #   dolphin
