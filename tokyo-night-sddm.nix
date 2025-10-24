@@ -1,9 +1,6 @@
 {
-  lib,
   qtbase,
   qtsvg,
-  qtgraphicaleffects,
-  qtquickcontrols2,
   wrapQtAppsHook,
   stdenvNoCC,
   fetchFromGitHub,
@@ -13,24 +10,31 @@ stdenvNoCC.mkDerivation
   name = "tokyo-night-sddm";
   dontBuild = true;
   src = fetchFromGitHub {
-    owner = "rototrash";
-    repo = "tokyo-night-sddm";
-    rev = "320c8e74ade1e94f640708eee0b9a75a395697c6";
-    sha256 = "sha256-JRVVzyefqR2L3UrEK2iWyhUKfPMUNUnfRZmwdz05wL0=";
+    owner = "xaknick";
+    repo = "tokyo-night-sddm-qt6";
+    rev = "ffc26208bb6ddd033d1fe945d19b60e4e1b002b2";
+    sha256 = "sha256-Tk0hXKFT/uE1ncIHSEwIC26Z/wC4wXb/7CnY3lBGzFM=";
   };
+  patchPhase = ''
+    sed -i 's|Background="Backgrounds/win11.png"|Background="Backgrounds/tokyocity.png"|g' theme.conf
+  '';
   nativeBuildInputs = [
     wrapQtAppsHook
+  ];
+  buildInputs = [
+    qtbase
   ];
 
   propagatedUserEnvPkgs = [
     qtbase
     qtsvg
-    qtgraphicaleffects
-    qtquickcontrols2
   ];
 
   installPhase = ''
+    set -x
     mkdir -p $out/share/sddm/themes
-    cp -aR $src $out/share/sddm/themes/tokyo-night-sddm
+    # $src is the unmodifed read only source originally cloned.
+    cp -r . $out/share/sddm/themes/tokyo-night-sddm
+    set +x
   '';
 }

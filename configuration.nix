@@ -257,7 +257,7 @@ in {
 
   environment.systemPackages =
     with pkgs; [
-      (libsForQt5.callPackage ./tokyo-night-sddm.nix {})
+      (qt6Packages.callPackage ./tokyo-night-sddm.nix {})
       # (linuxKernel.packagesFor (kernel.override {
       #   stdenv = gcc12Stdenv;
       #   buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
