@@ -60,10 +60,11 @@ in {
   programs.git = {
     lfs.enable = true;
     enable = true;
-    delta.enable = true;
-    userName = "Arjun31415";
-    userEmail = "arjunp0710@gmail.com";
+    settings.user.name = "Arjun31415";
+    settings.user.email = "arjunp0710@gmail.com";
   };
+  programs.delta.enable = true;
+
   programs.gitui.enable = true;
   programs.gh = {
     enable = true;
