@@ -16,7 +16,7 @@ in {
 
   home.packages = with pkgs; [
     my-ncmpcpp
-    mpc-cli
+    mpc
     mpv
     amberol
     # (cava.override {withSDL2 = true;})
