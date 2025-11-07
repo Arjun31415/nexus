@@ -18,6 +18,7 @@
       # Linters
       selene # lua
       codespell
+      tinymist
     ]
     ++ (with pkgs.nodePackages_latest; [
       # bash-language-server

@@ -36,6 +36,7 @@ in {
     # google-cloud-sdk-gce
     tree-sitter
     fzf
+    typst
     # jetbrainsPkgs.rustrover
   ];
   programs.yazi = {

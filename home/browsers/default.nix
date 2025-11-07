@@ -64,7 +64,7 @@
         engines = {
           "Searxng" = {
             urls = [
-              {template = "https://search.notashelf.dev/?q={searchTerms}";}
+              {template = "https://search.rhscz.eu/?q={searchTerms}";}
             ];
             definedAliases = ["@sx"];
           };

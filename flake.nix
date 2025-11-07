@@ -131,7 +131,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -141,7 +141,7 @@
     nixpkgs,
     home-manager,
     # impurity,
-    lix-module,
+    # lix-module,
     catppuccin,
     nix-index-database,
     ...
