@@ -6,12 +6,12 @@
 }:
 stdenv.mkDerivation rec {
   pname = "guitarix";
-  version = "db358f306b9024d8f033c536a1ee470510d76dc0";
+  version = "2c32355ea8ade7f50364310c250adcb17a012e8b";
   src = pkgs.fetchFromGitHub {
     owner = "brummer10";
     repo = "guitarix";
     rev = version;
-    hash = "sha256-XLI7P+4Ye08jPx4Ik39z+32PzPhmgDFfxRd/GdVIexU=";
+    hash = "sha256-d88vvqccwNUday33dpphjF3x3l8IS2QMF0z+pFUubmY=";
     fetchSubmodules = true;
   };
   buildInputs = with pkgs; [

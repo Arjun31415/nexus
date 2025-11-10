@@ -98,9 +98,6 @@ in {
     wev
     ngrok
     imv
-    hunspell
-    hunspellDicts.en_US-large
-    hunspellDicts.en_GB-large
     # planify
     (callPackage ./notion {})
     font-awesome

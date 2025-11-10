@@ -136,6 +136,8 @@ in {
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
   };
+
+  programs.nix-ld.enable = true;
   services = {
     tzupdate.enable = true;
     # geoclue2 = {
@@ -304,6 +306,10 @@ in {
       helvum
       gxplugins-lv2
       displaylink
+      uv
+      hunspell
+      hunspellDicts.en_US-large
+      hunspellDicts.en_GB-large
     ]
     # ++ (with pkgs.kdePackages; [
     #   dolphin
