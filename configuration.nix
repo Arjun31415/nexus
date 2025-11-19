@@ -300,6 +300,7 @@ in {
       inputs.zen-browser.packages.${pkgs.system}.default
       kio-fuse
       waypipe
+      bitwarden-desktop
       # disk space reporting tool
       duc
       wayvnc
