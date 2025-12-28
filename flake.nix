@@ -4,11 +4,11 @@
   inputs = {
     nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
     # mpd-nixpkgs.url = "github:NixOS/nixpkgs/d38cf01b42c0c768de923c40fa9b6e112442835f";
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.lix.follows = "lix";
-    };
+    # lix-module = {
+    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   # inputs.lix.follows = "lix";
+    # };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,7 +77,7 @@
     };
     nh = {
       url = "github:nix-community/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     # impurity = {
     #   url = "github:outfoxxed/impurity.nix";

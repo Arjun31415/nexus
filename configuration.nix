@@ -17,7 +17,7 @@
             ;;
     esac
   '';
-  kernel_pkg = pkgs.linuxPackages_latest;
+  kernel_pkg = pkgs.linuxPackages_6_17;
   # kernel_pkg = pkgs.linuxPackages_6_13;
 in {
   imports = [
@@ -524,6 +524,7 @@ in {
     checkReversePath = false;
     trustedInterfaces = ["virbr0"];
     enable = true;
+    allowedTCPPorts = [1420];
     allowedTCPPortRanges = [
       {
         from = 1714;
