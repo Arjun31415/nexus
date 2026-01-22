@@ -23,11 +23,11 @@
     "application/pdf" = "sioyek.desktop";
 
     "audio/*" = ["mpv.desktop"];
-    "video/*" = ["mpv.dekstop"];
+    "video/*" = ["mpv.desktop"];
     "image/*" = ["imv.desktop"];
     "application/json" = browser;
     "x-scheme-handler/spotify" = ["spotify.desktop"];
-    "inode/directory" = "org.kde.dolphin.desktop";
+    # "inode/directory" = "org.kde.dolphin.desktop";
   };
 in {
   # Home Manager needs a bit of information about you and the
@@ -87,7 +87,7 @@ in {
     starship
     mcfly
     pastebinit
-    mtpfs
+    # mtpfs
     fastfetch
     libreoffice-fresh
     inputs.hypr-contrib.packages.${pkg.system}.grimblast
@@ -126,7 +126,7 @@ in {
     # openfortivpn
     # networkmanager-fortisslvpn
     networkmanagerapplet
-    zapzap
+    adbfs-rootless
     # guitarix
   ];
   # nixGL = {

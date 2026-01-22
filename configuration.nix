@@ -17,8 +17,7 @@
             ;;
     esac
   '';
-  kernel_pkg = pkgs.linuxPackages_6_17;
-  # kernel_pkg = pkgs.linuxPackages_6_13;
+  kernel_pkg = pkgs.linuxPackages_latest;
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -33,6 +32,8 @@ in {
     gnome
     gtk
   '';
+  environment.variables.MOZ_DISABLE_RDD_SANDBOX = "1";
+  environment.variables.LIBVA_DRIVER_NAME = "nvidia";
   boot = {
     kernelPackages = kernel_pkg;
     # boot.tmp.cleanOnBoot = true;
@@ -311,6 +312,7 @@ in {
       hunspell
       hunspellDicts.en_US-large
       hunspellDicts.en_GB-large
+      ffmpeg
     ]
     # ++ (with pkgs.kdePackages; [
     #   dolphin

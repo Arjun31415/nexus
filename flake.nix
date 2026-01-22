@@ -13,7 +13,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +32,10 @@
     prismlauncher = {
       url = "github:PrismLauncher/PrismLauncher";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       # THIS IS IMPORTANT
@@ -46,6 +52,7 @@
     # };
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     arrpc = {
       url = "github:notashelf/arrpc-flake";
@@ -77,7 +84,7 @@
     };
     nh = {
       url = "github:nix-community/nh";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # impurity = {
     #   url = "github:outfoxxed/impurity.nix";
