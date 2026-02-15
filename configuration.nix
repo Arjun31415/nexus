@@ -303,7 +303,7 @@ in {
       waypipe
       bitwarden-desktop
       # disk space reporting tool
-      duc
+      ncdu
       wayvnc
       helvum
       gxplugins-lv2

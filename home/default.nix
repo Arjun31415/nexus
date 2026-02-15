@@ -105,7 +105,7 @@ in {
     siji
     # font-manager
     evince
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     trash-cli
     eduvpn-client
     # (callPackage ./davinci-resolve {})
