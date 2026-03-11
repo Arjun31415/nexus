@@ -119,7 +119,7 @@ in {
         font = "Fisa Code:style=Regular:size=10";
         dpi-aware = "yes";
       };
-      colors = {
+      colors-dark = {
         background = "24283b";
         alpha = 0.85;
         ## Normal/regular colors (color palette 0-7)

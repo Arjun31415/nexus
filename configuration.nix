@@ -140,6 +140,7 @@ in {
 
   programs.nix-ld.enable = true;
   services = {
+    resolved.enable = true;
     tzupdate.enable = true;
     # geoclue2 = {
     #   geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
@@ -305,7 +306,7 @@ in {
       # disk space reporting tool
       ncdu
       wayvnc
-      helvum
+      crosspipe
       gxplugins-lv2
       displaylink
       uv
