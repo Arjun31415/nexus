@@ -52,7 +52,6 @@
     # };
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     arrpc = {
       url = "github:notashelf/arrpc-flake";
