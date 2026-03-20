@@ -64,9 +64,20 @@ in {
     settings.user.name = "Arjun31415";
     settings.user.email = "arjunp0710@gmail.com";
   };
-  programs.delta.enable = true;
-
+  programs.difftastic.enable = true;
+  programs.difftastic.jujutsu.enable = true;
+  programs.difftastic.git.enable = true;
   programs.gitui.enable = true;
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        email = "arjunp0710@gmail.com";
+        name = "Arjun31415";
+      };
+    };
+  };
+
   programs.gh = {
     enable = true;
     extensions = [];
