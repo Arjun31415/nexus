@@ -79,7 +79,7 @@ in {
     ./guitarix
   ];
   home.packages = with pkgs; [
-    swww
+    awww
     brightnessctl
     alejandra
     p7zip
