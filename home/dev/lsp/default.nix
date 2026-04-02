@@ -3,28 +3,22 @@
   inputs,
   ...
 }: {
-  home.packages = with pkgs;
-    [
-      stylua
-      lua-language-server
-      inputs.nix-nil-lsp.packages.${pkgs.system}.default
-      clang-tools
-      shellcheck
-      basedpyright
-      prettierd
-      cmake-language-server
-      rust-analyzer
-      # inputs.nix-nixd-lsp.packages.${pkgs.system}.default
-      # Linters
-      selene # lua
-      codespell
-      tinymist
-    ]
-    ++ (with pkgs.nodePackages_latest; [
-      # bash-language-server
-      typescript-language-server
-      vim-language-server
-      # vscode-css-languageserver-bin
-      # vscode-json-languageserver-bin
-    ]);
+  home.packages = with pkgs; [
+    stylua
+    lua-language-server
+    inputs.nix-nil-lsp.packages.${pkgs.system}.default
+    clang-tools
+    shellcheck
+    basedpyright
+    ty
+    prettierd
+    cmake-language-server
+    rust-analyzer
+    # inputs.nix-nixd-lsp.packages.${pkgs.system}.default
+    # Linters
+    selene # lua
+    codespell
+    tinymist
+    vim-language-server
+  ];
 }

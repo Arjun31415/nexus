@@ -18,6 +18,9 @@
     esac
   '';
   kernel_pkg = pkgs.linuxPackages_latest;
+  # customYabridge = pkgs.yabridge.overrideAttrs {
+  #   wine = pkgs.wineWow64Packages.stagingFull;
+  # };
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -113,6 +116,7 @@ in {
     hostName = "omen"; # Define your hostname.
     # Enable networking
     networkmanager.enable = true;
+    networkmanager.plugins = [pkgs.networkmanager-openvpn];
     nameservers = ["1.1.1.1" "9.9.9.9"];
   };
 
@@ -314,6 +318,14 @@ in {
       hunspellDicts.en_US-large
       hunspellDicts.en_GB-large
       ffmpeg
+      wineWow64Packages.yabridge
+      winetricks
+      yabridge
+      yabridgectl
+
+      # customYabridge
+      # (yabridgectl.override {yabridge = customYabridge;})
+      reaper
     ]
     # ++ (with pkgs.kdePackages; [
     #   dolphin
