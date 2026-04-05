@@ -42,6 +42,7 @@ in {
   programs.yazi = {
     enableFishIntegration = true;
     enable = true;
+    shellWrapperName = "yy";
     # package = inputs.yazi.packages.${pkgs.system}.default;
     keymap = {
       manager.prepend_keymap = [
@@ -59,6 +60,7 @@ in {
     nix-direnv.enable = true;
   };
   programs.git = {
+    signing.format = null;
     lfs.enable = true;
     enable = true;
     settings.user.name = "Arjun31415";

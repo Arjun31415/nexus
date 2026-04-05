@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
     gtkmm3
     hicolor-icon-theme
     intltool
-    ladspaH
+    ladspa-header
     libjack2
     libsndfile
     lilv

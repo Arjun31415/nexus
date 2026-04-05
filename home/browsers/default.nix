@@ -18,7 +18,7 @@
   programs.firefox = {
     arkenfox = {
       enable = true;
-      version = "107.0";
+      version = "140.1";
     };
     # package = inputs.firefox-nightly.packages.${pkgs.system}.firefox-nightly-bin.override {
     package = pkgs.firefox-bin;
@@ -101,10 +101,10 @@
             updateInterval = 24 * 60 * 60 * 1000;
             definedAliases = ["@nw"];
           };
-          "Wikipedia (en)".metaData.alias = "@wiki";
-          "Amazon.com".metaData.hidden = true;
-          "Bing".metaData.hidden = true;
-          "eBay".metaData.hidden = true;
+          "wikipedia".metaData.alias = "@wiki";
+          "amazondotcom-us".metaData.hidden = true;
+          "bing".metaData.hidden = true;
+          "ebay".metaData.hidden = true;
         };
       };
       settings = {

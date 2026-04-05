@@ -128,6 +128,30 @@ in {
     networkmanagerapplet
     adbfs-rootless
     # guitarix
+
+    # Moved from configuration.nix
+    wget
+    fd
+    ripgrep
+    jaq
+    eza
+    bat
+    pciutils
+    pwvucontrol
+    nodejs
+    gcc
+    gnumake
+    nix-output-monitor
+    xdg-utils
+    wl-clipboard
+    inxi
+    playerctl
+    libnotify
+    tree
+    killall
+    ncdu
+    ffmpeg
+    bitwarden-desktop
   ];
   # nixGL = {
   #   packages = inputs.nixgl.packages;
@@ -138,8 +162,9 @@ in {
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = false;
     extraConfig = {
-      XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
+      SCREENSHOTS = "${config.home.homeDirectory}/Pictures/Screenshots";
     };
   };
   xdg.mimeApps = {

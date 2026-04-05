@@ -256,87 +256,41 @@ in {
 
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-volman
       thunar-media-tags-plugin
     ];
   };
 
-  environment.systemPackages =
-    with pkgs; [
-      (qt6Packages.callPackage ./tokyo-night-sddm.nix {})
-      # (linuxKernel.packagesFor (kernel.override {
-      #   stdenv = gcc12Stdenv;
-      #   buildPackages = pkgs.buildPackages // {stdenv = gcc12Stdenv;};
-      # }))
-      # .perf
-      perf
-      fswatch
-      wget
-      fd
-      ripgrep
-      jaq
-      eza
-      bat
-      kitty
-      dunst
-      nvtopPackages.full
-      git
-      git-lfs
-      glib
-      glib-networking
-      pciutils
-      pwvucontrol
-      nodejs
-      gcc
-      gnumake
-      nix-output-monitor
-      gcc-unwrapped.lib
-      xdg-utils
-      wl-clipboard
-      inxi
-      playerctl
-      libnotify
-      dex
-      tree
-      killall
-      xorg.xeyes
-      inputs.nh.packages.${system}.default
-      inputs.zen-browser.packages.${pkgs.system}.default
-      kio-fuse
-      waypipe
-      bitwarden-desktop
-      # disk space reporting tool
-      ncdu
-      wayvnc
-      crosspipe
-      gxplugins-lv2
-      displaylink
-      uv
-      hunspell
-      hunspellDicts.en_US-large
-      hunspellDicts.en_GB-large
-      ffmpeg
-      wineWow64Packages.yabridge
-      winetricks
-      yabridge
-      yabridgectl
-
-      # customYabridge
-      # (yabridgectl.override {yabridge = customYabridge;})
-      reaper
-    ]
-    # ++ (with pkgs.kdePackages; [
-    #   dolphin
-    #   dolphin-plugins
-    #   kio
-    #   kio-extras
-    #   kimageformats
-    #   kdegraphics-thumbnailers
-    #   kio-admin
-    # ])
-    ;
+  environment.systemPackages = with pkgs; [
+    (qt6Packages.callPackage ./tokyo-night-sddm.nix {})
+    perf
+    fswatch
+    nvtopPackages.full
+    glib
+    glib-networking
+    gcc-unwrapped.lib
+    xeyes
+    kitty
+    inputs.nh.packages.${system}.default
+    inputs.zen-browser.packages.${pkgs.system}.default
+    kio-fuse
+    waypipe
+    wayvnc
+    crosspipe
+    gxplugins-lv2
+    displaylink
+    uv
+    hunspell
+    hunspellDicts.en_US-large
+    hunspellDicts.en_GB-large
+    wineWow64Packages.yabridge
+    winetricks
+    yabridge
+    yabridgectl
+    reaper
+  ];
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;

@@ -28,6 +28,7 @@ in rec {
   };
   gtk = {
     enable = true;
+    gtk4.theme = null;
     iconTheme = {
       name = "Tokyonight-Light";
       package = tokyonightGtkIcons;
