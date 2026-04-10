@@ -117,14 +117,16 @@ in {
     # Enable networking
     networkmanager.enable = true;
     networkmanager.plugins = [pkgs.networkmanager-openvpn];
-    nameservers = ["1.1.1.1" "9.9.9.9"];
+    nameservers = ["9.9.9.9" "1.1.1.1"];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = lib.mkForce "systemd-resolved";
+    timeServers = options.networking.timeServers.default;
   };
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 
   # time.timeZone = "Asia/Calcutta";
-  networking.timeServers = options.networking.timeServers.default;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
@@ -145,6 +147,7 @@ in {
   programs.nix-ld.enable = true;
   services = {
     resolved.enable = true;
+    resolved.settings.Resolve.Domains = "~.";
     tzupdate.enable = true;
     # geoclue2 = {
     #   geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
@@ -290,6 +293,8 @@ in {
     yabridge
     yabridgectl
     reaper
+    openvpn
+    update-systemd-resolved
   ];
   virtualisation = {
     libvirtd.enable = true;
