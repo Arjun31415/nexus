@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-cuda-cache,
   inputs,
   lib,
   system,
@@ -84,7 +85,8 @@ in {
       "https://nix-community.cachix.org"
       "https://nixpkgs-wayland.cachix.org"
       "https://prismlauncher.cachix.org"
-      "https://cuda-maintainers.cachix.org"
+      # "https://cuda-maintainers.cachix.org"
+      "https://cache.nixos-cuda.org"
     ];
     trusted-substituters = [
       "https://hyprland.cachix.org"
@@ -96,7 +98,8 @@ in {
       "https://nix-community.cachix.org"
       "https://nixpkgs-wayland.cachix.org"
       "https://prismlauncher.cachix.org"
-      "https://cuda-maintainers.cachix.org"
+      # "https://cuda-maintainers.cachix.org"
+      "https://cache.nixos-cuda.org"
     ];
     trusted-public-keys = [
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
@@ -108,7 +111,8 @@ in {
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "prismlauncher.cachix.org-1:9/n/FGyABA2jLUVfY+DEp4hKds/rwO+SCOtbOkDzd+c="
-      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
     ];
   };
 
@@ -295,7 +299,12 @@ in {
     reaper
     openvpn
     update-systemd-resolved
+    (llama-cpp.override {
+      cudaSupport = true;
+      # blasSupport = true;
+    })
   ];
+  programs.nix-index-database.comma.enable = true;
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
@@ -451,6 +460,7 @@ in {
     enable = true;
     extraPortals = [
       pkgs.kdePackages.xdg-desktop-portal-kde
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
     ];
   };
   users = {

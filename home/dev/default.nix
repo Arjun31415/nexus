@@ -99,8 +99,9 @@ in {
     viAlias = true;
     vimdiffAlias = true;
     withRuby = false;
-    withNodeJs = true;
+    withNodeJs = false;
     withPython3 = true;
+    sideloadInitLua = true;
   };
   programs.go.enable = true;
   programs.vscode = {

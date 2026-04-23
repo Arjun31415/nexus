@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
+    # nixpkgs-cuda-cache.url = "github:Nixos/nixpkgs/7a8c107078da70f3c4d880e787e6e2180c9e88b2";
     # mpd-nixpkgs.url = "github:NixOS/nixpkgs/d38cf01b42c0c768de923c40fa9b6e112442835f";
     # lix-module = {
     #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
@@ -145,6 +146,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    # nixpkgs-cuda-cache,
     home-manager,
     # impurity,
     # lix-module,
@@ -171,6 +173,7 @@
       system = "x86_64-linux";
       config.allowUnfree = true;
       config.allowUnfreePredicate = _: true;
+      config.cudaSupport = true;
       # localSystem = {
       #   gcc.arch = "znver2";
       #   gcc.tune = "znver2";
@@ -178,13 +181,26 @@
       #   features = ["gccarch-znver2"];
       # };
     };
+    # pkgs-cuda-cache = import nixpkgs-cuda-cache {
+    #   inherit overlays;
+    #   config.allowUnfree = true;
+    #   config.allowUnfreePredicate = _: true;
+    #   config.cudaSupport = true;
+    # };
   in {
     nixosConfigurations = {
       formatter = "alejandra";
       omen = nixpkgs.lib.nixosSystem rec {
         inherit pkgs;
         system = "x86_64-linux";
-        specialArgs = {inherit self system inputs;};
+        specialArgs = {
+          inherit
+            self
+            system
+            inputs
+            #pkgs-cuda-cache
+            ;
+        };
         modules = [
           catppuccin.nixosModules.catppuccin
           nix-index-database.nixosModules.nix-index

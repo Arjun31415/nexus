@@ -140,6 +140,7 @@ in {
         libva
         libva-utils
         libva-vdpau-driver
+        libvdpau-va-gl
         vulkan-loader
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
