@@ -303,6 +303,8 @@ in {
       cudaSupport = true;
       # blasSupport = true;
     })
+    ddgr
+    opencode
   ];
   programs.nix-index-database.comma.enable = true;
   virtualisation = {

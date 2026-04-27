@@ -3,13 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-cuda-cache.url = "github:Nixos/nixpkgs/7a8c107078da70f3c4d880e787e6e2180c9e88b2";
-    # mpd-nixpkgs.url = "github:NixOS/nixpkgs/d38cf01b42c0c768de923c40fa9b6e112442835f";
-    # lix-module = {
-    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   # inputs.lix.follows = "lix";
-    # };
+    lix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+      flake = false;
+    };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
+    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -149,7 +151,8 @@
     # nixpkgs-cuda-cache,
     home-manager,
     # impurity,
-    # lix-module,
+    lix-module,
+    lix,
     catppuccin,
     nix-index-database,
     ...
@@ -204,6 +207,7 @@
         modules = [
           catppuccin.nixosModules.catppuccin
           nix-index-database.nixosModules.nix-index
+          lix-module.nixosModules.default
           ./configuration.nix
           {
             programs.nh = {
