@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    # inputs.arrpc.homeManagerModules.default
     ./neomutt
   ];
   home.packages = with pkgs; [
@@ -17,11 +16,11 @@
       }).config.build.toplevel
     # teams-for-linux
     element
-    # (callPackage ../armcord {})
     clematis
     signal-desktop
     # (discord-canary.override {withOpenASAR = true;})
-    discord-canary
+    # discord
+    webcord-vencord
   ];
-  # services.arrpc.enable = true;
+  services.arrpc.enable = true;
 }
