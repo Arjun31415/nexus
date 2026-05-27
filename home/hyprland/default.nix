@@ -6,7 +6,7 @@
 }: let
   inherit (inputs) hyprland hy3 hypridle hyprlock hyprland-plugins;
 
-  hyprland_config = builtins.readFile ./hyprland.conf;
+  hyprland_config = builtins.readFile ./hyprland.lua;
 in {
   imports = [
     hyprland.homeManagerModules.default
@@ -15,6 +15,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
+    configType = "lua";
     # package = hyprland.packages.${pkgs.system}.hyprland;
     package = null;
     portalPackage = null;
@@ -23,10 +24,11 @@ in {
       # hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
       # hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
-    extraConfig = ''
-      ${hyprland_config}
-      bind = $mainMod, p, exec, cliphist list | anyrun --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so --show-results-immediately true --max-entries 100  | cliphist decode | wl-copy
-    '';
+    extraConfig =
+      builtins.replaceStrings
+      ["~/.local/lib/libstdin.so"]
+      ["${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so"]
+      (builtins.readFile ./hyprland.lua);
   };
   services.hypridle = {
     enable = true;

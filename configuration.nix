@@ -282,7 +282,7 @@ in {
     kitty
     inputs.nh.packages.${system}.default
     inputs.zen-browser.packages.${pkgs.system}.default
-    kio-fuse
+    kdePackages.kio-fuse
     waypipe
     wayvnc
     crosspipe
