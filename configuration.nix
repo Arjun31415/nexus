@@ -305,6 +305,7 @@ in {
     })
     ddgr
     opencode
+    google-cloud-sdk
   ];
   programs.nix-index-database.comma.enable = true;
   virtualisation = {

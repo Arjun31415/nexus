@@ -10,7 +10,9 @@
     #   hyprlandSupport = true;
     #   experimentalPatches = true;
     # };
-    # package = inputs.waybar.packages.${pkgs.system}.waybar;
+    package = inputs.waybar.packages.${pkgs.system}.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = (oldAttrs.mesonFlags or []) ++ ["-Dtests=disabled"];
+    });
     systemd.enable = false;
   };
 }

@@ -76,7 +76,7 @@ in {
     ./hyprland
     ./notifications
     ./anyrun
-    ./guitarix
+    # ./guitarix
   ];
   home.packages = with pkgs; [
     awww
@@ -184,6 +184,24 @@ in {
   services.dunst = {
     enable = true;
   };
+  # Adjust the Tailscale Funnel to point to gog's listening port (8788)
+  systemd.user.services.tailscale-funnel = {
+    Unit = {
+      Description = "Tailscale Funnel pointing to Gog Receiver";
+      After = ["network.target"];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.tailscale}/bin/tailscale funnel 8788";
+      Restart = "always";
+      RestartSec = 5;
+    };
+
+    Install = {
+      WantedBy = ["default.target"];
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

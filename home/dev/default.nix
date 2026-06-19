@@ -33,7 +33,6 @@ in {
     pandoc
     (python311.withPackages python-pkgs)
     neovide
-    # google-cloud-sdk-gce
     tree-sitter
     fzf
     typst

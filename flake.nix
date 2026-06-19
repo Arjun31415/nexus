@@ -147,7 +147,7 @@
     # nixpkgs-cuda-cache,
     home-manager,
     # impurity,
-    lix-module,
+    # lix-module,
     lix,
     catppuccin,
     nix-index-database,
@@ -203,7 +203,7 @@
         modules = [
           catppuccin.nixosModules.catppuccin
           nix-index-database.nixosModules.nix-index
-          lix-module.nixosModules.default
+          # lix-module.nixosModules.default
           ./configuration.nix
           {
             programs.nh = {
@@ -218,7 +218,12 @@
             home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.prometheus = {imports = [./home catppuccin.homeModules.catppuccin];};
+            home-manager.users.prometheus = {
+              imports = [
+                ./home
+                catppuccin.homeModules.catppuccin
+              ];
+            };
           })
         ];
       };
