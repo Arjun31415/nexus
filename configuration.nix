@@ -214,6 +214,7 @@ in {
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
       jack.enable = true;
+      wireplumber.enable = true;
     };
 
     # to boot onto external monitor
@@ -296,8 +297,13 @@ in {
     winetricks
     yabridge
     yabridgectl
-    reaper
+    (reaper.override {
+      jackLibrary = pkgs.pipewire.jack;
+      jackSupport = true;
+    })
     openvpn
+    jack2
+    libjack2
     update-systemd-resolved
     (llama-cpp.override {
       cudaSupport = true;

@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     stylua
     lua-language-server
-    inputs.nix-nil-lsp.packages.${pkgs.system}.default
+    # inputs.nix-nil-lsp.packages.${pkgs.system}.default
     clang-tools
     shellcheck
     basedpyright

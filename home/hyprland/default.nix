@@ -76,7 +76,7 @@ in {
       background = [
         {
           monitor = "eDP-1";
-          path = "/home/prometheus/Pictures/Wallpapers/Ayanokouji.png";
+          path = "/home/prometheus/Pictures/Wallpapers/Genji-Hanzo.jpg";
           # color = "rgba(25, 20, 20, 1.0)";
         }
         {

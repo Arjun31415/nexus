@@ -152,6 +152,7 @@ in {
     ncdu
     ffmpeg
     bitwarden-desktop
+    # calibre
   ];
   # nixGL = {
   #   packages = inputs.nixgl.packages;

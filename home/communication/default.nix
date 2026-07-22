@@ -11,12 +11,12 @@
       {
         inherit pkgs;
         modules = [
-          ./mailspring
+          # ./mailspring
         ];
       }).config.build.toplevel
     # teams-for-linux
-    element
-    clematis
+    # element
+    # clematis
     signal-desktop
     # (discord-canary.override {withOpenASAR = true;})
     # discord
