@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-cuda-cache,
   inputs,
   lib,
   system,
@@ -275,7 +274,7 @@ in {
     (qt6Packages.callPackage ./tokyo-night-sddm.nix {})
     perf
     fswatch
-    nvtopPackages.full
+    #nvtopPackages.full
     glib
     glib-networking
     gcc-unwrapped.lib
@@ -305,12 +304,10 @@ in {
     jack2
     libjack2
     update-systemd-resolved
-    (llama-cpp.override {
-      cudaSupport = true;
-      # blasSupport = true;
-    })
-    ddgr
-    opencode
+    # (llama-cpp.override {
+    #   cudaSupport = true;
+    #   # blasSupport = true;
+    # })
     google-cloud-sdk
   ];
   programs.nix-index-database.comma.enable = true;
@@ -400,7 +397,7 @@ in {
                 action.id == "org.freedesktop.login1.reboot" ||
                 action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
                 action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
               )
             )
           {
@@ -485,6 +482,44 @@ in {
     groups.usb.members = ["prometheus"];
   };
   services.tailscale.enable = true;
+  networking.hosts."127.0.0.1" = ["firefly.home" "importer.home"];
+
+  services.nginx = {
+    enable = true;
+    virtualHosts."firefly.home".listen = [
+      {
+        addr = "127.0.0.1";
+        port = 6767;
+      }
+    ];
+    virtualHosts."importer.home".listen = [
+      {
+        addr = "127.0.0.1";
+        port = 6767;
+      }
+    ];
+  };
+
+  services.firefly-iii = {
+    enable = true;
+    enableNginx = true;
+    virtualHost = "firefly.home";
+    settings = {
+      APP_KEY_FILE = "/var/secrets/firefly-iii-app-key.txt";
+      APP_URL = "http://firefly.home:6767";
+    };
+  };
+
+  services.firefly-iii-data-importer = {
+    enable = true;
+    enableNginx = true;
+    virtualHost = "importer.home";
+    settings = {
+      FIREFLY_III_URL = "http://firefly.home:6767";
+      VANITY_URL = "http://firefly.home:6767";
+    };
+  };
+
   # services.lidarr = {
   #   enable = true;
   #   group = "media";

@@ -4,9 +4,20 @@
   lib,
   ...
 }: let
-  # tokyonightGtkTheme = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-theme;
-  tokyonightGtkIcons = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-icons;
-  tokyonightPkg = pkgs.tokyonight-gtk-theme.overrideAttrs {iconVariants = ["Dark"];};
+  tokyonightSrc = pkgs.fetchFromGitHub {
+    owner = "Fausto-Korpsvart";
+    repo = "Tokyo-Night-GTK-Theme";
+    rev = "6c340e058e84c1975a038a8e5d1e384477225dc0";
+    hash = "sha256-7H2n9wTaW8Db1RejWK071ITV1j5KIuzfql0Tx9WT6zM=";
+  };
+  tokyonightGtkIcons = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-icons.overrideAttrs (old: {
+    version = "0-unstable-2025-10-23";
+    src = tokyonightSrc;
+  });
+  tokyonightPkg = inputs.tokyonightNur.packages.${pkgs.system}.tokyonight-gtk-theme.overrideAttrs (old: {
+    version = "0-unstable-2025-10-23";
+    src = tokyonightSrc;
+  });
   flavor = "mocha";
   accent = "maroon";
 in rec {

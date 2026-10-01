@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  browser = ["firefox-nightly.desktop"];
+  browser = ["zen-beta.desktop"];
 
   associations = {
     "text/html" = browser;
@@ -90,14 +90,13 @@ in {
     # mtpfs
     fastfetch
     libreoffice-fresh
-    inputs.hypr-contrib.packages.${pkg.system}.grimblast
+    inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     powertop
     cliphist
     stow
     kooha
     wev
     ngrok
-    imv
     # planify
     (callPackage ./notion {})
     font-awesome
@@ -152,6 +151,7 @@ in {
     ncdu
     ffmpeg
     bitwarden-desktop
+    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     # calibre
   ];
   # nixGL = {
@@ -173,7 +173,8 @@ in {
     associations.added = associations;
     defaultApplications = associations;
   };
-
+  programs.imv.enable = true;
+  programs.mpv.enable = true;
   programs.btop.enable = true;
   services.kdeconnect.enable = true;
   services.kdeconnect.indicator = true;

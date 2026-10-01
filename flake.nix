@@ -1,8 +1,7 @@
 {
   description = "NixOS configuration";
-
   inputs = {
-    nixpkgs.url = "github:Nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
     # lix = {
     #   url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
     #   flake = false;
@@ -54,7 +53,7 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
     wrapper-manager = {
-      url = "github:viperML/wrapper-manager";
+      url = "git+https://codeberg.org/viperML/wrapper-manager";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -187,8 +186,8 @@
     #   config.cudaSupport = true;
     # };
   in {
+    formatter.${pkgs.system} = pkgs.alejandra;
     nixosConfigurations = {
-      formatter = "alejandra";
       omen = nixpkgs.lib.nixosSystem rec {
         inherit pkgs;
         system = "x86_64-linux";
